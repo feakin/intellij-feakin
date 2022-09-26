@@ -15,17 +15,17 @@ public class FeakinFileType extends LanguageFileType {
 
     @Override
     public @NotNull String getName() {
-        return "Charj File";
+        return "Feakin File";
     }
 
     @Override
     public @NotNull String getDescription() {
-        return "Charj language file";
+        return "Feakin language file";
     }
 
     @Override
     public @NotNull String getDefaultExtension() {
-        return "cj";
+        return "fkl";
     }
 
     @Override
