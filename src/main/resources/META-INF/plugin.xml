@@ -7,12 +7,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.feakin.intellij.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.feakin.intellij.services.MyProjectService"/>
+        <fileType name="Feakin File" implementationClass="com.feakin.intellij.FeakinFileType" fieldName="INSTANCE"
+                  language="Feakin" extensions="fkl"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.feakin.intellij.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
