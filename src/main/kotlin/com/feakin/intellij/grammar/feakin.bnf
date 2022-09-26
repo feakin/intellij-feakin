@@ -1,0 +1,44 @@
+{
+  parserClass="com.feakin.intellij.parser.FeakinParser"
+  parserUtilClass="com.intellij.lang.parser.GeneratedParserUtilBase"
+  psiImplUtilClass="com.feakin.intellij.parser.FeakinPsiImplUtil"
+
+  implements="com.feakin.intellij.psi.FeakinPsiCompositeElement"
+  extends="com.feakin.intellij.psi.impl.FeakinPsiCompositeElementImpl"
+
+  psiClassPrefix="Feakin"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.feakin.intellij.psi"
+  psiImplPackage="com.feakin.intellij.psi.impl"
+
+  elementTypeHolderClass="com.feakin.intellij.lexer.FeakinTypes"
+  elementTypeClass="com.feakin.intellij.psi.impl.FeakinElementType"
+  tokenTypeClass="com.feakin.intellij.lexer.FeakinTokenType"
+
+  tokenTypeClass="com.feakin.intellij.lexer.FeakinTokenType"
+  tokens = [
+      COMMENT          = 'regexp://[^\r\n]*'
+      BLOCK_COMMENT    = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
+
+      IDENTIFIER       = 'regexp:[_a-zA-Z][_a-zA-Z0-9]*'
+      STRING_LITERAL   = "regexp:\"([^\\\"\r\n]|\\[^\r\n])*\"?"
+
+      CONTEXT_MAP_KEYWORD   ='ContextMap'
+      CONTEXT_KEYWORD       ='Context'
+  ]
+}
+
+compilationUnit ::= declaration* { pin = 1}
+
+declaration ::= contextDeclaration
+               | contextMapDeclaration
+
+private contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER '{' contextMapEntry* '}'
+
+private contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER '{' contextBody '}'
+
+private contextMapEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+
+private contextBody ::= contextEntry* { pin = 1}
+
+private contextEntry ::= IDENTIFIER ':' IDENTIFIER ';'

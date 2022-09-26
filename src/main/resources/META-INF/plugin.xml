@@ -9,5 +9,9 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Feakin File" implementationClass="com.feakin.intellij.FeakinFileType" fieldName="INSTANCE"
                   language="Feakin" extensions="fkl"/>
+
+        <lang.syntaxHighlighterFactory language="Feakin"
+                                       implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighterFactory"/>
+
     </extensions>
 </idea-plugin>
