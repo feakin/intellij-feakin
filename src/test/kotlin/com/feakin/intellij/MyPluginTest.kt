@@ -1,4 +1,4 @@
-package com.github.phodal.intellijfeakin
+package com.feakin.intellij
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.psi.xml.XmlFile

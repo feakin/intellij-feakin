@@ -1,4 +1,4 @@
-package com.github.phodal.intellijfeakin
+package com.feakin.intellij
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

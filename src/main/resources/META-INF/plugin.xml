@@ -7,12 +7,12 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.phodal.intellijfeakin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.phodal.intellijfeakin.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.feakin.intellij.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.feakin.intellij.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.phodal.intellijfeakin.listeners.MyProjectManagerListener"
+        <listener class="com.feakin.intellij.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

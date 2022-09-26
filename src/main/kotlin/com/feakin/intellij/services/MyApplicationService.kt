@@ -1,6 +1,6 @@
-package com.github.phodal.intellijfeakin.services
+package com.feakin.intellij.services
 
-import com.github.phodal.intellijfeakin.MyBundle
+import com.feakin.intellij.MyBundle
 
 class MyApplicationService {
 

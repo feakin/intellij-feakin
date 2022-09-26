@@ -1,7 +1,7 @@
-package com.github.phodal.intellijfeakin.services
+package com.feakin.intellij.services
 
 import com.intellij.openapi.project.Project
-import com.github.phodal.intellijfeakin.MyBundle
+import com.feakin.intellij.MyBundle
 
 class MyProjectService(project: Project) {
 
