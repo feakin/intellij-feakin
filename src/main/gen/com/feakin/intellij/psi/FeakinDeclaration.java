@@ -7,4 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface FeakinDeclaration extends FeakinPsiCompositeElement {
 
+  @Nullable
+  FeakinContextDeclaration getContextDeclaration();
+
+  @Nullable
+  FeakinContextMapDeclaration getContextMapDeclaration();
+
 }

@@ -9,7 +9,10 @@ import com.feakin.intellij.psi.impl.*;
 
 public interface FeakinTypes {
 
+  IElementType CONTEXT_DECLARATION = new FeakinElementType("CONTEXT_DECLARATION");
+  IElementType CONTEXT_MAP_DECLARATION = new FeakinElementType("CONTEXT_MAP_DECLARATION");
   IElementType DECLARATION = new FeakinElementType("DECLARATION");
+  IElementType NAME_COMPONENT = new FeakinElementType("NAME_COMPONENT");
 
   IElementType BLOCK_COMMENT = new FeakinTokenType("BLOCK_COMMENT");
   IElementType COMMENT = new FeakinTokenType("COMMENT");
@@ -21,8 +24,17 @@ public interface FeakinTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == DECLARATION) {
+      if (type == CONTEXT_DECLARATION) {
+        return new FeakinContextDeclarationImpl(node);
+      }
+      else if (type == CONTEXT_MAP_DECLARATION) {
+        return new FeakinContextMapDeclarationImpl(node);
+      }
+      else if (type == DECLARATION) {
         return new FeakinDeclarationImpl(node);
+      }
+      else if (type == NAME_COMPONENT) {
+        return new FeakinNameComponentImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

@@ -60,17 +60,18 @@ public class FeakinParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CONTEXT_KEYWORD IDENTIFIER '{' contextBody '}'
-  static boolean contextDeclaration(PsiBuilder b, int l) {
+  // CONTEXT_KEYWORD name_component '{' contextBody '}'
+  public static boolean contextDeclaration(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "contextDeclaration")) return false;
     if (!nextTokenIs(b, CONTEXT_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, CONTEXT_KEYWORD, IDENTIFIER);
+    r = consumeToken(b, CONTEXT_KEYWORD);
+    r = r && name_component(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && contextBody(b, l + 1);
     r = r && consumeToken(b, "}");
-    exit_section_(b, m, null, r);
+    exit_section_(b, m, CONTEXT_DECLARATION, r);
     return r;
   }
 
@@ -90,17 +91,18 @@ public class FeakinParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CONTEXT_MAP_KEYWORD IDENTIFIER '{' contextMapEntry* '}'
-  static boolean contextMapDeclaration(PsiBuilder b, int l) {
+  // CONTEXT_MAP_KEYWORD name_component '{' contextMapEntry* '}'
+  public static boolean contextMapDeclaration(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "contextMapDeclaration")) return false;
     if (!nextTokenIs(b, CONTEXT_MAP_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, CONTEXT_MAP_KEYWORD, IDENTIFIER);
+    r = consumeToken(b, CONTEXT_MAP_KEYWORD);
+    r = r && name_component(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && contextMapDeclaration_3(b, l + 1);
     r = r && consumeToken(b, "}");
-    exit_section_(b, m, null, r);
+    exit_section_(b, m, CONTEXT_MAP_DECLARATION, r);
     return r;
   }
 
@@ -141,6 +143,18 @@ public class FeakinParser implements PsiParser, LightPsiParser {
     r = contextDeclaration(b, l + 1);
     if (!r) r = contextMapDeclaration(b, l + 1);
     exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean name_component(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "name_component")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, NAME_COMPONENT, r);
     return r;
   }
 

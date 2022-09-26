@@ -33,12 +33,22 @@ compilationUnit ::= declaration* { pin = 1}
 declaration ::= contextDeclaration
                | contextMapDeclaration
 
-private contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER '{' contextMapEntry* '}'
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD name_component '{' contextMapEntry* '}'
 
-private contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER '{' contextBody '}'
+contextDeclaration ::= CONTEXT_KEYWORD name_component '{' contextBody '}'
 
 private contextMapEntry ::= IDENTIFIER ':' IDENTIFIER ';'
 
 private contextBody ::= contextEntry* { pin = 1}
 
 private contextEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+
+name_component ::= IDENTIFIER
+{
+  mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
+  implements="com.feakin.intellij.psi.FeakinNamedElement"
+
+  methods=[
+    getReference
+  ]
+}
