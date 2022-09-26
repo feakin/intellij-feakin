@@ -1,7 +1,7 @@
-package org.jetbrains.plugins.template.services
+package com.github.phodal.intellijfeakin.services
 
 import com.intellij.openapi.project.Project
-import org.jetbrains.plugins.template.MyBundle
+import com.github.phodal.intellijfeakin.MyBundle
 
 class MyProjectService(project: Project) {
 
