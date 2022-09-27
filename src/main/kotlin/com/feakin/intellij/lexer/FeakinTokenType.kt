@@ -4,7 +4,7 @@ import com.feakin.intellij.FeakinLanguage
 import com.intellij.psi.tree.IElementType
 import org.jetbrains.annotations.NonNls
 
-class FeakinTokenType(debugName: @NonNls String) : IElementType(debugName, FeakinLanguage.INSTANCE) {
+class FeakinTokenType(debugName: @NonNls String) : IElementType(debugName, FeakinLanguage) {
     override fun toString(): String {
         return "FeakinTokenType." + super.toString()
     }

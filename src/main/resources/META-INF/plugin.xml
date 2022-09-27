@@ -12,8 +12,8 @@
         <fileType name="Feakin File" implementationClass="com.feakin.intellij.FeakinFileType" fieldName="INSTANCE"
                   language="Feakin" extensions="fkl"/>
 
-        <lang.syntaxHighlighterFactory language="Feakin"
-                                       implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighterFactory"/>
+        <lang.syntaxHighlighter language="Feakin"
+                                       implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>
 
         <lang.psiStructureViewFactory language="Feakin"
                                       implementationClass="com.feakin.intellij.structure.FeakinStructureViewFactory"/>

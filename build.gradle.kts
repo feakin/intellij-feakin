@@ -23,16 +23,16 @@ repositories {
     mavenCentral()
 }
 
-sourceSets.main {
-    java {
-        srcDirs("src/main/gen", "src/main/java", "src/main/kotlin")
-    }
-}
-
 // Set the JVM language level used to compile sources and generate files - Java 11 is required since 2020.3
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+idea {
+    module {
+        generatedSourceDirs.add(file("gen"))
     }
 }
 
@@ -61,8 +61,30 @@ qodana {
 }
 
 tasks {
+    withType<JavaCompile> {
+        sourceCompatibility = properties("javaVersion")
+        targetCompatibility = properties("javaVersion")
+    }
+
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = properties("javaVersion")
+            apiVersion = properties("kotlinApiVersion")
+        }
+    }
+
     wrapper {
         gradleVersion = properties("gradleVersion")
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs("src", "gen")
+            resources.srcDirs("resources")
+        }
+        test {
+            java.srcDirs("tests")
+        }
     }
 
     patchPluginXml {
