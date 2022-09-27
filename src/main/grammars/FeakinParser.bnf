@@ -34,7 +34,9 @@
       QUOTA                 = "'"
       LPAREN                = '('
       RPAREN                = ')'
-
+      LT                    =  '<'
+      GT                    =  '>'
+      DOT                   =  '.'
       RARROW                = "->"
       LARROW                = "<-"
       DARROW                = "<->"
@@ -93,7 +95,7 @@ contextDeclaration ::= CONTEXT_KEYWORD contextName LBRACE contextBody RBRACE
 
 aggregateDeclaration ::= AGGREGATION_KEYWORD aggregateName LBRACE aggregateBody RBRACE
 
-entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody RBRACE
+entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody? RBRACE
 
 valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObjectBody RBRACE
 
@@ -114,7 +116,12 @@ structDeclaration ::= STRUCT_KEYWORD LBRACE structBody RBRACE
 
 private structBody ::= structEntry*
 
-private structEntry ::= IDENTIFIER COLON IDENTIFIER SEMICOLON?
+private structEntry ::= IDENTIFIER COLON structType defaultValue? SEMICOLON?
+
+structType ::= IDENTIFIER ('<' IDENTIFIER '>')?
+              ;
+
+private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 
 private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 

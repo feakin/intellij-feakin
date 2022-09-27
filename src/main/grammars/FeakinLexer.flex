@@ -44,6 +44,9 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "'"                   { return QUOTA; }
   "("                   { return LPAREN; }
   ")"                   { return RPAREN; }
+  "<"                   { return LT; }
+  ">"                   { return GT; }
+  "."                   { return DOT; }
   "->"                  { return RARROW; }
   "<-"                  { return LARROW; }
   "<->"                 { return DARROW; }

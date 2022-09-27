@@ -2,7 +2,7 @@ package com.feakin.intellij.parser
 
 import com.intellij.testFramework.ParsingTestCase
 
-class FeakinParsingTest: ParsingTestCase("parser", "fkl", FeakinParserDefinition()) {
+class FeakinParsingTest : ParsingTestCase("parser", "fkl", FeakinParserDefinition()) {
     override fun getTestDataPath(): String {
         return "src/test/testData"
     }
@@ -12,6 +12,14 @@ class FeakinParsingTest: ParsingTestCase("parser", "fkl", FeakinParserDefinition
     }
 
     fun testContextMapAggregate() {
+        doTest(true)
+    }
+
+    fun testEntityStructList() {
+        doTest(true)
+    }
+
+    fun testEmptyBody() {
         doTest(true)
     }
 }

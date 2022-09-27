@@ -1,0 +1,15 @@
+Entity Reservation {
+  Struct {
+    id: String;
+    token: UUID;
+    status: ReservationStatus = ReservationStatus.OPEN;
+    expiresAt: LocalDateTime;
+    createdAt: LocalDateTime;
+    screeningId: String;
+    screeningStartTime: LocalDateTime;
+    name: String;
+    surname: String;
+    tickets: Set<Ticket>;
+    totalPrice: BigDecimal;
+  }
+}

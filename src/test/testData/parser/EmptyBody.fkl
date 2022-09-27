@@ -1,0 +1,11 @@
+ContextMap TicketBooking {
+}
+
+Context Reservation {
+}
+
+Aggregate Reservation {
+}
+
+Entity Reservation {
+}
