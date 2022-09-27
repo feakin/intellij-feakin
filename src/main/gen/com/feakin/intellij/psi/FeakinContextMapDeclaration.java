@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface FeakinContextMapDeclaration extends FeakinPsiCompositeElement {
 
   @NotNull
-  FeakinNameComponent getNameComponent();
+  FeakinContextMapName getContextMapName();
 
 }

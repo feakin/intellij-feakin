@@ -33,15 +33,19 @@ compilationUnit ::= declaration* { pin = 1}
 declaration ::= contextDeclaration
                | contextMapDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD name_component '{' contextMapEntry* '}'
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName '{' contextMapEntry* '}'
 
-contextDeclaration ::= CONTEXT_KEYWORD name_component '{' contextBody '}'
+contextDeclaration ::= CONTEXT_KEYWORD contextName '{' contextBody '}'
 
 private contextMapEntry ::= IDENTIFIER ':' IDENTIFIER ';'
 
 private contextBody ::= contextEntry* { pin = 1}
 
 private contextEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+
+contextMapName ::= name_component
+
+contextName ::= name_component
 
 name_component ::= IDENTIFIER
 {

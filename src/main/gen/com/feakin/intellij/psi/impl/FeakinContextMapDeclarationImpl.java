@@ -29,8 +29,8 @@ public class FeakinContextMapDeclarationImpl extends FeakinPsiCompositeElementIm
 
   @Override
   @NotNull
-  public FeakinNameComponent getNameComponent() {
-    return findNotNullChildByClass(FeakinNameComponent.class);
+  public FeakinContextMapName getContextMapName() {
+    return findNotNullChildByClass(FeakinContextMapName.class);
   }
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface FeakinContextDeclaration extends FeakinPsiCompositeElement {
+public interface FeakinContextMapName extends FeakinPsiCompositeElement {
 
   @NotNull
-  FeakinContextName getContextName();
+  FeakinNameComponent getNameComponent();
 
 }

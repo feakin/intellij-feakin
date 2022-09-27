@@ -11,14 +11,14 @@ import static com.feakin.intellij.lexer.FeakinTypes.*;
 import com.feakin.intellij.psi.*;
 import com.feakin.intellij.parser.FeakinPsiImplUtil;
 
-public class FeakinContextDeclarationImpl extends FeakinPsiCompositeElementImpl implements FeakinContextDeclaration {
+public class FeakinContextNameImpl extends FeakinPsiCompositeElementImpl implements FeakinContextName {
 
-  public FeakinContextDeclarationImpl(@NotNull ASTNode node) {
+  public FeakinContextNameImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull FeakinVisitor visitor) {
-    visitor.visitContextDeclaration(this);
+    visitor.visitContextName(this);
   }
 
   @Override
@@ -29,8 +29,8 @@ public class FeakinContextDeclarationImpl extends FeakinPsiCompositeElementImpl 
 
   @Override
   @NotNull
-  public FeakinContextName getContextName() {
-    return findNotNullChildByClass(FeakinContextName.class);
+  public FeakinNameComponent getNameComponent() {
+    return findNotNullChildByClass(FeakinNameComponent.class);
   }
 
 }

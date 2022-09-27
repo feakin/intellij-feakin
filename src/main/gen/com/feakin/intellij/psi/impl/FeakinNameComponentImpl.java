@@ -10,6 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.feakin.intellij.lexer.FeakinTypes.*;
 import com.feakin.intellij.psi.*;
 import com.feakin.intellij.parser.FeakinPsiImplUtil;
+import com.intellij.psi.PsiReference;
 
 public class FeakinNameComponentImpl extends FeakinNamedElementImpl implements FeakinNameComponent {
 
@@ -31,6 +32,11 @@ public class FeakinNameComponentImpl extends FeakinNamedElementImpl implements F
   @NotNull
   public PsiElement getIdentifier() {
     return findNotNullChildByType(IDENTIFIER);
+  }
+
+  @Override
+  public PsiReference getReference() {
+    return FeakinPsiImplUtil.getReference(this);
   }
 
 }

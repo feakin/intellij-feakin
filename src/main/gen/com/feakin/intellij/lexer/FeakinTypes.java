@@ -11,6 +11,8 @@ public interface FeakinTypes {
 
   IElementType CONTEXT_DECLARATION = new FeakinElementType("CONTEXT_DECLARATION");
   IElementType CONTEXT_MAP_DECLARATION = new FeakinElementType("CONTEXT_MAP_DECLARATION");
+  IElementType CONTEXT_MAP_NAME = new FeakinElementType("CONTEXT_MAP_NAME");
+  IElementType CONTEXT_NAME = new FeakinElementType("CONTEXT_NAME");
   IElementType DECLARATION = new FeakinElementType("DECLARATION");
   IElementType NAME_COMPONENT = new FeakinElementType("NAME_COMPONENT");
 
@@ -29,6 +31,12 @@ public interface FeakinTypes {
       }
       else if (type == CONTEXT_MAP_DECLARATION) {
         return new FeakinContextMapDeclarationImpl(node);
+      }
+      else if (type == CONTEXT_MAP_NAME) {
+        return new FeakinContextMapNameImpl(node);
+      }
+      else if (type == CONTEXT_NAME) {
+        return new FeakinContextNameImpl(node);
       }
       else if (type == DECLARATION) {
         return new FeakinDeclarationImpl(node);

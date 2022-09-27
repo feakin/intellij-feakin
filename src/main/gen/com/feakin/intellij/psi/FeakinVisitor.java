@@ -14,6 +14,14 @@ public class FeakinVisitor extends PsiElementVisitor {
     visitPsiCompositeElement(o);
   }
 
+  public void visitContextMapName(@NotNull FeakinContextMapName o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitContextName(@NotNull FeakinContextName o) {
+    visitPsiCompositeElement(o);
+  }
+
   public void visitDeclaration(@NotNull FeakinDeclaration o) {
     visitPsiCompositeElement(o);
   }
