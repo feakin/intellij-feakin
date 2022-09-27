@@ -1,0 +1,5 @@
+ContextMap TicketBooking {
+  Reservation -> Cinema;
+  Reservation -> Movie;
+  Reservation <-> User;
+}
