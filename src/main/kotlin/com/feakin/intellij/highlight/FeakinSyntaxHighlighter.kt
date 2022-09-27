@@ -23,6 +23,12 @@ class FeakinSyntaxHighlighter : SyntaxHighlighterBase() {
         init {
             fillMap(ATTRIBUTES, FeakinTokenTypeSets.KEY_WORDS, DefaultLanguageHighlighterColors.KEYWORD)
             ATTRIBUTES[FeakinTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.IDENTIFIER
+
+            ATTRIBUTES[FeakinTypes.COMMENT] = DefaultLanguageHighlighterColors.LINE_COMMENT;
+            ATTRIBUTES[FeakinTypes.CLOSE_BRACE] = DefaultLanguageHighlighterColors.BRACES;
+            ATTRIBUTES[FeakinTypes.OPEN_BRACE] = DefaultLanguageHighlighterColors.BRACES;
+
+            ATTRIBUTES[FeakinTypes.STRING_LITERAL] = DefaultLanguageHighlighterColors.STRING;
         }
     }
 }

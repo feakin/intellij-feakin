@@ -4,10 +4,17 @@ package com.feakin.intellij.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import com.intellij.navigation.ItemPresentation;
 
-public interface FeakinContextDeclaration extends FeakinPsiCompositeElement {
+public interface FeakinContextDeclaration extends FeakinNamedElement {
 
   @NotNull
   FeakinContextName getContextName();
+
+  @Nullable
+  String getName();
+
+  @Nullable
+  ItemPresentation getPresentation();
 
 }

@@ -4,14 +4,10 @@ package com.feakin.intellij.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
 
-public interface FeakinNameComponent extends FeakinNamedElement {
+public interface FeakinValueObjectDeclaration extends FeakinPsiCompositeElement {
 
   @NotNull
-  PsiElement getIdentifier();
-
-  @Nullable
-  PsiReference getReference();
+  FeakinValueObjectName getValueObjectName();
 
 }

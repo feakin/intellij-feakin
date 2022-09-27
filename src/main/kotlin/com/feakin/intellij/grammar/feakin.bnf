@@ -23,29 +23,94 @@
       IDENTIFIER       = 'regexp:[_a-zA-Z][_a-zA-Z0-9]*'
       STRING_LITERAL   = "regexp:\"([^\\\"\r\n]|\\[^\r\n])*\"?"
 
-      CONTEXT_MAP_KEYWORD   ='ContextMap'
-      CONTEXT_KEYWORD       ='Context'
+      COMMA          = ','
+      COLON          = ":"
+      DOUBLE_COLON   = "::"
+      SEMICOLON      = ";"
+      OPEN_BRACE     = "{"
+      CLOSE_BRACE    = "}"
+      EQUAL          = "="
+      QUOTA          = "'"
+      LPAREN         = '('
+      RPAREN         = ')'
+
+      RARROW         = "->"
+      LARROW         = "<-"
+      DARROW         = "<->"
+
+      CONTEXT_MAP_KEYWORD   = 'ContextMap'
+      CONTEXT_KEYWORD       = 'Context'
+      AGGREGATION_KEYWORD   = 'Aggregate'
+      ENTITY_KEYWORD        = 'Entity'
+      VALUE_OBJECT_KEYWORD  = 'ValueObject'
+      STRUCT_KEYWORD        = 'Struct'
   ]
 }
 
-compilationUnit ::= declaration* { pin = 1}
+compilationUnit ::= declaration*
 
-declaration ::= contextDeclaration
-               | contextMapDeclaration
+declaration ::= contextMapDeclaration
+               | contextDeclaration
+               | aggregationDeclaration
+               | entityDeclaration
+               | valueObjectDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName '{' contextMapEntry* '}'
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName OPEN_BRACE (contextNodeDecl | contextNodeRel)* CLOSE_BRACE
+{
+  mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
+  implements="com.feakin.intellij.psi.FeakinNamedElement"
+  methods=[getName getPresentation]
+}
 
-contextDeclaration ::= CONTEXT_KEYWORD contextName '{' contextBody '}'
+private contextNodeDecl ::= CONTEXT_KEYWORD contextName  (COMMA contextName)*
 
-private contextMapEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+private contextNodeRel ::= contextNodeName (DARROW | LARROW | RARROW) contextNodeName SEMICOLON
+{
+  implements="com.feakin.intellij.psi.FeakinContextNodeRel"
+  methods=[getLeftNode getRightNode]
+}
 
-private contextBody ::= contextEntry* { pin = 1}
+contextDeclaration ::= CONTEXT_KEYWORD contextName OPEN_BRACE contextBody CLOSE_BRACE
+{
+  mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
+  implements="com.feakin.intellij.psi.FeakinNamedElement"
+  methods=[getName getPresentation]
+}
+
+aggregationDeclaration ::= AGGREGATION_KEYWORD aggregationName OPEN_BRACE aggregationBody CLOSE_BRACE
+
+entityDeclaration ::= ENTITY_KEYWORD entityName OPEN_BRACE entityBody CLOSE_BRACE
+
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName OPEN_BRACE valueObjectBody CLOSE_BRACE
+
+private contextBody ::= contextEntry*
 
 private contextEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+
+private aggregationBody ::= aggregationEntry*
+
+private aggregationEntry ::=
+    IDENTIFIER ':' IDENTIFIER ';'
+  | IDENTIFIER ':' IDENTIFIER '[' IDENTIFIER ']';
+
+private entityBody ::= entityEntry*
+private entityEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+
+private valueObjectBody ::= valueObjectEntry*
+private valueObjectEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+
 
 contextMapName ::= name_component
 
 contextName ::= name_component
+
+aggregationName ::= name_component
+
+entityName ::= name_component
+
+valueObjectName ::= name_component
+
+contextNodeName ::= name_component
 
 name_component ::= IDENTIFIER
 {

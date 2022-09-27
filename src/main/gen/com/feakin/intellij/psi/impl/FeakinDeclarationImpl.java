@@ -29,6 +29,12 @@ public class FeakinDeclarationImpl extends FeakinPsiCompositeElementImpl impleme
 
   @Override
   @Nullable
+  public FeakinAggregationDeclaration getAggregationDeclaration() {
+    return findChildByClass(FeakinAggregationDeclaration.class);
+  }
+
+  @Override
+  @Nullable
   public FeakinContextDeclaration getContextDeclaration() {
     return findChildByClass(FeakinContextDeclaration.class);
   }
@@ -37,6 +43,18 @@ public class FeakinDeclarationImpl extends FeakinPsiCompositeElementImpl impleme
   @Nullable
   public FeakinContextMapDeclaration getContextMapDeclaration() {
     return findChildByClass(FeakinContextMapDeclaration.class);
+  }
+
+  @Override
+  @Nullable
+  public FeakinEntityDeclaration getEntityDeclaration() {
+    return findChildByClass(FeakinEntityDeclaration.class);
+  }
+
+  @Override
+  @Nullable
+  public FeakinValueObjectDeclaration getValueObjectDeclaration() {
+    return findChildByClass(FeakinValueObjectDeclaration.class);
   }
 
 }

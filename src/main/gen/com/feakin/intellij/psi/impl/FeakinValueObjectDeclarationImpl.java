@@ -10,16 +10,15 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.feakin.intellij.lexer.FeakinTypes.*;
 import com.feakin.intellij.psi.*;
 import com.feakin.intellij.parser.FeakinPsiImplUtil;
-import com.intellij.navigation.ItemPresentation;
 
-public class FeakinContextDeclarationImpl extends FeakinNamedElementImpl implements FeakinContextDeclaration {
+public class FeakinValueObjectDeclarationImpl extends FeakinPsiCompositeElementImpl implements FeakinValueObjectDeclaration {
 
-  public FeakinContextDeclarationImpl(@NotNull ASTNode node) {
+  public FeakinValueObjectDeclarationImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull FeakinVisitor visitor) {
-    visitor.visitContextDeclaration(this);
+    visitor.visitValueObjectDeclaration(this);
   }
 
   @Override
@@ -30,8 +29,8 @@ public class FeakinContextDeclarationImpl extends FeakinNamedElementImpl impleme
 
   @Override
   @NotNull
-  public FeakinContextName getContextName() {
-    return findNotNullChildByClass(FeakinContextName.class);
+  public FeakinValueObjectName getValueObjectName() {
+    return findNotNullChildByClass(FeakinValueObjectName.class);
   }
 
 }

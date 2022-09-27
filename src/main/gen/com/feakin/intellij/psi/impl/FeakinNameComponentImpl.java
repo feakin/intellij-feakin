@@ -35,6 +35,7 @@ public class FeakinNameComponentImpl extends FeakinNamedElementImpl implements F
   }
 
   @Override
+  @Nullable
   public PsiReference getReference() {
     return FeakinPsiImplUtil.getReference(this);
   }

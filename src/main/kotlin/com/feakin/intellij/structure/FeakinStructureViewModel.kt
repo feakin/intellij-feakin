@@ -22,8 +22,8 @@ class FeakinStructureViewModel(psiFile: PsiFile) : StructureViewModelBase(psiFil
     override fun isAlwaysLeaf(element: StructureViewTreeElement): Boolean {
         when (element.value) {
             is FeakinContextDeclaration,
-            is FeakinContextMapDeclaration -> return false
-            else -> return true
+            is FeakinContextMapDeclaration -> return true
+            else -> return false
         }
     }
 }

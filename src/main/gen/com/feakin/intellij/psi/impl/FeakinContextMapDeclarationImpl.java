@@ -10,8 +10,9 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.feakin.intellij.lexer.FeakinTypes.*;
 import com.feakin.intellij.psi.*;
 import com.feakin.intellij.parser.FeakinPsiImplUtil;
+import com.intellij.navigation.ItemPresentation;
 
-public class FeakinContextMapDeclarationImpl extends FeakinPsiCompositeElementImpl implements FeakinContextMapDeclaration {
+public class FeakinContextMapDeclarationImpl extends FeakinNamedElementImpl implements FeakinContextMapDeclaration {
 
   public FeakinContextMapDeclarationImpl(@NotNull ASTNode node) {
     super(node);
@@ -31,6 +32,18 @@ public class FeakinContextMapDeclarationImpl extends FeakinPsiCompositeElementIm
   @NotNull
   public FeakinContextMapName getContextMapName() {
     return findNotNullChildByClass(FeakinContextMapName.class);
+  }
+
+  @Override
+  @NotNull
+  public List<FeakinContextName> getContextNameList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, FeakinContextName.class);
+  }
+
+  @Override
+  @NotNull
+  public List<FeakinContextNodeName> getContextNodeNameList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, FeakinContextNodeName.class);
   }
 
 }

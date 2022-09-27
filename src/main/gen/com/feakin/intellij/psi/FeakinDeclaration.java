@@ -8,9 +8,18 @@ import com.intellij.psi.PsiElement;
 public interface FeakinDeclaration extends FeakinPsiCompositeElement {
 
   @Nullable
+  FeakinAggregationDeclaration getAggregationDeclaration();
+
+  @Nullable
   FeakinContextDeclaration getContextDeclaration();
 
   @Nullable
   FeakinContextMapDeclaration getContextMapDeclaration();
+
+  @Nullable
+  FeakinEntityDeclaration getEntityDeclaration();
+
+  @Nullable
+  FeakinValueObjectDeclaration getValueObjectDeclaration();
 
 }
