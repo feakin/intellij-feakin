@@ -25,7 +25,6 @@ class FeakinCommenter : Commenter, SelfManagingCommenter<CommentHolder> {
     override fun getBlockCommentPrefix(): String = "/*"
     override fun getBlockCommentSuffix(): String = "*/"
 
-    // unused because we implement SelfManagingCommenter
     override fun getCommentedBlockCommentPrefix(): String = "*//*"
     override fun getCommentedBlockCommentSuffix(): String = "*//*"
 
