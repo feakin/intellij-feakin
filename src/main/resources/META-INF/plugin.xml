@@ -15,5 +15,6 @@
         <lang.syntaxHighlighterFactory language="Feakin"
                                        implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighterFactory"/>
 
+        <lang.commenter language="Feakin" implementationClass="com.feakin.intellij.completion.FeakinCommenter"/>
     </extensions>
 </idea-plugin>
