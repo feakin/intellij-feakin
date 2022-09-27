@@ -7,6 +7,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <stubIndex implementation="com.feakin.intellij.psi.stubs.FeakinContextDeclarationNameIndex"/>
+
         <fileType name="Feakin File" implementationClass="com.feakin.intellij.FeakinFileType" fieldName="INSTANCE"
                   language="Feakin" extensions="fkl"/>
 
