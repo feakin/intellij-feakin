@@ -38,5 +38,11 @@
         <stubIndex implementation="com.feakin.intellij.psi.stubs.FkNamedElementIndex"/>
         <stubIndex implementation="com.feakin.intellij.psi.stubs.FkContextIndex"/>
         <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
+
+        <!-- Completion -->
+        <completion.contributor language="Feakin"
+                                implementationClass="com.feakin.intellij.completion.FkKeywordCompletionContributor"
+                                id="FkKeywordCompletionContributor"
+                                order="first"/>
     </extensions>
 </idea-plugin>
