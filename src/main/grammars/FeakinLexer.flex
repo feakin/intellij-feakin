@@ -5,7 +5,7 @@ import com.intellij.psi.tree.IElementType;
 
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
-import static com.feakin.intellij.lexer.FeakinTypes.*;
+import static com.feakin.intellij.lexer.FeakinElementTypes.*;
 
 %%
 
@@ -38,8 +38,8 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   ":"                   { return COLON; }
   "::"                  { return DOUBLE_COLON; }
   ";"                   { return SEMICOLON; }
-  "{"                   { return OPEN_BRACE; }
-  "}"                   { return CLOSE_BRACE; }
+  "{"                   { return LBRACE; }
+  "}"                   { return RBRACE; }
   "="                   { return EQUAL; }
   "'"                   { return QUOTA; }
   "("                   { return LPAREN; }
@@ -47,6 +47,7 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "->"                  { return RARROW; }
   "<-"                  { return LARROW; }
   "<->"                 { return DARROW; }
+  "--"                  { return CONNECTION; }
   "ContextMap"          { return CONTEXT_MAP_KEYWORD; }
   "Context"             { return CONTEXT_KEYWORD; }
   "Aggregate"           { return AGGREGATION_KEYWORD; }

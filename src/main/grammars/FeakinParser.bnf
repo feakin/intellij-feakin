@@ -11,32 +11,34 @@
   psiPackage="com.feakin.intellij.psi"
   psiImplPackage="com.feakin.intellij.psi.impl"
 
-  elementTypeHolderClass="com.feakin.intellij.lexer.FeakinTypes"
+  elementTypeHolderClass="com.feakin.intellij.lexer.FeakinElementTypes"
   elementTypeClass="com.feakin.intellij.psi.impl.FeakinElementType"
+
   tokenTypeClass="com.feakin.intellij.lexer.FeakinTokenType"
 
   tokenTypeClass="com.feakin.intellij.lexer.FeakinTokenType"
   tokens = [
-      COMMENT          = 'regexp://[^\r\n]*'
-      BLOCK_COMMENT    = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
+      COMMENT               = 'regexp://[^\r\n]*'
+      BLOCK_COMMENT         = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
 
-      IDENTIFIER       = 'regexp:[_a-zA-Z][_a-zA-Z0-9]*'
-      STRING_LITERAL   = "regexp:\"([^\\\"\r\n]|\\[^\r\n])*\"?"
+      IDENTIFIER            = 'regexp:[_a-zA-Z][_a-zA-Z0-9]*'
+      STRING_LITERAL        = "regexp:\"([^\\\"\r\n]|\\[^\r\n])*\"?"
 
-      COMMA          = ','
-      COLON          = ":"
-      DOUBLE_COLON   = "::"
-      SEMICOLON      = ";"
-      OPEN_BRACE     = "{"
-      CLOSE_BRACE    = "}"
-      EQUAL          = "="
-      QUOTA          = "'"
-      LPAREN         = '('
-      RPAREN         = ')'
+      COMMA                 = ','
+      COLON                 = ":"
+      DOUBLE_COLON          = "::"
+      SEMICOLON             = ";"
+      LBRACE                = "{"
+      RBRACE                = "}"
+      EQUAL                 = "="
+      QUOTA                 = "'"
+      LPAREN                = '('
+      RPAREN                = ')'
 
-      RARROW         = "->"
-      LARROW         = "<-"
-      DARROW         = "<->"
+      RARROW                = "->"
+      LARROW                = "<-"
+      DARROW                = "<->"
+      CONNECTION            = "--"
 
       CONTEXT_MAP_KEYWORD   = 'ContextMap'
       CONTEXT_KEYWORD       = 'Context'
@@ -51,45 +53,55 @@ compilationUnit ::= declaration*
 
 declaration ::= contextMapDeclaration
                | contextDeclaration
-               | aggregationDeclaration
+               | aggregateDeclaration
                | entityDeclaration
                | valueObjectDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName OPEN_BRACE (contextNodeDecl | contextNodeRel)* CLOSE_BRACE
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName LBRACE contextMapBody RBRACE
 {
   mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
   implements="com.feakin.intellij.psi.FeakinNamedElement"
   methods=[getName getPresentation]
 }
 
+contextMapBody ::= (contextNodeDecl | contextNodeRel)*
+
 private contextNodeDecl ::= CONTEXT_KEYWORD contextName  (COMMA contextName)*
 
-private contextNodeRel ::= contextNodeName (DARROW | LARROW | RARROW) contextNodeName SEMICOLON
+private contextNodeRel ::= leftContextNode relSymbol rightContextNode SEMICOLON
 {
   implements="com.feakin.intellij.psi.FeakinContextNodeRel"
   methods=[getLeftNode getRightNode]
 }
 
-contextDeclaration ::= CONTEXT_KEYWORD contextName OPEN_BRACE contextBody CLOSE_BRACE
+private leftContextNode ::= contextNodeName;
+
+private rightContextNode ::= contextNodeName;
+
+relSymbol ::= RARROW
+             | LARROW
+             | DARROW
+             | CONNECTION
+             ;
+
+contextDeclaration ::= CONTEXT_KEYWORD contextName LBRACE contextBody RBRACE
 {
   mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
   implements="com.feakin.intellij.psi.FeakinNamedElement"
   methods=[getName getPresentation]
 }
 
-aggregationDeclaration ::= AGGREGATION_KEYWORD aggregationName OPEN_BRACE aggregationBody CLOSE_BRACE
+aggregateDeclaration ::= AGGREGATION_KEYWORD aggregateName LBRACE aggregateBody RBRACE
 
-entityDeclaration ::= ENTITY_KEYWORD entityName OPEN_BRACE entityBody CLOSE_BRACE
+entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody RBRACE
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName OPEN_BRACE valueObjectBody CLOSE_BRACE
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObjectBody RBRACE
 
-private contextBody ::= contextEntry*
+contextBody ::= AGGREGATION_KEYWORD LBRACE name_component (COMMENT name_component)? SEMICOLON
 
-private contextEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+private aggregateBody ::= aggregateEntry*
 
-private aggregationBody ::= aggregationEntry*
-
-private aggregationEntry ::=
+private aggregateEntry ::=
     IDENTIFIER ':' IDENTIFIER ';'
   | IDENTIFIER ':' IDENTIFIER '[' IDENTIFIER ']';
 
@@ -99,12 +111,11 @@ private entityEntry ::= IDENTIFIER ':' IDENTIFIER ';'
 private valueObjectBody ::= valueObjectEntry*
 private valueObjectEntry ::= IDENTIFIER ':' IDENTIFIER ';'
 
-
 contextMapName ::= name_component
 
 contextName ::= name_component
 
-aggregationName ::= name_component
+aggregateName ::= name_component
 
 entityName ::= name_component
 

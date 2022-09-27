@@ -1,8 +1,11 @@
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.grammarkit.tasks.GenerateLexerTask
+import org.jetbrains.grammarkit.tasks.GenerateParserTask
 
 fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
+    idea
     // Java support
     id("java")
     // Kotlin support
@@ -13,6 +16,8 @@ plugins {
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
+
+    id("org.jetbrains.grammarkit") version "2021.2.2"
 }
 
 group = properties("pluginGroup")
@@ -32,7 +37,8 @@ kotlin {
 //
 //idea {
 //    module {
-//        generatedSourceDirs.add(file("gen"))
+//        // https://github.com/gradle/kotlin-dsl/issues/537/
+//        excludeDirs = excludeDirs + file("testData") + file("deps") + file("bin")
 //    }
 //}
 
@@ -60,10 +66,51 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
+idea {
+    module {
+        generatedSourceDirs.add(file("src/gen"))
+    }
+}
+
+sourceSets {
+    main {
+        java.srcDirs("src", "gen")
+    }
+    test {
+        resources.srcDirs("src/test/resources")
+    }
+}
+
+kotlin {
+    sourceSets {
+        main {
+            kotlin.srcDirs("src/main/kotlin")
+        }
+        test {
+            kotlin.srcDirs("src/test/kotlin")
+        }
+    }
+}
+
 tasks {
     withType<JavaCompile> {
         sourceCompatibility = properties("javaVersion")
         targetCompatibility = properties("javaVersion")
+    }
+
+    val generateFeakinLexer = task<GenerateLexerTask>("generateFeakinLexer") {
+        source.set("src/main/grammars/FeakinLexer.flex")
+        targetDir.set("src/gen/com/feakin/intellij/lexer")
+        targetClass.set("_FeakinLexer")
+        purgeOldFiles.set(true)
+    }
+
+    val generateFeakinParser = task<GenerateParserTask>("generateFeakinParser") {
+        source.set("src/main/grammars/FeakinParser.bnf")
+        targetRoot.set("src/gen")
+        pathToParser.set("com/feakin/intellij/parser/FeakinParser.java")
+        pathToPsiRoot.set("com/feakin/intellij/psi")
+        purgeOldFiles.set(true)
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -71,20 +118,15 @@ tasks {
             jvmTarget = properties("javaVersion")
             apiVersion = properties("kotlinApiVersion")
         }
+
+        dependsOn(
+            generateFeakinLexer,
+            generateFeakinParser
+        )
     }
 
     wrapper {
         gradleVersion = properties("gradleVersion")
-    }
-
-    sourceSets {
-        main {
-            java.srcDirs("src", "gen")
-            resources.srcDirs("resources")
-        }
-        test {
-            java.srcDirs("tests")
-        }
     }
 
     patchPluginXml {
