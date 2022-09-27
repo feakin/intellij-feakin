@@ -10,4 +10,8 @@ class FeakinParsingTest: ParsingTestCase("parser", "fkl", FeakinParserDefinition
     fun testBasicContextMap() {
         doTest(true)
     }
+
+    fun testContextMapAggregate() {
+        doTest(true)
+    }
 }

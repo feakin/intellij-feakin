@@ -97,19 +97,29 @@ entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody RBRACE
 
 valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObjectBody RBRACE
 
-contextBody ::= AGGREGATION_KEYWORD LBRACE name_component (COMMENT name_component)? SEMICOLON
+contextBody ::= useAggregate*
+
+private useAggregate ::= AGGREGATION_KEYWORD name_component (COMMA name_component)? SEMICOLON
 
 private aggregateBody ::= aggregateEntry*
 
-private aggregateEntry ::=
-    IDENTIFIER ':' IDENTIFIER ';'
-  | IDENTIFIER ':' IDENTIFIER '[' IDENTIFIER ']';
+private aggregateEntry ::= useEntity
 
-private entityBody ::= entityEntry*
-private entityEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)? SEMICOLON
+
+private entityBody ::= structDeclaration
+                      | useValueObject
+
+structDeclaration ::= STRUCT_KEYWORD LBRACE structBody RBRACE
+
+private structBody ::= structEntry*
+
+private structEntry ::= IDENTIFIER COLON IDENTIFIER SEMICOLON?
+
+private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 
 private valueObjectBody ::= valueObjectEntry*
-private valueObjectEntry ::= IDENTIFIER ':' IDENTIFIER ';'
+private valueObjectEntry ::= IDENTIFIER COLON IDENTIFIER SEMICOLON
 
 contextMapName ::= name_component
 

@@ -1,0 +1,13 @@
+ContextMap TicketBooking {
+  Reservation -> Cinema;
+  Reservation -> Movie;
+  Reservation <-> User;
+}
+
+Context Reservation {
+  Aggregate Reservation;
+}
+
+Aggregate Reservation {
+  Entity Ticket, Reservation;
+}
