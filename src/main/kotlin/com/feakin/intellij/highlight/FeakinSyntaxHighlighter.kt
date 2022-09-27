@@ -1,7 +1,7 @@
 package com.feakin.intellij.highlight
 
-import com.feakin.intellij.FeakinLexerAdapter
-import com.feakin.intellij.lexer.FeakinTypes
+import com.feakin.intellij.lexer.FeakinLexerAdapter
+import com.feakin.intellij.lexer.FeakinElementTypes
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
@@ -22,13 +22,24 @@ class FeakinSyntaxHighlighter : SyntaxHighlighterBase() {
 
         init {
             fillMap(ATTRIBUTES, FeakinTokenTypeSets.KEY_WORDS, DefaultLanguageHighlighterColors.KEYWORD)
-            ATTRIBUTES[FeakinTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.IDENTIFIER
+            ATTRIBUTES[FeakinElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.IDENTIFIER
 
-            ATTRIBUTES[FeakinTypes.COMMENT] = DefaultLanguageHighlighterColors.LINE_COMMENT;
-            ATTRIBUTES[FeakinTypes.CLOSE_BRACE] = DefaultLanguageHighlighterColors.BRACES;
-            ATTRIBUTES[FeakinTypes.OPEN_BRACE] = DefaultLanguageHighlighterColors.BRACES;
+            ATTRIBUTES[FeakinElementTypes.COMMENT] = DefaultLanguageHighlighterColors.LINE_COMMENT;
+            ATTRIBUTES[FeakinElementTypes.BLOCK_COMMENT] = DefaultLanguageHighlighterColors.BLOCK_COMMENT;
 
-            ATTRIBUTES[FeakinTypes.STRING_LITERAL] = DefaultLanguageHighlighterColors.STRING;
+            ATTRIBUTES[FeakinElementTypes.LBRACE] = DefaultLanguageHighlighterColors.BRACES;
+            ATTRIBUTES[FeakinElementTypes.RBRACE] = DefaultLanguageHighlighterColors.BRACES;
+
+            ATTRIBUTES[FeakinElementTypes.COMMA] = DefaultLanguageHighlighterColors.COMMA;
+            ATTRIBUTES[FeakinElementTypes.SEMICOLON] = DefaultLanguageHighlighterColors.SEMICOLON;
+
+            ATTRIBUTES[FeakinElementTypes.COLON] = DefaultLanguageHighlighterColors.COMMA;
+
+            ATTRIBUTES[FeakinElementTypes.RARROW] = DefaultLanguageHighlighterColors.CONSTANT;
+            ATTRIBUTES[FeakinElementTypes.LARROW] = DefaultLanguageHighlighterColors.CONSTANT;
+            ATTRIBUTES[FeakinElementTypes.DARROW] = DefaultLanguageHighlighterColors.CONSTANT;
+
+            ATTRIBUTES[FeakinElementTypes.STRING_LITERAL] = DefaultLanguageHighlighterColors.STRING;
         }
     }
 }

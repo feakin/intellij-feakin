@@ -9,8 +9,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <stubIndex implementation="com.feakin.intellij.psi.stubs.FeakinContextDeclarationNameIndex"/>
 
-        <fileType name="Feakin File" implementationClass="com.feakin.intellij.FeakinFileType" fieldName="INSTANCE"
-                  language="Feakin" extensions="fkl"/>
+        <!-- File-type Factory -->
+        <fileType name="Feakin File"
+                  language="Feakin"
+                  implementationClass="com.feakin.intellij.FeakinFileType"
+                  fieldName="INSTANCE"
+                  extensions="fkl"/>
+        <internalFileTemplate name="Feakin File"/>
+
+        <!-- Parser -->
+
+        <lang.parserDefinition language="Feakin" implementationClass="com.feakin.intellij.parser.FeakinParserDefinition"/>
+        <stubElementTypeHolder class="com.feakin.intellij.lexer.FeakinElementTypes"/>
 
         <lang.syntaxHighlighter language="Feakin"
                                        implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>

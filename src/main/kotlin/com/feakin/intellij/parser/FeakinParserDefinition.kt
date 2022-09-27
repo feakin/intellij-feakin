@@ -17,12 +17,18 @@ import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 
 class FeakinParserDefinition : ParserDefinition {
+    companion object {
+        val WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
+        val COMMENTS = TokenSet.create(FeakinElementTypes.COMMENT)
+        val FILE = IFileElementType(FeakinLanguage)
+    }
+
     override fun createLexer(project: Project): Lexer {
         return FeakinLexerAdapter()
     }
 
     override fun createParser(project: Project): PsiParser {
-        return FeakinParser()
+        return com.feakin.intellij.parser.FeakinParser()
     }
 
     override fun getFileNodeType(): IFileElementType {
@@ -43,11 +49,5 @@ class FeakinParserDefinition : ParserDefinition {
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile {
         return FeakinFile(viewProvider)
-    }
-
-    companion object {
-        val WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
-        val COMMENTS = TokenSet.create(FeakinElementTypes.COMMENT)
-        val FILE = IFileElementType(FeakinLanguage)
     }
 }

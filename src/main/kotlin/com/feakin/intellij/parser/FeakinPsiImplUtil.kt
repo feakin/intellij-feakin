@@ -1,7 +1,7 @@
 package com.feakin.intellij.parser
 
 import com.feakin.intellij.FeakinIcons
-import com.feakin.intellij.lexer.FeakinTypes
+import com.feakin.intellij.lexer.FeakinElementTypes
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
 import com.feakin.intellij.psi.FeakinNameComponent
 import com.intellij.lang.PsiBuilder
@@ -18,7 +18,7 @@ object FeakinPsiImplUtil {
     }
 
     fun getKey(element: FeakinContextMapDeclaration): String? {
-        val keyNode = element.node.findChildByType(FeakinTypes.CONTEXT_MAP_DECLARATION)
+        val keyNode = element.node.findChildByType(FeakinElementTypes.CONTEXT_MAP_DECLARATION)
         return keyNode?.text?.replace("\\\\ ".toRegex(), " ")
     }
 

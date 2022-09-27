@@ -11,7 +11,6 @@ class FeakinContextDeclarationNameIndex : StringStubIndexExtension<FeakinContext
     override fun getKey(): StubIndexKey<String, FeakinContextDeclaration> {
         return KEY
     }
-
     companion object {
         val KEY = StubIndexKey.createIndexKey<String, FeakinContextDeclaration>("feakin.declaration.shortName")
         fun allKeys(project: Project?): Collection<String> {

@@ -1,6 +1,5 @@
-package com.feakin.intellij
+package com.feakin.intellij.lexer
 
-import com.feakin.intellij.lexer._FeakinLexer
 import com.intellij.lexer.FlexAdapter
 
-class FeakinLexerAdapter : FlexAdapter(_FeakinLexer(null))
+class FeakinLexerAdapter : FlexAdapter(com.feakin.intellij.lexer._FeakinLexer(null))

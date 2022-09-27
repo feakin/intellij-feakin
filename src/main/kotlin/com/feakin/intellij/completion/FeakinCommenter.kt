@@ -1,7 +1,6 @@
 package com.feakin.intellij.completion
 
 import com.feakin.intellij.FeakinLanguage
-import com.feakin.intellij.lexer.FeakinTypes.BLOCK_COMMENT
 import com.intellij.application.options.CodeStyle
 import com.intellij.codeInsight.generation.CommenterDataHolder
 import com.intellij.codeInsight.generation.SelfManagingCommenter

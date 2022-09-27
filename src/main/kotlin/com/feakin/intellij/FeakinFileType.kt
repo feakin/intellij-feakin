@@ -1,26 +1,18 @@
 package com.feakin.intellij
 
 import com.intellij.openapi.fileTypes.LanguageFileType
+import com.intellij.openapi.vfs.VirtualFile
 import javax.swing.Icon
 
-class FeakinFileType : LanguageFileType(FeakinLanguage) {
-    override fun getName(): String {
-        return "Feakin File"
-    }
+object FeakinFileType : LanguageFileType(FeakinLanguage) {
 
-    override fun getDescription(): String {
-        return "Feakin language file"
-    }
+    override fun getName(): String = "Feakin File"
 
-    override fun getDefaultExtension(): String {
-        return "fkl"
-    }
+    override fun getIcon(): Icon = FeakinIcons.FILE
 
-    override fun getIcon(): Icon {
-        return FeakinIcons.FILE
-    }
+    override fun getDefaultExtension(): String = "fkl"
 
-    companion object {
-        val INSTANCE = FeakinFileType()
-    }
+    override fun getCharset(file: VirtualFile, content: ByteArray): String = "UTF-8"
+
+    override fun getDescription(): String = "Feakin DSL file"
 }
