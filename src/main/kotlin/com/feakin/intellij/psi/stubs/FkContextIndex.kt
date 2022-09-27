@@ -7,10 +7,12 @@ import com.intellij.psi.stubs.StringStubIndexExtension
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.stubs.StubIndexKey
 
-class FeakinContextDeclarationNameIndex : StringStubIndexExtension<FeakinContextDeclaration>() {
+// todo: change to generic
+class FkContextIndex : StringStubIndexExtension<FeakinContextDeclaration>() {
     override fun getKey(): StubIndexKey<String, FeakinContextDeclaration> {
         return KEY
     }
+
     companion object {
         val KEY = StubIndexKey.createIndexKey<String, FeakinContextDeclaration>("feakin.declaration.shortName")
         fun allKeys(project: Project?): Collection<String> {
