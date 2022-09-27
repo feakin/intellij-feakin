@@ -58,6 +58,7 @@ declaration ::= contextMapDeclaration
                | aggregateDeclaration
                | entityDeclaration
                | valueObjectDeclaration
+               | structDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName LBRACE contextMapBody RBRACE
 {
@@ -97,36 +98,38 @@ aggregateDeclaration ::= AGGREGATION_KEYWORD aggregateName LBRACE aggregateBody 
 
 entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody? RBRACE
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObjectBody RBRACE
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObjectBody? RBRACE
 
 contextBody ::= useAggregate*
 
-private useAggregate ::= AGGREGATION_KEYWORD name_component (COMMA name_component)? SEMICOLON
+private useAggregate ::= AGGREGATION_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
 private aggregateBody ::= aggregateEntry*
 
 private aggregateEntry ::= useEntity
 
-private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)? SEMICOLON
+private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
 private entityBody ::= structDeclaration
                       | useValueObject
+                      | useStruct
 
 structDeclaration ::= STRUCT_KEYWORD LBRACE structBody RBRACE
 
 private structBody ::= structEntry*
 
-private structEntry ::= IDENTIFIER COLON structType defaultValue? SEMICOLON?
+private structEntry ::= IDENTIFIER COLON fieldType defaultValue? SEMICOLON?
 
-structType ::= IDENTIFIER ('<' IDENTIFIER '>')?
+fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')?
               ;
 
 private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 
 private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
+private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 
-private valueObjectBody ::= valueObjectEntry*
-private valueObjectEntry ::= IDENTIFIER COLON IDENTIFIER SEMICOLON
+private valueObjectBody ::= structDeclaration
+                          | useStruct
 
 contextMapName ::= name_component
 
