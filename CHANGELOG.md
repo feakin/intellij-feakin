@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+## [0.1.2]
 ### Added
 
 ### Changed
@@ -17,14 +18,11 @@
 ### Security
 
 ## [0.1.2]
-
 ### Fixed
-
 - fix parse issues ([6edfaa6](https://github.com/feakin/intellij-feakin/commit/6edfaa693029abf9387f0076db1f8216b2120827))
 - fix syntax error ([eedbbdb](https://github.com/feakin/intellij-feakin/commit/eedbbdb90ee4d18bc41173dbe080cba5fe9754d8))
 
 ### Added
-
 - add basic commeter support ([50839da](https://github.com/feakin/intellij-feakin/commit/50839da252e2f32b6e1413c109591eed397c2927))
 - add basic psi support ([f169f05](https://github.com/feakin/intellij-feakin/commit/f169f054ac7f20cd427689f40f77c1ca39559173))
 - add block selection ([b6bf72b](https://github.com/feakin/intellij-feakin/commit/b6bf72b59c2ea38a6169f64c89353096809d2a9f))
