@@ -12,10 +12,14 @@ import com.intellij.openapi.util.WriteExternalException
 import org.jdom.Element
 
 open class FkBuildTaskRunner : GenericProgramRunner<FkRunnerSettings>() {
+    companion object {
+        const val RUNNER_ID: String = "FkBuildTaskRunner"
+    }
+
     private val log: Logger = Logger.getInstance(FkBuildTaskRunner::class.java)
 
     override fun getRunnerId(): String {
-        return javaClass.simpleName
+        return RUNNER_ID
     }
 
     override fun canRun(executorId: String, profile: RunProfile): Boolean {

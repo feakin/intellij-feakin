@@ -1,8 +1,8 @@
 # intellij-feakin
 
 ![Build](https://github.com/feakin/intellij-feakin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/com.feakin.intellij.svg)](https://plugins.jetbrains.com/plugin/com.feakin.intellij)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.feakin.intellij.svg)](https://plugins.jetbrains.com/plugin/com.feakin.intellij)
+[![Version](https://img.shields.io/jetbrains/plugin/v/20026-feakin.svg)](https://plugins.jetbrains.com/plugin/20026-feakin)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20026-feakin.svg)](https://plugins.jetbrains.com/plugin/20026-feakin)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
