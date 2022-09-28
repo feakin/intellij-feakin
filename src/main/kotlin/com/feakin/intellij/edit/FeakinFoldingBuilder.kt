@@ -3,9 +3,7 @@ package com.feakin.intellij.edit
 import com.feakin.intellij.FeakinFile
 import com.feakin.intellij.lexer.FeakinElementTypes.LBRACE
 import com.feakin.intellij.lexer.FeakinElementTypes.RBRACE
-import com.feakin.intellij.psi.FeakinContextBody
-import com.feakin.intellij.psi.FeakinContextMapBody
-import com.feakin.intellij.psi.FeakinVisitor
+import com.feakin.intellij.psi.*
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.CustomFoldingBuilder
 import com.intellij.lang.folding.FoldingDescriptor
@@ -51,9 +49,10 @@ class FeakinFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     }
 
     private class FoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : FeakinVisitor() {
-        override fun visitContextBody(o: FeakinContextBody) = fold(o)
+        override fun visitContextDeclaration(o: FeakinContextDeclaration) = fold(o)
 
-        override fun visitContextMapBody(o: FeakinContextMapBody) = fold(o)
+        override fun visitContextMapDeclaration(o: FeakinContextMapDeclaration) = fold(o)
+
         private fun fold(element: PsiElement) {
             descriptors += FoldingDescriptor(element.node, element.textRange)
         }
