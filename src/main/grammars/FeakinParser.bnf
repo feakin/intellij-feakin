@@ -60,7 +60,7 @@ declaration ::= contextMapDeclaration
                | valueObjectDeclaration
                | structDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName LBRACE contextMapBody RBRACE
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName LBRACE contextMapBody? RBRACE
 {
   mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
   implements="com.feakin.intellij.psi.FeakinNamedElement"
