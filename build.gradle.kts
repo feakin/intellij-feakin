@@ -34,13 +34,6 @@ kotlin {
         languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
-//
-//idea {
-//    module {
-//        // https://github.com/gradle/kotlin-dsl/issues/537/
-//        excludeDirs = excludeDirs + file("testData") + file("deps") + file("bin")
-//    }
-//}
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
