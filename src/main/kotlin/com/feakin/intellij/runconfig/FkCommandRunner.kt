@@ -33,6 +33,7 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
 
     private fun doExecute(state: RunProfileState, environment: ExecutionEnvironment): RunContentDescriptor? {
         FileDocumentManager.getInstance().saveAllDocuments()
+        // getExecutableCommandLine
         return showRunContent(state.execute(environment.executor, this), environment)
     }
 
