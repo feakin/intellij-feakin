@@ -50,7 +50,11 @@
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkCreateStructLineMarkerProvider"/>
 
+        <projectTaskRunner implementation="com.feakin.intellij.buildtool.FkBuildTaskRunner"/>
         <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>
-
     </extensions>
+
+    <actions>
+        <action id="FkRunCommand" class="com.feakin.intellij.runconfig.command.RunFkCommandAction"/>
+    </actions>
 </idea-plugin>
