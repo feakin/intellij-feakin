@@ -2,7 +2,6 @@
 
 package com.feakin.intellij.linemarkers
 
-import com.feakin.intellij.ide.editor.elementType
 import com.feakin.intellij.psi.FeakinStructDeclaration
 import com.intellij.execution.lineMarker.ExecutorAction
 import com.intellij.execution.lineMarker.RunLineMarkerContributor
