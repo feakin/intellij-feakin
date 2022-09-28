@@ -17,11 +17,12 @@
 
         <!-- Parser -->
 
-        <lang.parserDefinition language="Feakin" implementationClass="com.feakin.intellij.parser.FeakinParserDefinition"/>
+        <lang.parserDefinition language="Feakin"
+                               implementationClass="com.feakin.intellij.parser.FeakinParserDefinition"/>
         <stubElementTypeHolder class="com.feakin.intellij.lexer.FeakinElementTypes"/>
 
         <lang.syntaxHighlighter language="Feakin"
-                                       implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>
+                                implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>
 
         <lang.psiStructureViewFactory language="Feakin"
                                       implementationClass="com.feakin.intellij.structure.FeakinStructureViewFactory"/>
@@ -44,5 +45,10 @@
                                 implementationClass="com.feakin.intellij.completion.FkKeywordCompletionContributor"
                                 id="FkKeywordCompletionContributor"
                                 order="first"/>
+
+
+        <runLineMarkerContributor language="Feakin"
+                                  implementationClass="com.feakin.intellij.linemarkers.FkCreateStructLineMarkerProvider"/>
+
     </extensions>
 </idea-plugin>
