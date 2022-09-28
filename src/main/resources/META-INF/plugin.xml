@@ -49,11 +49,10 @@
         <!-- Run Configurations -->
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkCreateStructLineMarkerProvider"/>
+        <runConfigurationProducer
+                implementation="com.feakin.intellij.runconfig.command.FkRunConfigurationProducer"/>
 
-
-        <configurationType implementation="com.feakin.intellij.runconfig.FkRunAppConfigurationType"/>
-        
-<!--        <projectTaskRunner implementation="com.feakin.intellij.buildtool.FkBuildTaskRunner"/>-->
+        <configurationType implementation="com.feakin.intellij.runconfig.FkCommandConfigurationType"/>
         <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>
     </extensions>
 

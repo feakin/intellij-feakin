@@ -22,4 +22,9 @@ class FkCommandConfiguration(project: Project, name: String, fkConfigurationFact
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> {
         return FkCommandConfigurationEditor(project)
     }
+
+    //    Todo: FkCommandLine
+//    fun canBeFrom(cargoCommandLine: Any): Boolean {
+//        TODO("Not yet implemented")
+//    }
 }

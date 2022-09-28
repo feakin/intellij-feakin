@@ -2,18 +2,26 @@ package com.feakin.intellij.runconfig
 
 import com.intellij.execution.configurations.ConfigurationFactory
 import com.intellij.execution.configurations.ConfigurationTypeBase
+import com.intellij.execution.configurations.ConfigurationTypeUtil
 import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.project.Project
 
-class FkRunAppConfigurationType :
+class FkCommandConfigurationType :
     ConfigurationTypeBase("FkRunAppConfigType", "FKL", "Run Generator", AllIcons.RunConfigurations.TestState.Run) {
+    val factory: ConfigurationFactory get() = configurationFactories.single()
+
     init {
         addFactory(FkConfigurationFactory(this))
     }
+
+    companion object {
+        fun getInstance(): FkCommandConfigurationType =
+            ConfigurationTypeUtil.findConfigurationType(FkCommandConfigurationType::class.java)
+    }
 }
 
-class FkConfigurationFactory(type: FkRunAppConfigurationType) : ConfigurationFactory(type) {
+class FkConfigurationFactory(type: FkCommandConfigurationType) : ConfigurationFactory(type) {
     override fun getId(): String = ID
 
     override fun createTemplateConfiguration(project: Project): RunConfiguration {

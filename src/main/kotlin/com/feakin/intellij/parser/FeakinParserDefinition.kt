@@ -1,6 +1,6 @@
 package com.feakin.intellij.parser
 
-import com.feakin.intellij.FeakinFile
+import com.feakin.intellij.FkFile
 import com.feakin.intellij.FeakinLanguage
 import com.feakin.intellij.lexer.FeakinElementTypes
 import com.feakin.intellij.lexer.FeakinLexerAdapter
@@ -48,6 +48,6 @@ class FeakinParserDefinition : ParserDefinition {
     }
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile {
-        return FeakinFile(viewProvider)
+        return FkFile(viewProvider)
     }
 }

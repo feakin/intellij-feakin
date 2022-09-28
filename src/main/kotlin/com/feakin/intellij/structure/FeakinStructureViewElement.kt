@@ -1,6 +1,6 @@
 package com.feakin.intellij.structure
 
-import com.feakin.intellij.FeakinFile
+import com.feakin.intellij.FkFile
 import com.feakin.intellij.psi.FeakinContextDeclaration
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
 import com.feakin.intellij.psi.impl.FeakinContextMapDeclarationImpl
@@ -56,7 +56,7 @@ class FeakinStructureViewElement(private val myElement: NavigatablePsiElement) :
     }
 
     override fun getChildren(): Array<TreeElement> {
-        if (myElement is FeakinFile) {
+        if (myElement is FkFile) {
             val properties = PsiTreeUtil.getChildrenOfTypeAsList(myElement, FeakinContextMapDeclaration::class.java)
             val treeElements: MutableList<TreeElement> = ArrayList(properties.size)
             val methodProperties = PsiTreeUtil.getChildrenOfTypeAsList(myElement, FeakinContextDeclaration::class.java)

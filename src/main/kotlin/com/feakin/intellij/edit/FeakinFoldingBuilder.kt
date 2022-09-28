@@ -1,6 +1,6 @@
 package com.feakin.intellij.edit
 
-import com.feakin.intellij.FeakinFile
+import com.feakin.intellij.FkFile
 import com.feakin.intellij.lexer.FeakinElementTypes.LBRACE
 import com.feakin.intellij.lexer.FeakinElementTypes.RBRACE
 import com.feakin.intellij.psi.*
@@ -23,7 +23,7 @@ class FeakinFoldingBuilder : CustomFoldingBuilder(), DumbAware {
         document: Document,
         quick: Boolean
     ) {
-        if (root !is FeakinFile) return
+        if (root !is FkFile) return
 
         val visitor = FoldingVisitor(descriptors)
         PsiTreeUtil.processElements(root) { it.accept(visitor); true }

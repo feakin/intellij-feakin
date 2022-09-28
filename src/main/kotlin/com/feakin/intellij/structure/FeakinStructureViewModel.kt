@@ -1,6 +1,6 @@
 package com.feakin.intellij.structure
 
-import com.feakin.intellij.FeakinFile
+import com.feakin.intellij.FkFile
 import com.feakin.intellij.psi.FeakinAggregateDeclaration
 import com.feakin.intellij.psi.FeakinContextDeclaration
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
@@ -15,7 +15,7 @@ class FeakinStructureViewModel(psiFile: PsiFile) : StructureViewModelBase(psiFil
 
     override fun getSorters(): Array<Sorter> = arrayOf(Sorter.ALPHA_SORTER)
 
-    override fun isAlwaysShowsPlus(element: StructureViewTreeElement): Boolean = element.value is FeakinFile
+    override fun isAlwaysShowsPlus(element: StructureViewTreeElement): Boolean = element.value is FkFile
 
     override fun isAlwaysLeaf(element: StructureViewTreeElement): Boolean {
         return when (element.value) {
