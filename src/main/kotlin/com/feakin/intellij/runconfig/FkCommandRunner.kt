@@ -5,6 +5,7 @@ import com.intellij.execution.ExecutionResult
 import com.intellij.execution.configurations.RunProfile
 import com.intellij.execution.configurations.RunProfileState
 import com.intellij.execution.configurations.RunnerSettings
+import com.intellij.execution.executors.DefaultRunExecutor
 import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.execution.runners.ProgramRunner
 import com.intellij.execution.ui.ExecutionUiService
@@ -19,8 +20,9 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
     }
 
     override fun canRun(executorId: String, profile: RunProfile): Boolean {
-        println("FkCommandRunner.canRun$profile")
-        return false
+        if (executorId != DefaultRunExecutor.EXECUTOR_ID || profile !is FkCommandConfiguration) return false
+
+        return true
     }
 
     override fun execute(environment: ExecutionEnvironment) {
@@ -32,13 +34,21 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
     }
 
     private fun doExecute(state: RunProfileState, environment: ExecutionEnvironment): RunContentDescriptor? {
-        FileDocumentManager.getInstance().saveAllDocuments()
-        // getExecutableCommandLine
-        return showRunContent(state.execute(environment.executor, this), environment)
+        val configuration = environment.runProfile
+        if (configuration is FkCommandConfiguration) {
+            FileDocumentManager.getInstance().saveAllDocuments()
+            // getExecutableCommandLine
+            return showRunContent(state.execute(environment.executor, this), environment)
+        } else {
+            return null
+        }
     }
 
     @Suppress("UnstableApiUsage")
-    private fun showRunContent(executionResult: ExecutionResult?, environment: ExecutionEnvironment): RunContentDescriptor? {
+    private fun showRunContent(
+        executionResult: ExecutionResult?,
+        environment: ExecutionEnvironment
+    ): RunContentDescriptor? {
         return executionResult?.let {
             ExecutionUiService.getInstance().showRunContent(it, environment)
         }

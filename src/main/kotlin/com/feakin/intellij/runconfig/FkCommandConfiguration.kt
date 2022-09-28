@@ -11,6 +11,8 @@ import com.intellij.openapi.project.Project
 
 class FkCommandConfiguration(project: Project, name: String, fkConfigurationFactory: FkConfigurationFactory) :
     LocatableConfigurationBase<RunProfileState>(project, fkConfigurationFactory, name) {
+
+    // todo: custom command
     var command: String = "fkl run"
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState {
@@ -20,6 +22,4 @@ class FkCommandConfiguration(project: Project, name: String, fkConfigurationFact
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> {
         return FkCommandConfigurationEditor(project)
     }
-
-
 }

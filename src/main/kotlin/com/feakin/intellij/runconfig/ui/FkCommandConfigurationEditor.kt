@@ -19,11 +19,10 @@ class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCommandC
         configuration.command = command.text
     }
 
+    @Suppress("UnstableApiUsage")
     override fun createEditor(): JComponent = panel {
         row("Command:") {
             cell(command).horizontalAlign(HorizontalAlign.FILL)
         }
     }
 }
-
-
