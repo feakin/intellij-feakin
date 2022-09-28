@@ -12,8 +12,8 @@ import com.intellij.openapi.project.Project
 class FkCommandConfiguration(project: Project, name: String, fkConfigurationFactory: FkConfigurationFactory) :
     LocatableConfigurationBase<RunProfileState>(project, fkConfigurationFactory, name) {
 
-    // todo: custom command
-    var command: String = "fkl run"
+    // todo: default config for cli run
+    var command: String = "fkl"
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState {
         return FkRunState(environment, this)

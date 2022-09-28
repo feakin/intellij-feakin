@@ -15,7 +15,9 @@ class FkRunState(environment: ExecutionEnvironment, config: FkCommandConfigurati
 
     override fun startProcess(): ProcessHandler {
         log.info("startProcess")
-        val handler = FkProcessHandler(GeneralCommandLine("fkl", "run"))
+
+        // todo: get command from config
+        val handler = FkProcessHandler(GeneralCommandLine("fkl", "gen"))
         ProcessTerminatedListener.attach(handler)
         return handler
     }
