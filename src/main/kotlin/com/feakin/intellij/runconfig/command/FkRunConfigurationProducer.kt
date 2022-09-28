@@ -1,6 +1,7 @@
 package com.feakin.intellij.runconfig.command
 
 import com.feakin.intellij.FkFile
+import com.feakin.intellij.psi.FeakinStructDeclaration
 import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
 import com.intellij.execution.actions.ConfigurationContext
@@ -9,6 +10,7 @@ import com.intellij.execution.configurations.ConfigurationFactory
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
+import com.intellij.psi.util.PsiTreeUtil
 
 class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfiguration>() {
     override fun getConfigurationFactory(): ConfigurationFactory {
@@ -25,6 +27,11 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
 
         val psiFile = PsiManager.getInstance(location.project).findFile(file)
         if (psiFile !is FkFile) return false
+
+        val fn = location.psiElement.ancestorStrict<FeakinStructDeclaration>()
+
+        configuration.name = "Run ${fn?.name} gen "
+        configuration.command = "Run ${fn?.name} gen "
 
         return true
     }
@@ -43,3 +50,5 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
     }
 }
 
+inline fun <reified T : PsiElement> PsiElement.ancestorStrict(): T? =
+    PsiTreeUtil.getParentOfType(this, T::class.java, /* strict */ true)
