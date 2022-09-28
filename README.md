@@ -15,7 +15,7 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-Modernize architecture visualization assets management, based on Diagram-as-code, so you can create, share and edit diagram. Support for import Mermaid, PlantUML, Excalidraw, Dot and more. 
+Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate structure, and others.
 <!-- Plugin description end -->
 
 ## Installation
@@ -29,7 +29,6 @@ Modernize architecture visualization assets management, based on Diagram-as-code
 
   Download the [latest release](https://github.com/feakin/intellij-feakin/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
-
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
