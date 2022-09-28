@@ -32,36 +32,37 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
 
 %%
 <YYINITIAL> {
-  {WHITE_SPACE}         { return WHITE_SPACE; }
+  {WHITE_SPACE}            { return WHITE_SPACE; }
 
-  ","                   { return COMMA; }
-  ":"                   { return COLON; }
-  "::"                  { return DOUBLE_COLON; }
-  ";"                   { return SEMICOLON; }
-  "{"                   { return LBRACE; }
-  "}"                   { return RBRACE; }
-  "="                   { return EQUAL; }
-  "'"                   { return QUOTA; }
-  "("                   { return LPAREN; }
-  ")"                   { return RPAREN; }
-  "<"                   { return LT; }
-  ">"                   { return GT; }
-  "."                   { return DOT; }
-  "->"                  { return RARROW; }
-  "<-"                  { return LARROW; }
-  "<->"                 { return DARROW; }
-  "--"                  { return CONNECTION; }
-  "ContextMap"          { return CONTEXT_MAP_KEYWORD; }
-  "Context"             { return CONTEXT_KEYWORD; }
-  "Aggregate"           { return AGGREGATION_KEYWORD; }
-  "Entity"              { return ENTITY_KEYWORD; }
-  "ValueObject"         { return VALUE_OBJECT_KEYWORD; }
-  "Struct"              { return STRUCT_KEYWORD; }
+  ","                      { return COMMA; }
+  ":"                      { return COLON; }
+  "::"                     { return DOUBLE_COLON; }
+  ";"                      { return SEMICOLON; }
+  "{"                      { return LBRACE; }
+  "}"                      { return RBRACE; }
+  "="                      { return EQUAL; }
+  "'"                      { return QUOTA; }
+  "("                      { return LPAREN; }
+  ")"                      { return RPAREN; }
+  "<"                      { return LT; }
+  ">"                      { return GT; }
+  "."                      { return DOT; }
+  "->"                     { return RARROW; }
+  "<-"                     { return LARROW; }
+  "<->"                    { return DARROW; }
+  "--"                     { return CONNECTION; }
+  "ContextMap"             { return CONTEXT_MAP_KEYWORD; }
+  "Context"                { return CONTEXT_KEYWORD; }
+  "Aggregate"              { return AGGREGATE_KEYWORD; }
+  "Entity"                 { return ENTITY_KEYWORD; }
+  "ValueObject"            { return VALUE_OBJECT_KEYWORD; }
+  "Struct"                 { return STRUCT_KEYWORD; }
+  "AGGREGATION_KEYWORD"    { return AGGREGATION_KEYWORD; }
 
-  {COMMENT}             { return COMMENT; }
-  {BLOCK_COMMENT}       { return BLOCK_COMMENT; }
-  {IDENTIFIER}          { return IDENTIFIER; }
-  {STRING_LITERAL}      { return STRING_LITERAL; }
+  {COMMENT}                { return COMMENT; }
+  {BLOCK_COMMENT}          { return BLOCK_COMMENT; }
+  {IDENTIFIER}             { return IDENTIFIER; }
+  {STRING_LITERAL}         { return STRING_LITERAL; }
 
 }
 

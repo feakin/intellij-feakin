@@ -44,7 +44,7 @@
 
       CONTEXT_MAP_KEYWORD   = 'ContextMap'
       CONTEXT_KEYWORD       = 'Context'
-      AGGREGATION_KEYWORD   = 'Aggregate'
+      AGGREGATE_KEYWORD     = 'Aggregate'
       ENTITY_KEYWORD        = 'Entity'
       VALUE_OBJECT_KEYWORD  = 'ValueObject'
       STRUCT_KEYWORD        = 'Struct'
