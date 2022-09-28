@@ -9,5 +9,4 @@ class FkProcessHandler(commandLine: GeneralCommandLine) : KillableProcessHandler
     override fun coloredTextAvailable(text: String, attributes: Key<*>) {
         super.notifyTextAvailable(text, attributes)
     }
-
 }

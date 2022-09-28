@@ -8,9 +8,10 @@ import com.intellij.util.TextFieldCompletionProvider
 
 class FkCommandCompletionProvider : TextFieldCompletionProvider() {
     override fun addCompletionVariants(text: String, offset: Int, prefix: String, result: CompletionResultSet) {
-        val element = LookupElementBuilder.create("test").withInsertHandler { ctx, _ ->
+        val element = LookupElementBuilder.create("fkl auto").withInsertHandler { ctx, _ ->
             ctx.addSuffix(" ")
         }
+
         result.addElement(element)
     }
 

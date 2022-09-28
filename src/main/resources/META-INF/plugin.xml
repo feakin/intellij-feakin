@@ -52,7 +52,8 @@
 
 
         <configurationType implementation="com.feakin.intellij.runconfig.FkRunAppConfigurationType"/>
-        <programRunner implementation="com.feakin.intellij.buildtool.FkBuildTaskRunner"/>
+        
+<!--        <projectTaskRunner implementation="com.feakin.intellij.buildtool.FkBuildTaskRunner"/>-->
         <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>
     </extensions>
 
