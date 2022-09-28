@@ -49,6 +49,10 @@ intellij {
 changelog {
     version.set(properties("pluginVersion"))
     groups.set(emptyList())
+//    path.set("${project.projectDir}/CHANGELOG.md")
+//    itemPrefix.set("-")
+//    keepUnreleasedSection.set(true)
+//    unreleasedTerm.set("[Unreleased]")
 }
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
