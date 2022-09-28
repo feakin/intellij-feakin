@@ -94,7 +94,7 @@ contextDeclaration ::= CONTEXT_KEYWORD contextName LBRACE contextBody RBRACE
   methods=[getName getPresentation]
 }
 
-aggregateDeclaration ::= AGGREGATION_KEYWORD aggregateName LBRACE aggregateBody RBRACE
+aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName LBRACE aggregateBody RBRACE
 
 entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody? RBRACE
 
@@ -102,7 +102,7 @@ valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObje
 
 contextBody ::= useAggregate*
 
-private useAggregate ::= AGGREGATION_KEYWORD name_component (COMMA name_component)* SEMICOLON
+private useAggregate ::= AGGREGATE_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
 private aggregateBody ::= aggregateEntry*
 

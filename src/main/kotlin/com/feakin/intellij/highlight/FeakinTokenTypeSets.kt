@@ -8,7 +8,7 @@ object FeakinTokenTypeSets {
         FeakinElementTypes.CONTEXT_KEYWORD,
         FeakinElementTypes.CONTEXT_MAP_KEYWORD,
         FeakinElementTypes.ENTITY_KEYWORD,
-        FeakinElementTypes.AGGREGATION_KEYWORD,
+        FeakinElementTypes.AGGREGATE_KEYWORD,
         FeakinElementTypes.VALUE_OBJECT_KEYWORD,
         FeakinElementTypes.STRUCT_KEYWORD,
     )
