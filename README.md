@@ -8,6 +8,22 @@
 Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate structure, and others.
 <!-- Plugin description end -->
 
+Features:
+
+- [ ] Lexer and Parser Definition
+- [ ] Highlight code
+- [ ] Line Marker Provider
+- [ ] Completion Contributor
+- [ ] Structure View
+- [ ] Folding
+- [ ] Brace Matching
+- [ ] Block Selection
+- [ ] Code Formatting
+- [ ] Code Style Settings
+- [ ] Reference Contributor
+- [ ] Commenter
+- [ ] Quick Fix 
+
 ## Installation
 
 - Using IDE built-in plugin system:
