@@ -37,8 +37,9 @@
         <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FeakinBlockSelectionHandler"/>
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
         <stubIndex implementation="com.feakin.intellij.psi.stubs.FkNamedElementIndex"/>
-
+        <!-- TODO: add support for goto -->
         <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
+        <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
 
         <!-- Completion -->
         <completion.contributor language="Feakin"
