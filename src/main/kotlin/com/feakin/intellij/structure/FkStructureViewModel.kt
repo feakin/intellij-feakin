@@ -33,15 +33,9 @@ class FkStructureViewModel(editor: Editor?, psiFile: FkFile) :
             is FeakinContextMapDeclaration,
             is FeakinContextDeclaration,
             is FeakinAggregateDeclaration,
-
-            is FeakinContextName,
-            is FeakinContextMapName,
-            is FeakinAggregateName,
             -> true
 
             else -> false
         }
     }
-
-
 }
