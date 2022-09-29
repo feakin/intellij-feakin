@@ -13,7 +13,7 @@ class FeakinStructureViewFactory : PsiStructureViewFactory {
         val fkFile = psiFile as FkFile
         return object : TreeBasedStructureViewBuilder() {
             override fun createStructureViewModel(editor: Editor?): StructureViewModel {
-                return FeakinStructureViewModel(fkFile)
+                return FeakinStructureViewModel(editor, fkFile)
             }
         }
     }

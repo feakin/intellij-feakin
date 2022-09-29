@@ -37,7 +37,7 @@
         <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FeakinBlockSelectionHandler"/>
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
         <stubIndex implementation="com.feakin.intellij.psi.stubs.FkNamedElementIndex"/>
-        <stubIndex implementation="com.feakin.intellij.psi.stubs.FkContextIndex"/>
+
         <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
 
         <!-- Completion -->
