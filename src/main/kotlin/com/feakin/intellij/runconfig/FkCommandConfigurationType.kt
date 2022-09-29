@@ -1,14 +1,14 @@
 package com.feakin.intellij.runconfig
 
+import com.feakin.intellij.FkIcons
 import com.intellij.execution.configurations.ConfigurationFactory
 import com.intellij.execution.configurations.ConfigurationTypeBase
 import com.intellij.execution.configurations.ConfigurationTypeUtil
 import com.intellij.execution.configurations.RunConfiguration
-import com.intellij.icons.AllIcons
 import com.intellij.openapi.project.Project
 
 class FkCommandConfigurationType :
-    ConfigurationTypeBase("FkRunAppConfigType", "FKL", "Run Generator", AllIcons.RunConfigurations.TestState.Run) {
+    ConfigurationTypeBase("FkRunAppConfigType", "Feakin", "Feakin DSL generator", FkIcons.RUN) {
     val factory: ConfigurationFactory get() = configurationFactories.single()
 
     init {

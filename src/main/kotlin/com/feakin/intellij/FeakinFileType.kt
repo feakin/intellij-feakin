@@ -8,7 +8,7 @@ object FeakinFileType : LanguageFileType(FeakinLanguage) {
 
     override fun getName(): String = "Feakin File"
 
-    override fun getIcon(): Icon = FeakinIcons.FILE
+    override fun getIcon(): Icon = FkIcons.FILE
 
     override fun getDefaultExtension(): String = "fkl"
 

@@ -1,6 +1,6 @@
 package com.feakin.intellij.parser
 
-import com.feakin.intellij.FeakinIcons
+import com.feakin.intellij.FkIcons
 import com.feakin.intellij.lexer.FeakinElementTypes
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
 import com.feakin.intellij.psi.FeakinNameComponent
@@ -38,7 +38,7 @@ object FeakinPsiImplUtil {
             }
 
             override fun getIcon(unused: Boolean): Icon {
-                return FeakinIcons.FILE
+                return FkIcons.FILE
             }
         }
     }
