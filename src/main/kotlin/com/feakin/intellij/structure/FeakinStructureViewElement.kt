@@ -3,33 +3,36 @@ package com.feakin.intellij.structure
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.psi.FeakinContextDeclaration
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
+import com.feakin.intellij.psi.FeakinNamedElement
 import com.feakin.intellij.psi.impl.FeakinContextMapDeclarationImpl
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.ide.structureView.StructureViewTreeElement
+import com.intellij.ide.util.treeView.TreeAnchorizer
 import com.intellij.ide.util.treeView.smartTree.SortableTreeElement
 import com.intellij.ide.util.treeView.smartTree.TreeElement
 import com.intellij.navigation.ItemPresentation
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
+import com.intellij.pom.Navigatable
 import com.intellij.psi.NavigatablePsiElement
+import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
 
 class FeakinStructureViewElement(private val myElement: NavigatablePsiElement) : StructureViewTreeElement,
     SortableTreeElement {
-    override fun getValue(): Any {
-        return myElement
-    }
+
+    private val psiAnchor = TreeAnchorizer.getService().createAnchor(myElement)
+
+    private val psi: PsiElement? get() = TreeAnchorizer.getService().retrieveElement(psiAnchor) as? PsiElement
 
     override fun navigate(requestFocus: Boolean) {
-        myElement.navigate(requestFocus)
+        (psi as? Navigatable)?.navigate(requestFocus)
     }
 
-    override fun canNavigate(): Boolean {
-        return myElement.canNavigate()
-    }
+    override fun canNavigate(): Boolean = (psi as? Navigatable)?.canNavigate() == true
 
-    override fun canNavigateToSource(): Boolean {
-        return myElement.canNavigateToSource()
-    }
+    override fun canNavigateToSource(): Boolean = (psi as? Navigatable)?.canNavigateToSource() == true
+
+    override fun getValue(): PsiElement? = psi
 
     override fun getAlphaSortKey(): String {
         val name = myElement.name
@@ -40,7 +43,7 @@ class FeakinStructureViewElement(private val myElement: NavigatablePsiElement) :
         val struct = PresentationData()
         struct.setIcon(null)
         struct.locationString = null
-        if (myElement is FeakinContextMapDeclarationImpl) {
+        if (myElement is FeakinContextMapDeclaration) {
             val structNameDeclaration = myElement.contextMapName
             struct.setAttributesKey(DefaultLanguageHighlighterColors.KEYWORD)
             struct.presentableText = structNameDeclaration.text

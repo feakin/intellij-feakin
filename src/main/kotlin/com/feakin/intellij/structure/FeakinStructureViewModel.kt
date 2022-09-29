@@ -8,9 +8,8 @@ import com.intellij.ide.structureView.StructureViewModel.ElementInfoProvider
 import com.intellij.ide.structureView.StructureViewModelBase
 import com.intellij.ide.structureView.StructureViewTreeElement
 import com.intellij.ide.util.treeView.smartTree.Sorter
-import com.intellij.psi.PsiFile
 
-class FeakinStructureViewModel(psiFile: PsiFile) : StructureViewModelBase(psiFile, FeakinStructureViewElement(psiFile)),
+class FeakinStructureViewModel(psiFile: FkFile) : StructureViewModelBase(psiFile, FeakinStructureViewElement(psiFile)),
     ElementInfoProvider {
 
     override fun getSorters(): Array<Sorter> = arrayOf(Sorter.ALPHA_SORTER)
