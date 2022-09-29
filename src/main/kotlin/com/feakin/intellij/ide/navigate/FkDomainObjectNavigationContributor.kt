@@ -1,6 +1,6 @@
 package com.feakin.intellij.ide.navigate
 
-import com.feakin.intellij.FeakinLanguage
+import com.feakin.intellij.FkLanguage
 import com.feakin.intellij.psi.stubs.FkContextIndex
 import com.intellij.lang.Language
 import com.intellij.navigation.ChooseByNameContributorEx
@@ -37,6 +37,6 @@ class FkDomainObjectNavigationContributor : GotoClassContributor, ChooseByNameCo
     }
 
     override fun getElementLanguage(): Language {
-        return FeakinLanguage
+        return FkLanguage
     }
 }

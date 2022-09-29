@@ -8,12 +8,12 @@ import com.intellij.lang.PsiStructureViewFactory
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiFile
 
-class FeakinStructureViewFactory : PsiStructureViewFactory {
+class FkStructureViewFactory : PsiStructureViewFactory {
     override fun getStructureViewBuilder(psiFile: PsiFile): StructureViewBuilder {
         val fkFile = psiFile as FkFile
         return object : TreeBasedStructureViewBuilder() {
             override fun createStructureViewModel(editor: Editor?): StructureViewModel {
-                return FeakinStructureViewModel(editor, fkFile)
+                return FkStructureViewModel(editor, fkFile)
             }
         }
     }

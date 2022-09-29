@@ -7,7 +7,7 @@ import com.intellij.util.PsiErrorElementUtil
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class FeakinPluginTest : BasePlatformTestCase() {
     fun testBasicPsi() {
-        val psiFile = myFixture.configureByText(FeakinFileType, "ContextMap Demo { Reservation -> Cinema; }")
+        val psiFile = myFixture.configureByText(FkFileType, "ContextMap Demo { Reservation -> Cinema; }")
         myFixture.checkHighlighting();
         val fkFile = assertInstanceOf(psiFile, FkFile::class.java)
 

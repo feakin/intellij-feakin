@@ -1,22 +1,19 @@
 package com.feakin.intellij.completion
 
-import com.feakin.intellij.FeakinLanguage
+import com.feakin.intellij.FkLanguage
 import com.intellij.application.options.CodeStyle
 import com.intellij.codeInsight.generation.CommenterDataHolder
 import com.intellij.codeInsight.generation.SelfManagingCommenter
 import com.intellij.codeInsight.generation.SelfManagingCommenterUtil
-import com.intellij.lang.CodeDocumentationAwareCommenter
 import com.intellij.lang.Commenter
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiFile
-import com.intellij.psi.tree.IElementType
 import com.intellij.util.text.CharArrayUtil
 
 
 data class CommentHolder(val file: PsiFile) : CommenterDataHolder() {
-    fun useSpaceAfterLineComment(): Boolean = CodeStyle.getLanguageSettings(file, FeakinLanguage).LINE_COMMENT_ADD_SPACE
+    fun useSpaceAfterLineComment(): Boolean = CodeStyle.getLanguageSettings(file, FkLanguage).LINE_COMMENT_ADD_SPACE
 }
 
 class FeakinCommenter : Commenter, SelfManagingCommenter<CommentHolder> {

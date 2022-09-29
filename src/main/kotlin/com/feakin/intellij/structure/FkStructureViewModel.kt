@@ -14,7 +14,7 @@ import com.intellij.ide.structureView.StructureViewTreeElement
 import com.intellij.ide.util.treeView.smartTree.Sorter
 import com.intellij.openapi.editor.Editor
 
-class FeakinStructureViewModel(editor: Editor?, psiFile: FkFile) :
+class FkStructureViewModel(editor: Editor?, psiFile: FkFile) :
     StructureViewModelBase(psiFile, editor, FkStructureViewElement(psiFile)),
     ElementInfoProvider {
 

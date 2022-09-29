@@ -1,7 +1,7 @@
 package com.feakin.intellij.parser
 
 import com.feakin.intellij.FkFile
-import com.feakin.intellij.FeakinLanguage
+import com.feakin.intellij.FkLanguage
 import com.feakin.intellij.lexer.FeakinElementTypes
 import com.feakin.intellij.lexer.FeakinLexerAdapter
 import com.intellij.lang.ASTNode
@@ -20,7 +20,7 @@ class FeakinParserDefinition : ParserDefinition {
     companion object {
         val WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
         val COMMENTS = TokenSet.create(FeakinElementTypes.COMMENT)
-        val FILE = IFileElementType(FeakinLanguage)
+        val FILE = IFileElementType(FkLanguage)
     }
 
     override fun createLexer(project: Project): Lexer {

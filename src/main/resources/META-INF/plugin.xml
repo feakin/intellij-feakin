@@ -10,7 +10,7 @@
         <!-- File-type Factory -->
         <fileType name="Feakin File"
                   language="Feakin"
-                  implementationClass="com.feakin.intellij.FeakinFileType"
+                  implementationClass="com.feakin.intellij.FkFileType"
                   fieldName="INSTANCE"
                   extensions="fkl"/>
         <internalFileTemplate name="Feakin File"/>
@@ -25,7 +25,7 @@
                                 implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>
 
         <lang.psiStructureViewFactory language="Feakin"
-                                      implementationClass="com.feakin.intellij.structure.FeakinStructureViewFactory"/>
+                                      implementationClass="com.feakin.intellij.structure.FkStructureViewFactory"/>
 
         <lang.foldingBuilder language="Feakin"
                              implementationClass="com.feakin.intellij.edit.FeakinFoldingBuilder"/>

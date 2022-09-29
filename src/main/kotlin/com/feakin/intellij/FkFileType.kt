@@ -4,7 +4,7 @@ import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.vfs.VirtualFile
 import javax.swing.Icon
 
-object FeakinFileType : LanguageFileType(FeakinLanguage) {
+object FkFileType : LanguageFileType(FkLanguage) {
 
     override fun getName(): String = "Feakin File"
 
