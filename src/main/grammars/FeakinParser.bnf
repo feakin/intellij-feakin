@@ -67,6 +67,7 @@
       RECEIVE_KEYWORD       = 'receive'
       SEND_KEYWORD          = 'send'
       TO_KEYWORD            = 'to'
+      FROM_KEYWORD          = 'from'
   ]
 }
 
@@ -153,7 +154,7 @@ private valueObjectBody ::= structDeclaration
 
 implDeclaration ::= IMPL_KEYWORD implName LBRACE implBody? RBRACE
 
-implBody ::= endpointDeclaration flowDeclaration
+implBody ::= endpointDeclaration flowDeclaration?
 
 endpointDeclaration ::= ENDPOINT_KEYWORD LBRACE endpointBody RBRACE
 
@@ -189,13 +190,22 @@ private flowBody ::= flowEntry*
 private flowEntry ::= viaMethodDeclaration
                      | viaEventDeclaration
 
-viaMethodDeclaration ::= VIA_KEYWORD objectName (DOUBLE_COLON viaMethodName)? RECEIVE_KEYWORD receiveObject SEMICOLON?
+viaMethodDeclaration ::= VIA_KEYWORD objectName (DOUBLE_COLON viaMethodName parameters?)? RECEIVE_KEYWORD receiveObject SEMICOLON?
+
+parameters ::= LPAREN parameter (COMMA parameter)* RPAREN
+
+parameter ::= IDENTIFIER COLON paramType
+
+paramType ::= IDENTIFIER ('<' IDENTIFIER '>')?
+              ;
 
 private receiveObject ::= objectName (COLON viaMethodName)?
 
-viaEventDeclaration ::= VIA_KEYWORD objectName SEND_KEYWORD STRING_LITERAL TO_KEYWORD passObject SEMICOLON
+viaEventDeclaration ::= VIA_KEYWORD objectName SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
 
 private passObject ::= objectName (COLON viaMethodName)?
+
+topic ::= STRING_LITERAL
 
 objectName ::= name_component
 

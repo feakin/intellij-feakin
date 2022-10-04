@@ -74,6 +74,7 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "receive"             { return RECEIVE_KEYWORD; }
   "send"                { return SEND_KEYWORD; }
   "to"                  { return TO_KEYWORD; }
+  "from"                { return FROM_KEYWORD; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }
