@@ -55,22 +55,39 @@ open class FkFormattingBlock(
                 child = child.treeNext
                 continue
             }
+
             val substitutor = if (childType === BLOCK_COMMENT) COMMENT else childType
             val alignment = strategy?.getAlignment(substitutor)
-            blocks.add(buildSubBlock(child, alignment))
+            blocks.addAll(buildSubBlocks(child, alignment))
             child = child.treeNext
         }
         return Collections.unmodifiableList(blocks)
     }
 
-    private fun buildSubBlock(child: ASTNode, alignment: Alignment?): FkFormattingBlock {
-//        val children = node.getChildren(null)
-//            .filter { !(it == null || it.textLength == 0 || it.elementType == TokenType.WHITE_SPACE) }
-//            .map { childNode: ASTNode ->
-//
+    private fun buildSubBlocks(child: ASTNode, alignment: Alignment?): List<FkFormattingBlock> {
+        // DECLARATION
+        val children = child.getChildren(null)
+        if (children.isEmpty()) {
+            return listOf(FkFormattingBlock(child, alignment, Indent.getNoneIndent(), null, mySettings, spacingBuilder))
+        }
+
+        // all children DECLARATION
+        val decl = child.firstChildNode
+        decl?.elementType
+            ?: return listOf(FkFormattingBlock(child, alignment, Indent.getNoneIndent(), null, mySettings, spacingBuilder))
+
+        // declaration with children and body
+//        val blocks = decl.getChildren(null)
+//            .filter {
+//                it.elementType == CONTEXT_MAP_BODY || it.elementType == CONTEXT_BODY || it.elementType == ENDPOINT_BODY || it.elementType == IMPL_BODY
+//                        || it.elementType == REQUEST_BODY
 //            }
-        val indent = Indent.getNoneIndent()
-        return FkFormattingBlock(child, alignment, indent, null, mySettings, spacingBuilder)
+//            .map {
+//                val indent = Indent.getNormalIndent()
+//                FkFormattingBlock(child, alignment, indent, null, mySettings, spacingBuilder)
+//            }.toCollection(mutableListOf())
+
+        return listOf()
     }
 
     override fun getSpacing(child1: Block?, child2: Block): Spacing? {
@@ -81,7 +98,9 @@ open class FkFormattingBlock(
         val childIndent = Indent.getNoneIndent()
 
         val parentType = myNode.elementType
-        if (parentType == CONTEXT_DECLARATION) {
+        if (parentType == CONTEXT_MAP_BODY || parentType == CONTEXT_BODY || parentType == ENDPOINT_BODY || parentType == IMPL_BODY
+            || parentType == REQUEST_BODY
+        ) {
             return ChildAttributes(Indent.getNormalIndent(), null)
         }
 
