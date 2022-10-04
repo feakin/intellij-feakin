@@ -188,7 +188,7 @@ flowDeclaration ::= FLOW_KEYWORD LBRACE flowBody RBRACE
 
 private flowBody ::= flowEntry*
 private flowEntry ::= viaMethodDeclaration
-                     | viaEventDeclaration
+                     | viaMessageDeclaration
 
 viaMethodDeclaration ::= VIA_KEYWORD objectName (DOUBLE_COLON viaMethodName parameters?)? RECEIVE_KEYWORD receiveObject SEMICOLON?
 
@@ -201,7 +201,7 @@ paramType ::= IDENTIFIER ('<' IDENTIFIER '>')?
 
 private receiveObject ::= objectName (COLON viaMethodName)?
 
-viaEventDeclaration ::= VIA_KEYWORD objectName SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
+viaMessageDeclaration ::= VIA_KEYWORD objectName SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
 
 private passObject ::= objectName (COLON viaMethodName)?
 

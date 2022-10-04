@@ -47,9 +47,17 @@
                                 id="FkKeywordCompletionContributor"
                                 order="first"/>
 
-        <!-- Run Configurations -->
+
+        <!-- Line Marker Providers -->
+        <codeInsight.lineMarkerProvider language="Feakin"
+                                        implementationClass="com.feakin.intellij.linemarkers.FkImplMessageProvider"/>
+        <codeInsight.lineMarkerProvider language="Feakin"
+                                        implementationClass="com.feakin.intellij.linemarkers.FkImplMethodProvider"/>
+
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkImplementationMarkerProvider"/>
+
+        <!-- Run Configurations -->
         <runConfigurationProducer
                 implementation="com.feakin.intellij.runconfig.command.FkRunConfigurationProducer"/>
 

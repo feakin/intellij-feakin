@@ -113,7 +113,7 @@ Feakin
           PsiWhiteSpace('\n    ')
           PsiComment(FeakinTokenType.COMMENT)('//')
           PsiWhiteSpace('\n    ')
-          FeakinViaEventDeclarationImpl(VIA_EVENT_DECLARATION)
+          FeakinViaMessageDeclarationImpl(VIA_MESSAGE_DECLARATION)
             PsiElement(FeakinTokenType.via)('via')
             PsiWhiteSpace(' ')
             FeakinObjectNameImpl(OBJECT_NAME)

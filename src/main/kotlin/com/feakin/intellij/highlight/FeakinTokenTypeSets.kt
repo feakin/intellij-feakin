@@ -27,5 +27,13 @@ object FeakinTokenTypeSets {
         FeakinElementTypes.PATCH_KEYWORD,
         FeakinElementTypes.HEAD_KEYWORD,
         FeakinElementTypes.OPTIONS_KEYWORD,
+
+        // flow
+        FeakinElementTypes.VIA_KEYWORD,
+        FeakinElementTypes.SEND_KEYWORD,
+        FeakinElementTypes.TO_KEYWORD,
+        FeakinElementTypes.RECEIVE_KEYWORD,
+        FeakinElementTypes.FLOW_KEYWORD,
+//        FeakinElementTypes.FROM_KEYWORD,
     )
 }
