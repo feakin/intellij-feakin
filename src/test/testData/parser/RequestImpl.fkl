@@ -1,0 +1,6 @@
+impl CinemaCreated {
+  endpoint {
+    GET "/book/{id}";
+    response: Cinema;
+  }
+}

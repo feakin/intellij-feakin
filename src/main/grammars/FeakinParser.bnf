@@ -48,6 +48,19 @@
       ENTITY_KEYWORD        = 'Entity'
       VALUE_OBJECT_KEYWORD  = 'ValueObject'
       STRUCT_KEYWORD        = 'Struct'
+      IMPL_KEYWORD          = 'impl'
+      ENDPOINT_KEYWORD      = 'endpoint'
+      REQUEST_KEYWORD       = 'request'
+      RESPONSE_KEYWORD      = 'response'
+
+      GET_KEYWORD           = 'GET'
+      POST_KEYWORD          = 'POST'
+      PUT_KEYWORD           = 'PUT'
+      DELETE_KEYWORD        = 'DELETE'
+      PATCH_KEYWORD         = 'PATCH'
+      HEAD_KEYWORD          = 'HEAD'
+      OPTIONS_KEYWORD       = 'OPTIONS'
+      AUTH_KEYWORD          = 'authorization'
   ]
 }
 
@@ -59,6 +72,7 @@ declaration ::= contextMapDeclaration
                | entityDeclaration
                | valueObjectDeclaration
                | structDeclaration
+               | implDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName LBRACE contextMapBody? RBRACE
 {
@@ -131,6 +145,43 @@ private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)?
 private valueObjectBody ::= structDeclaration
                           | useStruct
 
+implDeclaration ::= IMPL_KEYWORD implName LBRACE implBody? RBRACE
+
+implBody ::= endpointDeclaration*
+
+endpointDeclaration ::= ENDPOINT_KEYWORD LBRACE endpointBody RBRACE
+
+endpointBody ::=  requestDeclaration authorizationDecl? responseDeclaration?
+
+private authorizationDecl ::= AUTH_KEYWORD authorizationType? authorizationValue*
+
+private authorizationValue ::= IDENTIFIER
+private authorizationType ::= IDENTIFIER COLON
+
+requestDeclaration ::= httpRequestDeclaration
+//                     | grpcRequestDeclaration
+
+private httpRequestDeclaration ::= httpMethod uri requestBody? SEMICOLON
+
+httpMethod ::= GET_KEYWORD
+              | POST_KEYWORD
+              | PUT_KEYWORD
+              | DELETE_KEYWORD
+              | PATCH_KEYWORD
+              | HEAD_KEYWORD
+              | OPTIONS_KEYWORD
+              ;
+
+uri ::= STRING_LITERAL
+
+requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | structDeclaration) SEMICOLON;
+
+responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON;
+
+requestEntityName ::= name_component
+
+responseEntityName ::= name_component
+
 contextMapName ::= name_component
 
 contextName ::= name_component
@@ -142,6 +193,8 @@ entityName ::= name_component
 valueObjectName ::= name_component
 
 contextNodeName ::= name_component
+
+implName ::= name_component
 
 name_component ::= IDENTIFIER
 {

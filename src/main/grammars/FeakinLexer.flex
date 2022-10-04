@@ -57,6 +57,18 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "Entity"              { return ENTITY_KEYWORD; }
   "ValueObject"         { return VALUE_OBJECT_KEYWORD; }
   "Struct"              { return STRUCT_KEYWORD; }
+  "impl"                { return IMPL_KEYWORD; }
+  "endpoint"            { return ENDPOINT_KEYWORD; }
+  "request"             { return REQUEST_KEYWORD; }
+  "response"            { return RESPONSE_KEYWORD; }
+  "GET"                 { return GET_KEYWORD; }
+  "POST"                { return POST_KEYWORD; }
+  "PUT"                 { return PUT_KEYWORD; }
+  "DELETE"              { return DELETE_KEYWORD; }
+  "PATCH"               { return PATCH_KEYWORD; }
+  "HEAD"                { return HEAD_KEYWORD; }
+  "OPTIONS"             { return OPTIONS_KEYWORD; }
+  "authorization"       { return AUTH_KEYWORD; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }
