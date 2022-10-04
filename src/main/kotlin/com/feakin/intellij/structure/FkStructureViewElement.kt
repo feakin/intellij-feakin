@@ -14,7 +14,6 @@ import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.pom.Navigatable
-import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 
 class FkStructureViewElement(private val element: PsiElement) : StructureViewTreeElement {

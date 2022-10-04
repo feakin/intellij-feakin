@@ -10,6 +10,8 @@ import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.project.Project
 
 class FkRunState(environment: ExecutionEnvironment, config: FkCommandConfiguration) : CommandLineState(environment) {
+    val commands: List<String> = listOf()
+
     companion object {
         private val log: Logger = logger<FkRunState>()
     }

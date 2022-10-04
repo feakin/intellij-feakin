@@ -43,7 +43,6 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
         val configuration = environment.runProfile
         if (configuration is FkCommandConfiguration) {
             FileDocumentManager.getInstance().saveAllDocuments()
-            // getExecutableCommandLine
             return showRunContent(state.execute(environment.executor, this), environment)
         } else {
             return null
