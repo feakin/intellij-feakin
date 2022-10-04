@@ -72,11 +72,11 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         val implName = feakinImplDecl.implName.nameComponent.identifier.text
         log.debug("implName: $implName")
 
-        configuration.name = "Run $implName gen "
+        configuration.name = "Run $implName gen"
         val fkCommandLine = fromImplDecl(feakinImplDecl, psiFile)
 
-        configuration.commandLine  = fkCommandLine
-        configuration.command = "fkl gen " + fkCommandLine.toCommand()
+        configuration.commandLine = fkCommandLine
+        configuration.command = "gen"
 
         return true
     }

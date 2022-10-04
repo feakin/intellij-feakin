@@ -18,8 +18,8 @@ class FkRunState(environment: ExecutionEnvironment, private val config: FkComman
     }
 
     init {
-        val project: Project = environment.project
-        consoleBuilder = FkConsoleBuilder(project, config, environment.executor)
+//        val project: Project = environment.project
+//        consoleBuilder = FkConsoleBuilder(project, config, environment.executor)
     }
 
     override fun startProcess(): ProcessHandler {
@@ -28,7 +28,9 @@ class FkRunState(environment: ExecutionEnvironment, private val config: FkComman
             "fkl", config.command, "--impl", config.commandLine.impl, "--path", config.commandLine.path
         )
 
-        val handler = FkProcessHandler(GeneralCommandLine(commands))
+        val commandLine = GeneralCommandLine(commands)
+        log.debug("Executing Feakin command: `${commandLine}`")
+        val handler = FkProcessHandler(commandLine)
         ProcessTerminatedListener.attach(handler)
         return handler
     }

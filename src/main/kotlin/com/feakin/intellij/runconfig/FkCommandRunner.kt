@@ -20,7 +20,6 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
     companion object {
         private val log: Logger = logger<FkCommandRunner>()
     }
-
     override fun getRunnerId(): @NonNls String {
         return "FkCommandRunner"
     }
