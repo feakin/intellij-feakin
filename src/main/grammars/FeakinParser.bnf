@@ -151,7 +151,7 @@ implBody ::= endpointDeclaration*
 
 endpointDeclaration ::= ENDPOINT_KEYWORD LBRACE endpointBody RBRACE
 
-endpointBody ::=  requestDeclaration authorizationDecl? responseDeclaration?
+endpointBody ::=  requestDeclaration requestBody? authorizationDecl? responseDeclaration?
 
 private authorizationDecl ::= AUTH_KEYWORD COLON authorizationType? authorizationValue* SEMICOLON?
 
@@ -160,7 +160,7 @@ authorizationType ::= IDENTIFIER
 
 requestDeclaration ::= httpRequestDeclaration
 
-private httpRequestDeclaration ::= httpMethod uri requestBody? SEMICOLON
+private httpRequestDeclaration ::= httpMethod uri SEMICOLON
 
 httpMethod ::= GET_KEYWORD
               | POST_KEYWORD
