@@ -69,13 +69,20 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         if (psiFile !is FkFile) return false
         if (location.psiElement !is FeakinImplDeclaration) return false
 
-        val implName = (location.psiElement as FeakinImplDeclaration).implName.nameComponent.identifier.text
+        val feakinImplDecl = location.psiElement as FeakinImplDeclaration
+        val implName = feakinImplDecl.implName.nameComponent.identifier.text
         log.debug("implName: $implName")
 
         configuration.name = "Run $implName gen "
-//        configuration.command = "Run $implName gen "
+        configuration.command = fromImplDecl(feakinImplDecl, psiFile)
 
         return true
+    }
+
+    private fun fromImplDecl(feakinImplDecl: FeakinImplDeclaration, psiFile: FkFile): String {
+        val path = psiFile.virtualFile.path
+        val implName = feakinImplDecl.implName.nameComponent.identifier.text
+        return "fkl gen --impl $implName --path $path"
     }
 
     override fun isConfigurationFromContext(
