@@ -33,11 +33,9 @@ class FkFormattingModelBuilder : FormattingModelBuilder {
     @NotNull
     override fun createModel(@NotNull context: FormattingContext): FormattingModel {
         val settings = context.codeStyleSettings
+        val element = context.psiElement
         val block = FkFormattingBlock(
-            context.node,
-            Wrap.createWrap(WrapType.NONE, false),
-            Alignment.createAlignment(),
-            createSpaceBuilder(settings)
+            element.node, null, Indent.getNoneIndent(), null, settings, createSpaceBuilder(settings)
         )
         return FormattingModelProvider.createFormattingModelForPsiFile(context.containingFile, block, settings)
     }
