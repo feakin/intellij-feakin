@@ -22,7 +22,7 @@ class FeakinSyntaxHighlighter : SyntaxHighlighterBase() {
 
         init {
             fillMap(ATTRIBUTES, FeakinTokenTypeSets.KEY_WORDS, DefaultLanguageHighlighterColors.KEYWORD)
-            ATTRIBUTES[FeakinElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.IDENTIFIER
+            ATTRIBUTES[FeakinElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.LABEL
 
             ATTRIBUTES[FeakinElementTypes.COMMENT] = DefaultLanguageHighlighterColors.LINE_COMMENT;
             ATTRIBUTES[FeakinElementTypes.BLOCK_COMMENT] = DefaultLanguageHighlighterColors.BLOCK_COMMENT;
@@ -40,6 +40,7 @@ class FeakinSyntaxHighlighter : SyntaxHighlighterBase() {
             ATTRIBUTES[FeakinElementTypes.DARROW] = DefaultLanguageHighlighterColors.CONSTANT;
 
             ATTRIBUTES[FeakinElementTypes.STRING_LITERAL] = DefaultLanguageHighlighterColors.STRING;
+            ATTRIBUTES[FeakinElementTypes.AUTHORIZATION_VALUE] = DefaultLanguageHighlighterColors.STRING;
         }
     }
 }

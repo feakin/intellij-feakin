@@ -1,7 +1,7 @@
 package com.feakin.intellij.runconfig.command
 
 import com.feakin.intellij.FkFile
-import com.feakin.intellij.psi.FeakinStructDeclaration
+import com.feakin.intellij.psi.FeakinImplDeclaration
 import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
 import com.intellij.execution.actions.ConfigurationContext
@@ -28,7 +28,7 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         val psiFile = PsiManager.getInstance(location.project).findFile(file)
         if (psiFile !is FkFile) return false
 
-        val fn = location.psiElement.ancestorStrict<FeakinStructDeclaration>()
+        val fn = location.psiElement.ancestorStrict<FeakinImplDeclaration>()
 
         configuration.name = "Run ${fn?.name} gen "
         configuration.command = "Run ${fn?.name} gen "

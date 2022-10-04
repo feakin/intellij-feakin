@@ -153,13 +153,12 @@ endpointDeclaration ::= ENDPOINT_KEYWORD LBRACE endpointBody RBRACE
 
 endpointBody ::=  requestDeclaration authorizationDecl? responseDeclaration?
 
-private authorizationDecl ::= AUTH_KEYWORD authorizationType? authorizationValue*
+private authorizationDecl ::= AUTH_KEYWORD COLON authorizationType? authorizationValue* SEMICOLON?
 
-private authorizationValue ::= IDENTIFIER
-private authorizationType ::= IDENTIFIER COLON
+authorizationValue ::= IDENTIFIER
+authorizationType ::= IDENTIFIER
 
 requestDeclaration ::= httpRequestDeclaration
-//                     | grpcRequestDeclaration
 
 private httpRequestDeclaration ::= httpMethod uri requestBody? SEMICOLON
 

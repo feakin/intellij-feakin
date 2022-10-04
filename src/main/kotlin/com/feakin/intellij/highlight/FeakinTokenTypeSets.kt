@@ -11,5 +11,21 @@ object FeakinTokenTypeSets {
         FeakinElementTypes.AGGREGATE_KEYWORD,
         FeakinElementTypes.VALUE_OBJECT_KEYWORD,
         FeakinElementTypes.STRUCT_KEYWORD,
+
+        // Feakin impl API
+        FeakinElementTypes.IMPL_KEYWORD,
+        FeakinElementTypes.ENDPOINT_KEYWORD,
+        FeakinElementTypes.REQUEST_KEYWORD,
+        FeakinElementTypes.RESPONSE_KEYWORD,
+        FeakinElementTypes.AUTH_KEYWORD,
+
+        // http method
+        FeakinElementTypes.GET_KEYWORD,
+        FeakinElementTypes.POST_KEYWORD,
+        FeakinElementTypes.PUT_KEYWORD,
+        FeakinElementTypes.DELETE_KEYWORD,
+        FeakinElementTypes.PATCH_KEYWORD,
+        FeakinElementTypes.HEAD_KEYWORD,
+        FeakinElementTypes.OPTIONS_KEYWORD,
     )
 }
