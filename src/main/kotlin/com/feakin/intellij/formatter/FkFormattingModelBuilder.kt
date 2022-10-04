@@ -31,19 +31,15 @@ class FkFormattingModelBuilder : FormattingModelBuilder {
     }
 
     @NotNull
-    override fun createModel(@NotNull formattingContext: FormattingContext): FormattingModel {
-        val codeStyleSettings = formattingContext.codeStyleSettings
-        return FormattingModelProvider
-            .createFormattingModelForPsiFile(
-                formattingContext.containingFile,
-                SimpleBlock(
-                    formattingContext.node,
-                    Wrap.createWrap(WrapType.NONE, false),
-                    Alignment.createAlignment(),
-                    createSpaceBuilder(codeStyleSettings)
-                ),
-                codeStyleSettings
-            )
+    override fun createModel(@NotNull context: FormattingContext): FormattingModel {
+        val settings = context.codeStyleSettings
+        val block = FkFormattingBlock(
+            context.node,
+            Wrap.createWrap(WrapType.NONE, false),
+            Alignment.createAlignment(),
+            createSpaceBuilder(settings)
+        )
+        return FormattingModelProvider.createFormattingModelForPsiFile(context.containingFile, block, settings)
     }
 }
 
@@ -54,7 +50,8 @@ class FkFormattingModelBuilder : FormattingModelBuilder {
  *
  */
 private inline fun SpacingBuilder.applyForEach(
-    tokenSet: TokenSet, block: SpacingBuilder.(IElementType) -> SpacingBuilder): SpacingBuilder {
+    tokenSet: TokenSet, block: SpacingBuilder.(IElementType) -> SpacingBuilder
+): SpacingBuilder {
     var self = this
     for (tt in tokenSet.types) {
         self = block(this, tt)
