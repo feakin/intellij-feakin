@@ -69,6 +69,11 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "HEAD"                { return HEAD_KEYWORD; }
   "OPTIONS"             { return OPTIONS_KEYWORD; }
   "authorization"       { return AUTH_KEYWORD; }
+  "flow"                { return FLOW_KEYWORD; }
+  "via"                 { return VIA_KEYWORD; }
+  "receive"             { return RECEIVE_KEYWORD; }
+  "send"                { return SEND_KEYWORD; }
+  "to"                  { return TO_KEYWORD; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }

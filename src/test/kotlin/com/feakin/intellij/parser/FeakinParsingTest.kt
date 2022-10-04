@@ -26,4 +26,8 @@ class FeakinParsingTest : ParsingTestCase("parser", "fkl", FeakinParserDefinitio
     fun testRequestImpl() {
         doTest(true)
     }
+
+    fun testImplFlow() {
+        doTest(true)
+    }
 }
