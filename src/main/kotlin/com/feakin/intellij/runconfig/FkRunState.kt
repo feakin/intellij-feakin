@@ -7,10 +7,16 @@ import com.intellij.execution.process.ProcessTerminatedListener
 import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.logger
+import com.intellij.openapi.project.Project
 
 class FkRunState(environment: ExecutionEnvironment, config: FkCommandConfiguration) : CommandLineState(environment) {
     companion object {
         private val log: Logger = logger<FkRunState>()
+    }
+
+    init {
+        val project: Project = environment.project
+        consoleBuilder = FkConsoleBuilder(project, config, environment.executor)
     }
 
     override fun startProcess(): ProcessHandler {

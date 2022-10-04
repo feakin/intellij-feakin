@@ -18,7 +18,7 @@ import org.jetbrains.concurrency.resolvedPromise
 
 class FkCommandRunner : ProgramRunner<RunnerSettings> {
     companion object {
-        private val log: Logger = logger<FkRunState>()
+        private val log: Logger = logger<FkCommandRunner>()
     }
 
     override fun getRunnerId(): @NonNls String {

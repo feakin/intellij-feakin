@@ -58,6 +58,6 @@
     </extensions>
 
     <actions>
-        <action id="FkRunCommand" class="com.feakin.intellij.runconfig.command.RunFkCommandAction"/>
+        <action id="FkRunCommand" class="com.feakin.intellij.runconfig.command.FkRunCommandAction"/>
     </actions>
 </idea-plugin>
