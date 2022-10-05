@@ -8,7 +8,6 @@ import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import javax.swing.JComponent
 
 class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCommandConfiguration>() {
-
     private val command: FkCommandLineEditor = FkCommandLineEditor(project, FkCommandCompletionProvider());
 
     override fun resetEditorFrom(configuration: FkCommandConfiguration) {
