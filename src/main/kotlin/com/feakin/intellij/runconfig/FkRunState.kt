@@ -17,13 +17,7 @@ class FkRunState(environment: ExecutionEnvironment, private val config: FkComman
         private val log: Logger = logger<FkRunState>()
     }
 
-    init {
-//        val project: Project = environment.project
-//        consoleBuilder = FkConsoleBuilder(project, config, environment.executor)
-    }
-
     override fun startProcess(): ProcessHandler {
-        log.info("startProcess")
         commands = listOf(
             "fkl", config.command, "--impl", config.commandLine.impl, "--path", config.commandLine.path
         )
