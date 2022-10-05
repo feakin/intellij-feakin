@@ -11,18 +11,15 @@ import com.intellij.openapi.project.Project
 
 class FkRunState(environment: ExecutionEnvironment, private val config: FkCommandConfiguration) :
     CommandLineState(environment) {
-    var commands: List<String> = listOf()
 
     companion object {
         private val log: Logger = logger<FkRunState>()
     }
 
     override fun startProcess(): ProcessHandler {
-        commands = listOf(
-            "fkl", config.command, "--impl", config.commandLine.impl, "--path", config.commandLine.path
-        )
-
+        val commands = config.commandLine.toCommand()
         val commandLine = GeneralCommandLine(commands)
+
         log.debug("Executing Feakin command: `${commandLine}`")
         val handler = FkProcessHandler(commandLine)
         ProcessTerminatedListener.attach(handler)

@@ -9,8 +9,6 @@ import com.feakin.intellij.runconfig.implementation.RunImplConfig
 import com.intellij.execution.actions.ConfigurationContext
 import com.intellij.execution.actions.LazyRunConfigurationProducer
 import com.intellij.execution.configurations.ConfigurationFactory
-import com.intellij.openapi.diagnostic.Logger
-import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
@@ -18,10 +16,6 @@ import com.intellij.psi.PsiManager
 private typealias RunImplConfigProvider = (List<PsiElement>) -> RunImplConfig?
 
 class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfiguration>() {
-    companion object {
-        private val log: Logger = logger<FkRunConfigurationProducer>()
-    }
-
     private val commandName: String = "gen"
 
     private val runConfigProviders: MutableList<RunImplConfigProvider> = mutableListOf()
@@ -73,9 +67,7 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
 
         configuration.name = "Run $implName gen"
         val fkCommandLine = fromImplDecl(element, psiFile)
-
-        configuration.commandLine = fkCommandLine
-        configuration.command = "gen"
+        configuration.setCommand(fkCommandLine)
 
         return true
     }
@@ -83,7 +75,8 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
     private fun fromImplDecl(feakinImplDecl: FeakinImplDeclaration, psiFile: FkFile): FkCommandLine {
         val path = psiFile.virtualFile.path
         val implName = feakinImplDecl.implName.nameComponent.identifier.text
-        return FkCommandLine(path, implName)
+        val subcommand = "gen"
+        return FkCommandLine(path, implName, subcommand)
     }
 
     override fun isConfigurationFromContext(

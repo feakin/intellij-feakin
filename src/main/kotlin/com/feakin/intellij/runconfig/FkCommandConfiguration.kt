@@ -6,15 +6,14 @@ import com.intellij.execution.configurations.LocatableConfigurationBase
 import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.execution.configurations.RunProfileState
 import com.intellij.execution.runners.ExecutionEnvironment
-import com.intellij.execution.testframework.TestConsoleProperties
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
 
 class FkCommandConfiguration(project: Project, name: String, fkConfigurationFactory: FkConfigurationFactory) :
     LocatableConfigurationBase<RunProfileState>(project, fkConfigurationFactory, name) {
 
-    var command: String = "fkl"
-    var commandLine: FkCommandLine = FkCommandLine("", "");
+    var command: String = ""
+    var commandLine: FkCommandLine = FkCommandLine("", "", "gen");
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState {
         return FkRunState(environment, this)
@@ -22,5 +21,10 @@ class FkCommandConfiguration(project: Project, name: String, fkConfigurationFact
 
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> {
         return FkCommandConfigurationEditor(project)
+    }
+
+    fun setCommand(fkCommandLine: FkCommandLine) {
+        this.commandLine = fkCommandLine
+        this.command = fkCommandLine.toCommandString()
     }
 }

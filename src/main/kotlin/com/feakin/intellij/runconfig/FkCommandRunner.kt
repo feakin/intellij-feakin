@@ -10,16 +10,11 @@ import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.execution.runners.ProgramRunner
 import com.intellij.execution.ui.ExecutionUiService
 import com.intellij.execution.ui.RunContentDescriptor
-import com.intellij.openapi.diagnostic.Logger
-import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.concurrency.resolvedPromise
 
 class FkCommandRunner : ProgramRunner<RunnerSettings> {
-    companion object {
-        private val log: Logger = logger<FkCommandRunner>()
-    }
     override fun getRunnerId(): @NonNls String {
         return "FkCommandRunner"
     }

@@ -3,12 +3,13 @@ package com.feakin.intellij.runconfig
 class FkCommandLine(
     val path: String,
     val impl: String,
+    val subcommand: String,
 ) {
-    fun toCommand(): String {
-        val commands: List<String> = listOf(
-            "--path", path, "--impl", impl
-        )
+    fun toCommandString(): String {
+        return this.toCommand().joinToString(" ")
+    }
 
-        return commands.joinToString(" ")
+    fun toCommand(): List<String> {
+        return listOf("fkl", subcommand, "--path", path, "--impl", impl)
     }
 }
