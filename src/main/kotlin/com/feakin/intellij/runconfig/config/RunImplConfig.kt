@@ -1,7 +1,6 @@
 package com.feakin.intellij.runconfig.config
 
 import com.feakin.intellij.psi.FeakinImplDeclaration
-import com.feakin.intellij.runconfig.FkCommandLine
 
 data class RunImplConfig(
     val commandName: String,

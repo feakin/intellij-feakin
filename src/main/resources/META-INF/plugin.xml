@@ -73,8 +73,4 @@
         <lang.findUsagesProvider language="Feakin" implementationClass="com.feakin.intellij.ide.search.FkFindUsagesProvider"/>
         <findUsagesHandlerFactory implementation="com.feakin.intellij.ide.search.FkFindUsagesHandlerFactory"/>
     </extensions>
-
-    <actions>
-        <action id="FkRunCommand" class="com.feakin.intellij.runconfig.command.FkRunCommandAction"/>
-    </actions>
 </idea-plugin>

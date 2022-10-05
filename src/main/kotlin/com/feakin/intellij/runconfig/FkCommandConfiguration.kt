@@ -1,16 +1,19 @@
 package com.feakin.intellij.runconfig
 
+import com.feakin.intellij.runconfig.config.FkCommandLine
 import com.feakin.intellij.runconfig.ui.FkCommandConfigurationEditor
 import com.intellij.execution.Executor
-import com.intellij.execution.configurations.*
+import com.intellij.execution.configurations.ConfigurationFactory
+import com.intellij.execution.configurations.LocatableConfigurationBase
+import com.intellij.execution.configurations.RunConfiguration
+import com.intellij.execution.configurations.RunProfileState
 import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
 import org.jdom.Element
 
 class FkCommandConfiguration(project: Project, name: String, factory: ConfigurationFactory) :
-    LocatableConfigurationBase<RunProfileState>(project, factory, name),
-    RunConfigurationWithSuppressedDefaultDebugAction {
+    LocatableConfigurationBase<RunProfileState>(project, factory, name) {
 
     var command: String = ""
     var commandLine: FkCommandLine = FkCommandLine("", "", "");

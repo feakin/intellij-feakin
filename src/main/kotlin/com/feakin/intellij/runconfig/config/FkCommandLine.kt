@@ -1,4 +1,4 @@
-package com.feakin.intellij.runconfig
+package com.feakin.intellij.runconfig.config
 
 class FkCommandLine(
     val path: String,

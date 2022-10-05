@@ -3,7 +3,6 @@ package com.feakin.intellij.runconfig
 import com.intellij.execution.ExecutionManager
 import com.intellij.execution.ExecutionResult
 import com.intellij.execution.configurations.RunProfile
-import com.intellij.execution.configurations.RunProfileState
 import com.intellij.execution.configurations.RunnerSettings
 import com.intellij.execution.executors.DefaultRunExecutor
 import com.intellij.execution.runners.ExecutionEnvironment
@@ -11,13 +10,12 @@ import com.intellij.execution.runners.ProgramRunner
 import com.intellij.execution.ui.ExecutionUiService
 import com.intellij.execution.ui.RunContentDescriptor
 import com.intellij.openapi.fileEditor.FileDocumentManager
+import org.jdom.Element
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.concurrency.resolvedPromise
 
-class FkCommandRunner : ProgramRunner<RunnerSettings> {
-    override fun getRunnerId(): @NonNls String {
-        return "FkCommandRunner"
-    }
+class FkCommandRunner : ProgramRunner<FkImplRunnerSettings> {
+    override fun getRunnerId(): @NonNls String = "FkCommandRunner"
 
     override fun canRun(executorId: String, profile: RunProfile): Boolean {
         if (executorId != DefaultRunExecutor.EXECUTOR_ID || profile !is FkCommandConfiguration) return false
@@ -28,11 +26,11 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
         val state = environment.state ?: return
         @Suppress("UnstableApiUsage")
         ExecutionManager.getInstance(environment.project).startRunProfile(environment) {
-            resolvedPromise(doExecute(state, environment))
+            resolvedPromise(doExecute((state as FkRunState), environment))
         }
     }
 
-    private fun doExecute(state: RunProfileState, environment: ExecutionEnvironment): RunContentDescriptor? {
+    private fun doExecute(state: FkRunState, environment: ExecutionEnvironment): RunContentDescriptor? {
         val configuration = environment.runProfile
         if (configuration is FkCommandConfiguration) {
             FileDocumentManager.getInstance().saveAllDocuments()
@@ -53,12 +51,14 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
     }
 }
 
-//class FkRunnerSettings : RunnerSettings {
-//    @Throws(InvalidDataException::class)
-//    override fun readExternal(element: Element) {
-//    }
-//
-//    @Throws(WriteExternalException::class)
-//    override fun writeExternal(element: Element) {
-//    }
-//}
+class FkImplRunnerSettings : RunnerSettings {
+    override fun readExternal(element: Element?) {
+
+    }
+
+    override fun writeExternal(element: Element?) {
+
+    }
+
+}
+
