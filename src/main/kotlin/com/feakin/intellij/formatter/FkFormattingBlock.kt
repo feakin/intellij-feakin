@@ -48,7 +48,7 @@ open class FkFormattingBlock(
                 FkFormattingModelBuilder.createBlock(
                     node = childNode,
                     alignment = null,
-                    indent = computeIndent(childNode, childCtx),
+                    indent = computeIndent(childNode),
                     wrap = null,
                     ctx = childCtx
                 )
@@ -58,7 +58,7 @@ open class FkFormattingBlock(
         return children
     }
 
-    private fun computeIndent(child: ASTNode, childCtx: FkFmtContext): Indent {
+    private fun computeIndent(child: ASTNode): Indent {
         val childType = child.elementType
 
         return when {

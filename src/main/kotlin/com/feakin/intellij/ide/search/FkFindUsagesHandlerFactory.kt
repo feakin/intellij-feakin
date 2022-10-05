@@ -13,7 +13,7 @@ class FkFindUsagesHandlerFactory : FindUsagesHandlerFactory() {
         return FkFindUsagesHandler(element, secondaryElements.toTypedArray())
     }
 
-    private fun findSecondaryElements(element: PsiElement): List<PsiElement> {
+    private fun findSecondaryElements(_element: PsiElement): List<PsiElement> {
         return emptyList()
     }
 }
