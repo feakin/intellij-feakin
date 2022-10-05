@@ -33,7 +33,10 @@ fun createSpaceBuilder(settings: CodeStyleSettings): SpacingBuilder {
         .after(FeakinElementTypes.SEMICOLON).spaceIf(true)
         .before(FeakinElementTypes.SEMICOLON).spaceIf(false)
 
+        //== empty parens
         .between(FeakinElementTypes.LBRACE, FeakinElementTypes.RBRACE).spacing(0, 0, 0, false, 0)
+
+         //== Handling block
         .afterInside(FeakinElementTypes.LBRACE, BLOCK_LIKE).parentDependentLFSpacing(1, 1, true, 0)
         .beforeInside(FeakinElementTypes.RBRACE, BLOCK_LIKE).parentDependentLFSpacing(1, 1, true, 0)
 

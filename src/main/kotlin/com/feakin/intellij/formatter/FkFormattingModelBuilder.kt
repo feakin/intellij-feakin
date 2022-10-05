@@ -45,9 +45,7 @@ class FkFormattingModelBuilder : FormattingModelBuilder {
             indent: Indent,
             ctx: FkFmtContext
         ): FkFormattingBlock {
-            return FkFormattingBlock(
-                node, alignment, indent, wrap, ctx
-            )
+            return FkFormattingBlock(node, alignment, indent, wrap, ctx)
         }
 
     }

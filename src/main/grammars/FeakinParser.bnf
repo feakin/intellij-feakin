@@ -121,7 +121,7 @@ aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName aggregateBody
 
 entityDeclaration ::= ENTITY_KEYWORD entityName entityBody
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName valueObjectBody?
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName valueObjectBody
 
 private useAggregate ::= AGGREGATE_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
@@ -147,7 +147,7 @@ private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 
-valueObjectBody ::= LBRACE (structDeclaration | useStruct) RBRACE
+valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
 implDeclaration ::= IMPL_KEYWORD implName implBody
 

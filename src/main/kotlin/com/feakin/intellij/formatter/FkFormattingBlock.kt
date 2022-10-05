@@ -40,16 +40,10 @@ open class FkFormattingBlock(
     private val mySubBlocks: List<Block> by lazy { buildChildren() }
 
     private fun buildChildren(): List<Block> {
-        val sharedAlignment = when (node.elementType) {
-            else -> null
-        }
-
         val children = node.getChildren(null)
             .filter { !it.isWhitespaceOrEmpty() }
             .map { childNode: ASTNode ->
-                val childCtx = ctx.copy(
-                    sharedAlignment = sharedAlignment
-                )
+                val childCtx = ctx.copy()
 
                 FkFormattingModelBuilder.createBlock(
                     node = childNode,
@@ -68,7 +62,7 @@ open class FkFormattingBlock(
         val childType = child.elementType
 
         return when {
-            node.isDelimitedBlock -> Indent.getNormalIndent()
+            node.isDelimitedBlock -> getIndentIfNotDelim(child, node)
             childType == TokenType.WHITE_SPACE -> Indent.getNoneIndent()
             else -> Indent.getNoneIndent()
         }
@@ -101,6 +95,13 @@ fun ASTNode?.isWhitespaceOrEmpty() = this == null || textLength == 0 || elementT
 
 
 private val ASTNode.isDelimitedBlock: Boolean get() = elementType in BLOCK_LIKE
+
+private fun getIndentIfNotDelim(child: ASTNode, parent: ASTNode): Indent =
+    if (child.isBlockDelim(parent)) {
+        Indent.getNoneIndent()
+    } else {
+        Indent.getNormalIndent()
+    }
 
 fun ASTNode.isBlockDelim(parent: ASTNode?): Boolean {
     if (parent == null) return false
