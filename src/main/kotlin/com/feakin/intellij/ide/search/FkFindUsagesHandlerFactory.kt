@@ -9,11 +9,11 @@ class FkFindUsagesHandlerFactory : FindUsagesHandlerFactory() {
     override fun canFindUsages(element: PsiElement): Boolean = element is FeakinNamedElement
 
     override fun createFindUsagesHandler(element: PsiElement, forHighlightUsages: Boolean): FindUsagesHandler {
-        val secondaryElements = if (!forHighlightUsages) findSecondaryElements(element) else emptyList()
+        val secondaryElements = if (!forHighlightUsages) findSecondaryElements() else emptyList()
         return FkFindUsagesHandler(element, secondaryElements.toTypedArray())
     }
 
-    private fun findSecondaryElements(_element: PsiElement): List<PsiElement> {
+    private fun findSecondaryElements(): List<PsiElement> {
         return emptyList()
     }
 }
