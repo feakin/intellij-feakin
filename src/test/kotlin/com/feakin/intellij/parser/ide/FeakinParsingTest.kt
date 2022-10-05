@@ -1,5 +1,6 @@
-package com.feakin.intellij.parser
+package com.feakin.intellij.parser.ide
 
+import com.feakin.intellij.parser.FeakinParserDefinition
 import com.intellij.testFramework.ParsingTestCase
 
 class FeakinParsingTest : ParsingTestCase("parser", "fkl", FeakinParserDefinition()) {
