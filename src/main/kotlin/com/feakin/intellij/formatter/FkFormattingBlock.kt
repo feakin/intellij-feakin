@@ -1,11 +1,12 @@
 package com.feakin.intellij.formatter
 
+import com.feakin.intellij.lexer.FeakinElementTypes.LBRACE
+import com.feakin.intellij.lexer.FeakinElementTypes.RBRACE
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
 import com.intellij.openapi.util.UserDataHolderBase
 import com.intellij.psi.TokenType
-import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.formatter.FormatterUtil
 
 open class FkFormattingBlock(
@@ -13,8 +14,7 @@ open class FkFormattingBlock(
     private val myAlignment: Alignment?,
     private val myIndent: Indent?,
     private val myWrap: Wrap?,
-    private val mySettings: CodeStyleSettings,
-    private val spacingBuilder: SpacingBuilder
+    private val ctx: FkFmtContext,
 ) : UserDataHolderBase(), ASTBlock {
     override fun getNode(): ASTNode {
         return myNode
@@ -40,20 +40,43 @@ open class FkFormattingBlock(
     private val mySubBlocks: List<Block> by lazy { buildChildren() }
 
     private fun buildChildren(): List<Block> {
-        val toCollection = node.getChildren(null)
+        val sharedAlignment = when (node.elementType) {
+            else -> null
+        }
+
+        val children = node.getChildren(null)
             .filter { !it.isWhitespaceOrEmpty() }
             .map { childNode: ASTNode ->
-                childNode.elementType
+                val childCtx = ctx.copy(
+                    sharedAlignment = sharedAlignment
+                )
+
+                FkFormattingModelBuilder.createBlock(
+                    node = childNode,
+                    alignment = null,
+                    indent = computeIndent(childNode, childCtx),
+                    wrap = null,
+                    ctx = childCtx
+                )
             }
             .toCollection(ArrayList())
 
-        println(toCollection)
-
-        return listOf()
+        return children
     }
 
+    private fun computeIndent(child: ASTNode, childCtx: FkFmtContext): Indent {
+        val childType = child.elementType
+
+        return when {
+            node.isDelimitedBlock -> Indent.getNormalIndent()
+            childType == TokenType.WHITE_SPACE -> Indent.getNoneIndent()
+            else -> Indent.getNormalIndent()
+        }
+    }
+
+    // todo: add more logic for spacing
     override fun getSpacing(child1: Block?, child2: Block): Spacing? {
-        return spacingBuilder.getSpacing(this, child1, child2)
+        return ctx.spacingBuilder.getSpacing(this, child1, child2)
     }
 
     override fun getChildAttributes(newChildIndex: Int): ChildAttributes {
@@ -68,4 +91,22 @@ open class FkFormattingBlock(
     override fun toString() = "${node.text} $textRange"
 }
 
+/*
+ *
+ * Copyright (c) 2015 Aleksey Kladov, Evgeny Kurbatsky, Alexey Kudinkin and contributors
+ * Copyright (c) 2016 JetBrains
+ *
+ */
 fun ASTNode?.isWhitespaceOrEmpty() = this == null || textLength == 0 || elementType == TokenType.WHITE_SPACE
+
+
+private val ASTNode.isDelimitedBlock: Boolean get() = elementType in BLOCK_LIKE
+
+fun ASTNode.isBlockDelim(parent: ASTNode?): Boolean {
+    if (parent == null) return false
+    val parentType = parent.elementType
+    return when (elementType) {
+        LBRACE, RBRACE -> parentType in BLOCK_LIKE
+        else -> false
+    }
+}
