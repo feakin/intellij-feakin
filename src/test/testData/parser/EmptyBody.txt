@@ -37,6 +37,8 @@ Feakin
       PsiWhiteSpace(' ')
       PsiElement(FeakinTokenType.{)('{')
       PsiWhiteSpace('\n')
+      FeakinAggregateBodyImpl(AGGREGATE_BODY)
+        <empty list>
       PsiElement(FeakinTokenType.})('}')
   PsiWhiteSpace('\n\n')
   FeakinDeclarationImpl(DECLARATION)

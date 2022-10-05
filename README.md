@@ -5,32 +5,34 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/20026-feakin.svg)](https://plugins.jetbrains.com/plugin/20026-feakin)
 
 <!-- Plugin description -->
-Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate structure, and others.
+Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate
+structure, and others.
 <!-- Plugin description end -->
 
 Features:
 
-- [ ] Lexer and Parser Definition
-- [ ] Highlight code
-- [ ] Line Marker Provider
+- [x] Lexer and Parser Definition
+- [x] Highlight code
+- [x] Line Marker Provider
 - [ ] Completion Contributor
 - [ ] Structure View
 - [ ] Folding
 - [ ] Brace Matching
-- [ ] Block Selection
-- [ ] Code Formatting
+- [x] Block Selection
+- [x] Code Formatting
 - [ ] Code Style Settings
 - [ ] Reference Contributor
 - [ ] Commenter
-- [ ] Quick Fix 
+- [ ] Quick Fix
 
 ## Installation
 
 - Using IDE built-in plugin system:
-  
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "intellij-feakin"</kbd> >
+
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "
+  intellij-feakin"</kbd> >
   <kbd>Install Plugin</kbd>
-  
+
 - Manually:
 
   Download the [latest release](https://github.com/feakin/intellij-feakin/releases/latest) and install it manually using
@@ -41,7 +43,8 @@ Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
 
-
 ## License
+
+inspired and based on [https://github.com/intellij-rust/intellij-rust](https://github.com/intellij-rust/intellij-rust)
 
 @2022 This code is distributed under the MPL license. See `LICENSE` in this directory.
