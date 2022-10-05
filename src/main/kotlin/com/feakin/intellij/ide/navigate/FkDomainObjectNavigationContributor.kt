@@ -44,9 +44,7 @@ class FkDomainObjectNavigationContributor : GotoClassContributor, ChooseByNameCo
         }
     }
 
-    override fun getQualifiedName(item: NavigationItem): String? {
-        return null
-    }
+    override fun getQualifiedName(item: NavigationItem): String? = (item as? FeakinNamedElement)?.name
 
     override fun getQualifiedNameSeparator(): String? {
         return null

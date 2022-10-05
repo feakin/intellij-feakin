@@ -11,22 +11,16 @@ import com.intellij.psi.PsiReference
 import javax.swing.Icon
 
 object FeakinPsiImplUtil {
-    fun qualifiedName(builder: PsiBuilder?, level: Int, parser: GeneratedParserUtilBase.Parser?) {}
-    @JvmStatic
-    fun getReference(namePart: FeakinNameComponent?): PsiReference? {
-        return null
+    fun getName(element: FeakinNameComponent): String {
+        return element.identifier.text
     }
 
-    fun getKey(element: FeakinContextMapDeclaration): String? {
-        val keyNode = element.node.findChildByType(FeakinElementTypes.CONTEXT_MAP_DECLARATION)
+    fun getKey(element: FeakinNameComponent): String? {
+        val keyNode = element.node.findChildByType(FeakinElementTypes.NAME_COMPONENT)
         return keyNode?.text?.replace("\\\\ ".toRegex(), " ")
     }
 
-    fun getName(element: FeakinContextMapDeclaration): String? {
-        return getKey(element)
-    }
-
-    fun getPresentation(element: FeakinContextMapDeclaration): ItemPresentation {
+    fun getPresentation(element: FeakinNameComponent): ItemPresentation {
         return object : ItemPresentation {
             override fun getPresentableText(): String? {
                 return element.name

@@ -3,7 +3,7 @@ package com.feakin.intellij.runconfig.command
 import com.feakin.intellij.psi.FeakinImplDeclaration
 import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
-import com.feakin.intellij.runconfig.implementation.RunImplConfig
+import com.feakin.intellij.runconfig.config.RunImplConfig
 import com.intellij.execution.actions.ConfigurationContext
 import com.intellij.execution.actions.LazyRunConfigurationProducer
 import com.intellij.execution.configurations.ConfigurationFactory
