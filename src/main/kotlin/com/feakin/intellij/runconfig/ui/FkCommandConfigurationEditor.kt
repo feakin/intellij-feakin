@@ -9,9 +9,6 @@ import javax.swing.JComponent
 
 open class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCommandConfiguration>() {
     private val command: FkCommandLineEditor = FkCommandLineEditor(project, FkCommandCompletionProvider());
-//    todo: config for SDK.
-//    protected val workingDirectory: LabeledComponent<TextFieldWithBrowseButton> =
-//        WorkingDirectoryComponent()
 
     override fun resetEditorFrom(configuration: FkCommandConfiguration) {
         command.text = configuration.command
@@ -26,30 +23,5 @@ open class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCom
         row("Command:") {
             cell(command).horizontalAlign(HorizontalAlign.FILL)
         }
-//        row(workingDirectory.label) {
-//            fullWidthCell(workingDirectory)
-//                .resizableColumn()
-//        }
     }
 }
-
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-//private class WorkingDirectoryComponent : LabeledComponent<TextFieldWithBrowseButton>() {
-//    init {
-//        component = TextFieldWithBrowseButton().apply {
-//            val fileChooser = FileChooserDescriptorFactory.createSingleFolderDescriptor().apply {
-//                title = ExecutionBundle.message("select.working.directory.message")
-//            }
-//            addBrowseFolderListener(null, null, null, fileChooser)
-//        }
-//        text = ExecutionBundle.message("run.configuration.working.directory.label")
-//    }
-//}
-//
-//fun <T : JComponent> Row.fullWidthCell(component: T): Cell<T> {
-//    return cell(component)
-//        .horizontalAlign(HorizontalAlign.FILL)
-//}
