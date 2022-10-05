@@ -23,8 +23,4 @@ class FkCommandConfiguration(project: Project, name: String, fkConfigurationFact
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> {
         return FkCommandConfigurationEditor(project)
     }
-
-    fun createTestConsoleProperties(executor: Executor): TestConsoleProperties? {
-        return null
-    }
 }
