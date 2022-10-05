@@ -1,6 +1,6 @@
 package com.feakin.intellij.highlight
 
-import com.feakin.intellij.lexer.FeakinLexerAdapter
+import com.feakin.intellij.lexer.FkLexer
 import com.feakin.intellij.lexer.FeakinElementTypes
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
@@ -10,7 +10,7 @@ import com.intellij.psi.tree.IElementType
 
 class FeakinSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
-        return FeakinLexerAdapter()
+        return FkLexer()
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {

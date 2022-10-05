@@ -27,14 +27,15 @@
         <lang.psiStructureViewFactory language="Feakin"
                                       implementationClass="com.feakin.intellij.structure.FkStructureViewFactory"/>
 
+        <!-- Editor -->
+        <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FeakinBlockSelectionHandler"/>
         <lang.foldingBuilder language="Feakin"
                              implementationClass="com.feakin.intellij.edit.FeakinFoldingBuilder"/>
 
         <lang.commenter language="Feakin" implementationClass="com.feakin.intellij.completion.FeakinCommenter"/>
-        <lang.braceMatcher language="Feakin" implementationClass="com.feakin.intellij.ide.FeakinBraceMatcher"/>
+        <lang.braceMatcher language="Feakin" implementationClass="com.feakin.intellij.ide.FkBraceMatcher"/>
 
-        <!-- Editor -->
-        <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FeakinBlockSelectionHandler"/>
+
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
         <stubIndex implementation="com.feakin.intellij.psi.stubs.FkNamedElementIndex"/>
         <!-- TODO: add support for goto -->
@@ -66,6 +67,10 @@
 
         <!-- Formatter -->
         <lang.formatter language="Feakin" implementationClass="com.feakin.intellij.formatter.FkFormattingModelBuilder"/>
+
+        <!-- Usages Provider -->
+        <lang.findUsagesProvider language="Feakin" implementationClass="com.feakin.intellij.ide.search.FkFindUsagesProvider"/>
+        <findUsagesHandlerFactory implementation="com.feakin.intellij.ide.search.FkFindUsagesHandlerFactory"/>
     </extensions>
 
     <actions>

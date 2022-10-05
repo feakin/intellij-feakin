@@ -8,7 +8,7 @@ import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FeakinBraceMatcher implements PairedBraceMatcher {
+public class FkBraceMatcher implements PairedBraceMatcher {
     private static final BracePair[] BRACE_PAIRS = {
             new BracePair(FeakinElementTypes.LBRACE, FeakinElementTypes.RBRACE, true),
     };
