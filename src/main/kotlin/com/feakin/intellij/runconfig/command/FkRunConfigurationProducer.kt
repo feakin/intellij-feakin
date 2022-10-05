@@ -66,14 +66,13 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
 
         val psiFile = PsiManager.getInstance(location.project).findFile(file)
         if (psiFile !is FkFile) return false
-        if (location.psiElement !is FeakinImplDeclaration) return false
+        val element = sourceElement.get()
+        if (element !is FeakinImplDeclaration) return false
 
-        val feakinImplDecl = location.psiElement as FeakinImplDeclaration
-        val implName = feakinImplDecl.implName.nameComponent.identifier.text
-        log.debug("implName: $implName")
+        val implName = element.implName.nameComponent.identifier.text
 
         configuration.name = "Run $implName gen"
-        val fkCommandLine = fromImplDecl(feakinImplDecl, psiFile)
+        val fkCommandLine = fromImplDecl(element, psiFile)
 
         configuration.commandLine = fkCommandLine
         configuration.command = "gen"
