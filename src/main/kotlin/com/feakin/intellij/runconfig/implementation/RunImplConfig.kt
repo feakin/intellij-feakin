@@ -1,15 +1,21 @@
 package com.feakin.intellij.runconfig.implementation
 
-import com.intellij.psi.PsiElement
-import com.intellij.util.Function
+import com.feakin.intellij.psi.FeakinImplDeclaration
+import com.feakin.intellij.runconfig.FkCommandLine
 
 data class RunImplConfig(
     val commandName: String,
     val path: String,
-    val impl: String,
-    val sourceElement: PsiElement
+    val sourceElement: FeakinImplDeclaration
 ) {
-    val configurationName: Function<in PsiElement, String> = Function {
-        "$commandName $path $impl"
-    }
+    private val implName: String = sourceElement.implName.nameComponent.identifier.text
+    val configurationName: String = "Run gen $implName"
+
+    val fkCommandLine = fromImplDecl(sourceElement, path)
+}
+
+private fun fromImplDecl(feakinImplDecl: FeakinImplDeclaration, path: String): FkCommandLine {
+    val implName = feakinImplDecl.implName.nameComponent.identifier.text
+    val subcommand = "gen"
+    return FkCommandLine(path, implName, subcommand)
 }

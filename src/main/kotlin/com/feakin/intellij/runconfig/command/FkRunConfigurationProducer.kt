@@ -1,17 +1,15 @@
 package com.feakin.intellij.runconfig.command
 
-import com.feakin.intellij.FkFile
 import com.feakin.intellij.psi.FeakinImplDeclaration
 import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
-import com.feakin.intellij.runconfig.FkCommandLine
 import com.feakin.intellij.runconfig.implementation.RunImplConfig
 import com.intellij.execution.actions.ConfigurationContext
 import com.intellij.execution.actions.LazyRunConfigurationProducer
 import com.intellij.execution.configurations.ConfigurationFactory
+import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiManager
 
 private typealias RunImplConfigProvider = (List<PsiElement>) -> RunImplConfig?
 
@@ -31,11 +29,8 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         elements: List<PsiElement>
     ): RunImplConfig? {
         val path = elements.firstOrNull()?.containingFile?.virtualFile?.path ?: return null
-        val implEl = elements.firstOrNull() as? FeakinImplDeclaration? ?: return null
-        val implName: String = implEl.implName.toString()
-
         val sourceElement = elements.firstOrNull { it is T } ?: return null
-        return RunImplConfig(commandName, path, implName, sourceElement)
+        return RunImplConfig(commandName, path, sourceElement as FeakinImplDeclaration)
     }
 
     private fun registerConfigProvider(provider: RunImplConfigProvider) {
@@ -55,39 +50,26 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         context: ConfigurationContext,
         sourceElement: Ref<PsiElement>
     ): Boolean {
-        val location = context.location ?: return false
-        val file = location.virtualFile ?: return false
-
-        val psiFile = PsiManager.getInstance(location.project).findFile(file)
-        if (psiFile !is FkFile) return false
-        val element = sourceElement.get()
-        if (element !is FeakinImplDeclaration) return false
-
-        val implName = element.implName.nameComponent.identifier.text
-
-        configuration.name = "Run $implName gen"
-        val fkCommandLine = fromImplDecl(element, psiFile)
-        configuration.setCommand(fkCommandLine)
+        val implConfig = findImplConfig(context) ?: return false
+        configuration.name = implConfig.configurationName.toString()
+        configuration.setCommand(implConfig.fkCommandLine)
 
         return true
     }
 
-    private fun fromImplDecl(feakinImplDecl: FeakinImplDeclaration, psiFile: FkFile): FkCommandLine {
-        val path = psiFile.virtualFile.path
-        val implName = feakinImplDecl.implName.nameComponent.identifier.text
-        val subcommand = "gen"
-        return FkCommandLine(path, implName, subcommand)
+    private fun findImplConfig(context: ConfigurationContext): RunImplConfig? {
+        val elements = LangDataKeys.PSI_ELEMENT_ARRAY.getData(context.dataContext)?.toList()
+            ?: context.location?.psiElement?.let { listOf(it) }
+        return elements?.let { findImplConfig(it) }
     }
 
     override fun isConfigurationFromContext(
         configuration: FkCommandConfiguration,
         context: ConfigurationContext
     ): Boolean {
-        val location = context.location ?: return false
-        val file = location.virtualFile ?: return false
-
-        val psiFile = PsiManager.getInstance(location.project).findFile(file)
-        if (psiFile !is FkFile) return false
+        val implConfig = findImplConfig(context) ?: return false
+        configuration.name = implConfig.configurationName.toString()
+        configuration.setCommand(implConfig.fkCommandLine)
 
         return true
     }

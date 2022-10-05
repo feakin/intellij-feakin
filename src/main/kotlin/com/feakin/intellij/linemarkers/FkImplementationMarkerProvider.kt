@@ -17,7 +17,7 @@ class FkImplementationMarkerProvider : RunLineMarkerContributor() {
         val actions = ExecutorAction.getActions(0)
         return Info(
             AllIcons.RunConfigurations.TestState.Run,
-            state.configurationName,
+            { state.configurationName },
             *actions
         )
     }
