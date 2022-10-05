@@ -10,11 +10,10 @@ import com.intellij.execution.runners.ProgramRunner
 import com.intellij.execution.ui.ExecutionUiService
 import com.intellij.execution.ui.RunContentDescriptor
 import com.intellij.openapi.fileEditor.FileDocumentManager
-import org.jdom.Element
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.concurrency.resolvedPromise
 
-class FkCommandRunner : ProgramRunner<FkImplRunnerSettings> {
+class FkCommandRunner : ProgramRunner<RunnerSettings> {
     override fun getRunnerId(): @NonNls String = "FkCommandRunner"
 
     override fun canRun(executorId: String, profile: RunProfile): Boolean {
@@ -49,16 +48,5 @@ class FkCommandRunner : ProgramRunner<FkImplRunnerSettings> {
             ExecutionUiService.getInstance().showRunContent(it, environment)
         }
     }
-}
-
-class FkImplRunnerSettings : RunnerSettings {
-    override fun readExternal(element: Element?) {
-
-    }
-
-    override fun writeExternal(element: Element?) {
-
-    }
-
 }
 

@@ -15,8 +15,9 @@ import org.jdom.Element
 class FkCommandConfiguration(project: Project, name: String, factory: ConfigurationFactory) :
     LocatableConfigurationBase<RunProfileState>(project, factory, name) {
 
+    // for debugging
     var command: String = ""
-    var commandLine: FkCommandLine = FkCommandLine("", "", "");
+    var commandLine: FkCommandLine = FkCommandLine("", "", "gen");
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState {
         return FkRunState(environment, this, commandLine)
@@ -34,11 +35,15 @@ class FkCommandConfiguration(project: Project, name: String, factory: Configurat
     override fun writeExternal(element: Element) {
         super.writeExternal(element)
         element.writeString("command", command)
+        element.writeString("path", commandLine.path)
+        element.writeString("impl", commandLine.impl)
     }
 
     override fun readExternal(element: Element) {
         super.readExternal(element)
         element.readString("command")?.let { command = it }
+        element.readString("path")?.let { commandLine.path = it }
+        element.readString("impl")?.let { commandLine.impl = it }
     }
 }
 

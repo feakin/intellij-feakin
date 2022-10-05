@@ -16,11 +16,7 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.pom.Navigatable
 import com.intellij.psi.PsiElement
 
-class FkStructureViewElement(private val element: PsiElement) : StructureViewTreeElement {
-    companion object {
-        private val log: Logger = logger<FkStructureViewElement>()
-    }
-
+class FkStructureViewElement(element: PsiElement) : StructureViewTreeElement {
     private val psiAnchor = TreeAnchorizer.getService().createAnchor(element)
 
     private val psi: PsiElement? get() = TreeAnchorizer.getService().retrieveElement(psiAnchor) as? PsiElement

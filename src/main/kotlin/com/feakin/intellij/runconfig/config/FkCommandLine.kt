@@ -1,9 +1,9 @@
 package com.feakin.intellij.runconfig.config
 
 class FkCommandLine(
-    val path: String,
-    val impl: String,
-    val subcommand: String,
+    var path: String,
+    var impl: String,
+    private val subcommand: String,
 ) {
     fun toCommandString(): String {
         return this.toCommand().joinToString(" ")

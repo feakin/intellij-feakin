@@ -18,3 +18,4 @@ private fun fromImplDecl(feakinImplDecl: FeakinImplDeclaration, path: String): F
     val subcommand = "gen"
     return FkCommandLine(path, implName, subcommand)
 }
+
