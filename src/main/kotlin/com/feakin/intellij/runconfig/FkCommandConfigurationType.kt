@@ -8,7 +8,7 @@ import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.openapi.project.Project
 
 class FkCommandConfigurationType :
-    ConfigurationTypeBase("FkRunAppConfigType", "Feakin", "Feakin DSL generator", FkIcons.RUN) {
+    ConfigurationTypeBase("FkCommandConfigurationType", "Feakin", "Feakin DSL generator", FkIcons.RUN) {
     val factory: ConfigurationFactory get() = configurationFactories.single()
 
     init {
@@ -29,6 +29,6 @@ class FkConfigurationFactory(type: FkCommandConfigurationType) : ConfigurationFa
     }
 
     companion object {
-        const val ID: String = "Fkl Command"
+        const val ID: String = "Fkl Gen"
     }
 }

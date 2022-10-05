@@ -9,7 +9,7 @@ data class RunImplConfig(
     val sourceElement: FeakinImplDeclaration
 ) {
     private val implName: String = sourceElement.implName.nameComponent.identifier.text
-    val configurationName: String = "Run gen $implName"
+    val configurationName: String = "Gen $implName"
 
     val fkCommandLine = fromImplDecl(sourceElement, path)
 }

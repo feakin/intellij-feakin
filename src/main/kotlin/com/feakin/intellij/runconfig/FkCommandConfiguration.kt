@@ -2,24 +2,21 @@ package com.feakin.intellij.runconfig
 
 import com.feakin.intellij.runconfig.ui.FkCommandConfigurationEditor
 import com.intellij.execution.Executor
-import com.intellij.execution.configurations.LocatableConfigurationBase
-import com.intellij.execution.configurations.RunConfiguration
-import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction
-import com.intellij.execution.configurations.RunProfileState
+import com.intellij.execution.configurations.*
 import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
 import org.jdom.Element
 
-class FkCommandConfiguration(project: Project, name: String, fkConfigurationFactory: FkConfigurationFactory) :
-    LocatableConfigurationBase<RunProfileState>(project, fkConfigurationFactory, name),
+class FkCommandConfiguration(project: Project, name: String, factory: ConfigurationFactory) :
+    LocatableConfigurationBase<RunProfileState>(project, factory, name),
     RunConfigurationWithSuppressedDefaultDebugAction {
 
     var command: String = ""
     var commandLine: FkCommandLine = FkCommandLine("", "", "");
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState {
-        return FkRunState(environment, this)
+        return FkRunState(environment, this, commandLine)
     }
 
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> {
@@ -30,8 +27,6 @@ class FkCommandConfiguration(project: Project, name: String, fkConfigurationFact
         this.commandLine = fkCommandLine
         this.command = fkCommandLine.toCommandString()
     }
-
-    override fun suggestedName(): String = command.substringBefore(' ').capitalize()
 
     override fun writeExternal(element: Element) {
         super.writeExternal(element)

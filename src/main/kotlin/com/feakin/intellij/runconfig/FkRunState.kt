@@ -7,9 +7,12 @@ import com.intellij.execution.process.ProcessTerminatedListener
 import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.logger
-import com.intellij.openapi.project.Project
 
-class FkRunState(environment: ExecutionEnvironment, private val config: FkCommandConfiguration) :
+class FkRunState(
+    environment: ExecutionEnvironment,
+    private val config: FkCommandConfiguration,
+    private val commandLine: FkCommandLine
+) :
     CommandLineState(environment) {
 
     companion object {
@@ -17,8 +20,7 @@ class FkRunState(environment: ExecutionEnvironment, private val config: FkComman
     }
 
     override fun startProcess(): ProcessHandler {
-        val commands = config.commandLine.toCommand()
-        val commandLine = GeneralCommandLine(commands)
+        val commandLine = GeneralCommandLine(commandLine.toCommand())
 
         log.debug("Executing Feakin command: `${commandLine}`")
         val handler = FkProcessHandler(commandLine)

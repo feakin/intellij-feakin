@@ -21,7 +21,6 @@ class FkCommandRunner : ProgramRunner<RunnerSettings> {
 
     override fun canRun(executorId: String, profile: RunProfile): Boolean {
         if (executorId != DefaultRunExecutor.EXECUTOR_ID || profile !is FkCommandConfiguration) return false
-
         return true
     }
 
