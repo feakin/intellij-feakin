@@ -14,7 +14,6 @@ class FkCommandCompletionProvider : TextFieldCompletionProvider() {
 
         result.addElement(element)
     }
-
 }
 
 fun InsertionContext.addSuffix(suffix: String) {

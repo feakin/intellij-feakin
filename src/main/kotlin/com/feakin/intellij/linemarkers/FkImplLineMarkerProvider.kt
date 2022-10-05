@@ -9,7 +9,7 @@ import com.intellij.execution.lineMarker.RunLineMarkerContributor
 import com.intellij.icons.AllIcons
 import com.intellij.psi.PsiElement
 
-class FkImplementationMarkerProvider : RunLineMarkerContributor() {
+class FkImplLineMarkerProvider : RunLineMarkerContributor() {
     override fun getInfo(element: PsiElement): Info? {
         if (element !is FeakinImplDeclaration) return null
         val state = FkRunConfigurationProducer().findImplConfig(listOf(element)) ?: return null

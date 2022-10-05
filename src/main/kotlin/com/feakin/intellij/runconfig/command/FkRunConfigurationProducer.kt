@@ -51,7 +51,7 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         sourceElement: Ref<PsiElement>
     ): Boolean {
         val implConfig = findImplConfig(context) ?: return false
-        configuration.name = implConfig.configurationName.toString()
+        configuration.name = implConfig.configurationName
         configuration.setCommand(implConfig.fkCommandLine)
 
         return true
@@ -68,7 +68,7 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         context: ConfigurationContext
     ): Boolean {
         val implConfig = findImplConfig(context) ?: return false
-        configuration.name = implConfig.configurationName.toString()
+        configuration.name = implConfig.configurationName
         configuration.setCommand(implConfig.fkCommandLine)
 
         return true
