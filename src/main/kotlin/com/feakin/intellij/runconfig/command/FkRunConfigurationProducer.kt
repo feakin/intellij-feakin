@@ -7,6 +7,7 @@ import com.feakin.intellij.runconfig.FkRunState
 import com.feakin.intellij.runconfig.config.RunImplConfig
 import com.intellij.execution.PsiLocation
 import com.intellij.execution.RunManager
+import com.intellij.execution.RunnerAndConfigurationSettings
 import com.intellij.execution.actions.ConfigurationContext
 import com.intellij.execution.actions.ConfigurationFromContext
 import com.intellij.execution.actions.LazyRunConfigurationProducer
@@ -86,6 +87,19 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
         configuration.setCommand(implConfig.fkCommandLine)
 
         return true
+    }
+
+    override fun findExistingConfiguration(context: ConfigurationContext): RunnerAndConfigurationSettings? {
+        val preferredConfig = createConfigurationFromContext(context) ?: return null
+        val runManager = RunManager.getInstance(context.project)
+        val configurations = getConfigurationSettingsList(runManager)
+        for (configurationSettings in configurations) {
+            if (preferredConfig.configuration.isSame(configurationSettings.configuration)) {
+                return configurationSettings
+            }
+        }
+
+        return null
     }
 
     override fun findOrCreateConfigurationFromContext(context: ConfigurationContext): ConfigurationFromContext? {
