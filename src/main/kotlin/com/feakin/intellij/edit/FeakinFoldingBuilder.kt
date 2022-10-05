@@ -49,9 +49,21 @@ class FeakinFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     }
 
     private class FoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : FeakinVisitor() {
-        override fun visitContextDeclaration(o: FeakinContextDeclaration) = fold(o)
+        override fun visitContextBody(o: FeakinContextBody) = fold(o)
 
-        override fun visitContextMapDeclaration(o: FeakinContextMapDeclaration) = fold(o)
+        override fun visitContextMapBody(o: FeakinContextMapBody) = fold(o)
+
+        override fun visitAggregateBody(o: FeakinAggregateBody) = fold(o)
+
+        override fun visitEntityBody(o: FeakinEntityBody) = fold(o)
+
+        override fun visitStructBody(o: FeakinStructBody) = fold(o)
+
+        override fun visitValueObjectBody(o: FeakinValueObjectBody) = fold(o)
+
+        override fun visitImplBody(o: FeakinImplBody) = fold(o)
+        override fun visitFlowBody(o: FeakinFlowBody) = fold(o)
+        override fun visitEndpointBody(o: FeakinEndpointBody) = fold(o)
 
         private fun fold(element: PsiElement) {
             descriptors += FoldingDescriptor(element.node, element.textRange)

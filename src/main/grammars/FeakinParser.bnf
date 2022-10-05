@@ -81,16 +81,16 @@ declaration ::= contextMapDeclaration
                | structDeclaration
                | implDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName LBRACE contextMapBody? RBRACE
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody
 {
   mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
   implements="com.feakin.intellij.psi.FeakinNamedElement"
   methods=[getName getPresentation]
 }
 
-contextMapBody ::= (contextNodeDecl | contextNodeRel)*
+contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE
 
-private contextNodeDecl ::= CONTEXT_KEYWORD contextName  (COMMA contextName)*
+private contextNodeDecl ::= CONTEXT_KEYWORD contextName (COMMA contextName)*
 
 private contextNodeRel ::= leftContextNode relSymbol rightContextNode SEMICOLON
 {
@@ -108,36 +108,34 @@ relSymbol ::= RARROW
              | CONNECTION
              ;
 
-contextDeclaration ::= CONTEXT_KEYWORD contextName LBRACE contextBody RBRACE
+contextDeclaration ::= CONTEXT_KEYWORD contextName  contextBody
 {
   mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
   implements="com.feakin.intellij.psi.FeakinNamedElement"
   methods=[getName getPresentation]
 }
 
-aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName LBRACE aggregateBody RBRACE
+contextBody ::= LBRACE useAggregate* RBRACE
 
-entityDeclaration ::= ENTITY_KEYWORD entityName LBRACE entityBody? RBRACE
+aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName aggregateBody
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName LBRACE valueObjectBody? RBRACE
+entityDeclaration ::= ENTITY_KEYWORD entityName entityBody
 
-contextBody ::= useAggregate*
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName valueObjectBody?
 
 private useAggregate ::= AGGREGATE_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
-aggregateBody ::= aggregateEntry*
+aggregateBody ::= LBRACE aggregateEntry* RBRACE
 
 private aggregateEntry ::= useEntity
 
 private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
-entityBody ::= structDeclaration
-              | useValueObject
-              | useStruct
+entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)? RBRACE
 
-structDeclaration ::= STRUCT_KEYWORD LBRACE structBody RBRACE
+structDeclaration ::= STRUCT_KEYWORD structBody
 
-structBody ::= structEntry*
+structBody ::= LBRACE structEntry* RBRACE
 
 private structEntry ::= IDENTIFIER COLON fieldType defaultValue? SEMICOLON?
 
@@ -149,16 +147,15 @@ private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 
-valueObjectBody ::= structDeclaration
-                  | useStruct
+valueObjectBody ::= LBRACE (structDeclaration | useStruct) RBRACE
 
-implDeclaration ::= IMPL_KEYWORD implName LBRACE implBody? RBRACE
+implDeclaration ::= IMPL_KEYWORD implName implBody
 
-implBody ::= endpointDeclaration flowDeclaration?
+implBody ::= LBRACE (endpointDeclaration flowDeclaration?)? RBRACE
 
-endpointDeclaration ::= ENDPOINT_KEYWORD LBRACE endpointBody RBRACE
+endpointDeclaration ::= ENDPOINT_KEYWORD endpointBody
 
-endpointBody ::=  requestDeclaration requestBody? authorizationDecl? responseDeclaration?
+endpointBody ::= LBRACE requestDeclaration requestBody? authorizationDecl? responseDeclaration? RBRACE
 
 private authorizationDecl ::= AUTH_KEYWORD COLON authorizationType? authorizationValue* SEMICOLON?
 
@@ -184,9 +181,10 @@ requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | structDeclaration) SE
 
 responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON;
 
-flowDeclaration ::= FLOW_KEYWORD LBRACE flowBody RBRACE
+flowDeclaration ::= FLOW_KEYWORD flowBody
 
-flowBody ::= flowEntry*
+flowBody ::= LBRACE flowEntry* RBRACE
+
 private flowEntry ::= viaMethodDeclaration
                      | viaMessageDeclaration
 
