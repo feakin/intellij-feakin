@@ -70,7 +70,7 @@ open class FkFormattingBlock(
         return when {
             node.isDelimitedBlock -> Indent.getNormalIndent()
             childType == TokenType.WHITE_SPACE -> Indent.getNoneIndent()
-            else -> Indent.getNormalIndent()
+            else -> Indent.getNoneIndent()
         }
     }
 

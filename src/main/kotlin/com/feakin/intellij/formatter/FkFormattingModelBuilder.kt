@@ -10,11 +10,17 @@ import com.intellij.psi.tree.TokenSet
 import org.jetbrains.annotations.NotNull
 
 val BLOCK_LIKE = TokenSet.create(
-    IMPL_BODY,
     CONTEXT_BODY,
     CONTEXT_MAP_BODY,
+    AGGREGATE_BODY,
+    ENTITY_BODY,
+    VALUE_OBJECT_BODY,
+    STRUCT_BODY,
+
+    IMPL_BODY,
     ENDPOINT_BODY,
-    REQUEST_BODY
+
+    FLOW_BODY
 )
 
 val FK_KEYWORDS = FeakinTokenTypeSets.KEY_WORDS;

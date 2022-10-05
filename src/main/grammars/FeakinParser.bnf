@@ -125,19 +125,19 @@ contextBody ::= useAggregate*
 
 private useAggregate ::= AGGREGATE_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
-private aggregateBody ::= aggregateEntry*
+aggregateBody ::= aggregateEntry*
 
 private aggregateEntry ::= useEntity
 
 private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
-private entityBody ::= structDeclaration
-                      | useValueObject
-                      | useStruct
+entityBody ::= structDeclaration
+              | useValueObject
+              | useStruct
 
 structDeclaration ::= STRUCT_KEYWORD LBRACE structBody RBRACE
 
-private structBody ::= structEntry*
+structBody ::= structEntry*
 
 private structEntry ::= IDENTIFIER COLON fieldType defaultValue? SEMICOLON?
 
@@ -149,8 +149,8 @@ private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)? SEMICOLON
 
-private valueObjectBody ::= structDeclaration
-                          | useStruct
+valueObjectBody ::= structDeclaration
+                  | useStruct
 
 implDeclaration ::= IMPL_KEYWORD implName LBRACE implBody? RBRACE
 
@@ -186,7 +186,7 @@ responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON;
 
 flowDeclaration ::= FLOW_KEYWORD LBRACE flowBody RBRACE
 
-private flowBody ::= flowEntry*
+flowBody ::= flowEntry*
 private flowEntry ::= viaMethodDeclaration
                      | viaMessageDeclaration
 
