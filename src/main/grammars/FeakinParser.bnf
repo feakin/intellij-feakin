@@ -183,9 +183,9 @@ responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON;
 
 flowDeclaration ::= FLOW_KEYWORD flowBody
 
-flowBody ::= LBRACE flowEntry* RBRACE
+flowBody ::= LBRACE stepDeclaration* RBRACE
 
-private flowEntry ::= viaMethodDeclaration
+private stepDeclaration ::= viaMethodDeclaration
                      | viaMessageDeclaration
 
 viaMethodDeclaration ::= VIA_KEYWORD objectName (DOUBLE_COLON viaMethodName parameters?)? RECEIVE_KEYWORD receiveObject SEMICOLON?
