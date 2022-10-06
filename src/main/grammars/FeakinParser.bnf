@@ -1,7 +1,6 @@
 {
   parserClass="com.feakin.intellij.parser.FkParser"
   parserUtilClass="com.intellij.lang.parser.GeneratedParserUtilBase"
-//  psiImplUtilClass="com.feakin.intellij.parser.FkPsiImplUtilkt"
 
   implements="com.feakin.intellij.psi.FkElement"
   extends="com.feakin.intellij.psi.impl.FkElementImpl"
@@ -83,7 +82,7 @@ declaration ::= contextMapDeclaration
                | structDeclaration
                | implDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {
   implements = [
     "com.feakin.intellij.psi.FkNamedElement"
@@ -110,35 +109,31 @@ relSymbol ::= RARROW
              | CONNECTION
              ;
 
-contextDeclaration ::= CONTEXT_KEYWORD contextName contextBody {
+contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody {
   pin=1
-  methods = [getName setName getNameIdentifier]
 }
 
 contextBody ::= LBRACE useAggregate* RBRACE
 
-aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName aggregateBody {
+aggregateDeclaration ::= AGGREGATE_KEYWORD IDENTIFIER aggregateBody {
   pin=1
-  methods = [getName setName getNameIdentifier]
 }
 
-entityDeclaration ::= ENTITY_KEYWORD entityName entityBody {
+entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
   pin=1
-  methods = [getName setName getNameIdentifier]
 }
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName valueObjectBody {
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
   pin=1
-  methods = [getName setName getNameIdentifier]
 }
 
-private useAggregate ::= AGGREGATE_KEYWORD name_component (COMMA name_component)* SEMICOLON
+private useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
 aggregateBody ::= LBRACE aggregateEntry* RBRACE
 
 private aggregateEntry ::= useEntity
 
-private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)* SEMICOLON
+private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
 entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)? RBRACE
 
@@ -156,12 +151,12 @@ fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')?
 
 private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 
-private useValueObject ::= VALUE_OBJECT_KEYWORD name_component (COMMA name_component)? SEMICOLON
-private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)? SEMICOLON
+private useValueObject ::= VALUE_OBJECT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)? SEMICOLON
+private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)? SEMICOLON
 
 valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
-implDeclaration ::= IMPL_KEYWORD implName implBody {
+implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody {
   pin=1
   methods = [getName setName getNameIdentifier]
 }
@@ -220,26 +215,14 @@ private passObject ::= objectName (COLON viaMethodName)?
 
 topic ::= STRING_LITERAL
 
-objectName ::= name_component
+objectName ::= IDENTIFIER
 
-viaMethodName ::= name_component
+viaMethodName ::= IDENTIFIER
 
-requestEntityName ::= name_component
+requestEntityName ::= IDENTIFIER
 
-responseEntityName ::= name_component
+responseEntityName ::= IDENTIFIER
 
-contextMapName ::= name_component
+contextName ::= IDENTIFIER
 
-contextName ::= name_component
-
-aggregateName ::= name_component
-
-entityName ::= name_component
-
-valueObjectName ::= name_component
-
-contextNodeName ::= name_component
-
-implName ::= name_component
-
-name_component ::= IDENTIFIER
+contextNodeName ::= IDENTIFIER

@@ -37,14 +37,14 @@ class FkStructureViewElement(element: PsiElement) : StructureViewTreeElement {
 
         when (val psi = psi) {
             is FkContextMapDeclaration -> {
-                val structNameDeclaration = psi.contextMapName
+                val structNameDeclaration = psi.identifier
                 struct.setAttributesKey(DefaultLanguageHighlighterColors.IDENTIFIER)
-                struct.presentableText = structNameDeclaration?.text
+                struct.presentableText = structNameDeclaration.text
                 return struct
             }
 
             is FkContextDeclaration -> {
-                val structNameDeclaration = psi.contextName
+                val structNameDeclaration = psi.identifier
                 struct.setAttributesKey(DefaultLanguageHighlighterColors.KEYWORD)
                 struct.presentableText = structNameDeclaration?.text
                 return struct
