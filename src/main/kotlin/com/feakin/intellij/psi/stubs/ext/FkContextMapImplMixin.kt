@@ -1,4 +1,4 @@
-package com.feakin.intellij.psi.ext
+package com.feakin.intellij.psi.stubs.ext
 
 import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl

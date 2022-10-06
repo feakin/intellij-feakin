@@ -8,7 +8,7 @@ package com.feakin.intellij.psi.stubs
 import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkNamedStub
 import com.feakin.intellij.psi.impl.FkContextMapDeclarationImpl
-import com.feakin.intellij.psi.index.FkNamedElementIndex
+import com.feakin.intellij.psi.stubs.index.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 

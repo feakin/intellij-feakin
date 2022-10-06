@@ -1,6 +1,7 @@
 package com.feakin.intellij.parser
 
 import com.feakin.intellij.FkFile
+import com.feakin.intellij.FkFileStub
 import com.feakin.intellij.FkLanguage
 import com.feakin.intellij.lexer.FkElementTypes
 import com.feakin.intellij.lexer.FkLexer
@@ -29,9 +30,7 @@ class FkParserDefinition : ParserDefinition {
         return com.feakin.intellij.parser.FkParser()
     }
 
-    override fun getFileNodeType(): IFileElementType {
-        return FILE
-    }
+    override fun getFileNodeType(): IFileElementType = FkFileStub.Type
 
     override fun getCommentTokens(): TokenSet {
         return COMMENTS

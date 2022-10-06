@@ -1,4 +1,4 @@
-package com.feakin.intellij.psi.index
+package com.feakin.intellij.psi.stubs.index
 
 import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.psi.stubs.StringStubIndexExtension

@@ -1,7 +1,7 @@
 package com.feakin.intellij.ide.navigate
 
 import com.feakin.intellij.psi.FkNamedElement
-import com.feakin.intellij.psi.index.FkNamedElementIndex
+import com.feakin.intellij.psi.stubs.index.FkNamedElementIndex
 import com.intellij.navigation.ChooseByNameContributor
 import com.intellij.navigation.NavigationItem
 import com.intellij.openapi.project.Project

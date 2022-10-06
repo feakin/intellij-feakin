@@ -2,7 +2,7 @@ package com.feakin.intellij.ide.navigate
 
 import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkNamedElement
-import com.feakin.intellij.psi.index.FkGotoClassIndex
+import com.feakin.intellij.psi.stubs.index.FkGotoClassIndex
 import com.intellij.navigation.ChooseByNameContributorEx
 import com.intellij.navigation.GotoClassContributor
 import com.intellij.navigation.NavigationItem

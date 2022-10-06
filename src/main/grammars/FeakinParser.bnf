@@ -86,7 +86,7 @@ contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
     "com.feakin.intellij.psi.FkNamedElement"
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
   ]
-  mixin = "com.feakin.intellij.psi.ext.FkContextMapImplMixin"
+  mixin = "com.feakin.intellij.psi.stubs.ext.FkContextMapImplMixin"
   stubClass = "com.feakin.intellij.psi.stubs.FkContextMapDeclStub"
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
@@ -113,7 +113,7 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
     "com.feakin.intellij.psi.FkNamedElement"
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
   ]
-  mixin = "com.feakin.intellij.psi.ext.FkContextImplMixin"
+  mixin = "com.feakin.intellij.psi.stubs.ext.FkContextImplMixin"
   stubClass = "com.feakin.intellij.psi.stubs.FkContextDeclStub"
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
