@@ -14,7 +14,7 @@ class FkNamedElementIndex : StringStubIndexExtension<FkNamedElement>() {
 
     companion object {
         val KEY: StubIndexKey<String, FkNamedElement> =
-            StubIndexKey.createIndexKey("com.feakin.intellij.psi.stubs.FkNamedElementIndex")
+            StubIndexKey.createIndexKey("com.feakin.intellij.psi.stubs.FeakinNamedElementIndex")
 
     }
 }

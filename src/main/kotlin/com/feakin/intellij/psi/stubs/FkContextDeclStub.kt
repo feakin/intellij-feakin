@@ -8,6 +8,7 @@ package com.feakin.intellij.psi.stubs
 import com.feakin.intellij.psi.FkContextDeclaration
 import com.feakin.intellij.psi.FkNamedStub
 import com.feakin.intellij.psi.impl.FkContextDeclarationImpl
+import com.feakin.intellij.psi.index.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 
@@ -21,6 +22,10 @@ class FkContextDeclStub(
 ), FkNamedStub {
 
     object Type : FkStubElementType<FkContextDeclStub, FkContextDeclaration>("CONTEXT_DECLARATION") {
+        override fun indexStub(stub: FkContextDeclStub, sink: IndexSink) {
+            stub.name?.let { sink.occurrence(FkNamedElementIndex.KEY, it) }
+        }
+
         override fun serialize(stub: FkContextDeclStub, dataStream: StubOutputStream) {
             return with(dataStream) {
                 writeName(stub.name)

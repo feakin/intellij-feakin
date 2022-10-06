@@ -17,9 +17,12 @@ abstract class FkStubElementType<StubT : StubElement<*>, PsiT : FkElement>(
     debugName: String
 ) : IStubElementType<StubT, PsiT>(debugName, FkLanguage) {
 
-    final override fun getExternalId(): String = "fkl.${super.toString()}"
+    final override fun getExternalId(): String {
+        return "fkl.${super.toString()}"
+    }
 
-    override fun indexStub(stub: StubT, sink: IndexSink) {}
+    override fun indexStub(stub: StubT, sink: IndexSink) {
+    }
 }
 
 fun createStubIfParentIsStub(node: ASTNode): Boolean {

@@ -8,6 +8,7 @@ package com.feakin.intellij.psi.stubs
 import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkNamedStub
 import com.feakin.intellij.psi.impl.FkContextMapDeclarationImpl
+import com.feakin.intellij.psi.index.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 
@@ -21,6 +22,10 @@ class FkContextMapDeclStub(
 ), FkNamedStub {
 
     object Type : FkStubElementType<FkContextMapDeclStub, FkContextMapDeclaration>("CONTEXT_MAP_DECLARATION") {
+        override fun indexStub(stub: FkContextMapDeclStub, sink: IndexSink) {
+            stub.name?.let { sink.occurrence(FkNamedElementIndex.KEY, it) }
+        }
+
         override fun serialize(stub: FkContextMapDeclStub, dataStream: StubOutputStream) {
             return with(dataStream) {
                 writeName(stub.name)
