@@ -34,6 +34,7 @@ class FkGotoSymbolContributor : ChooseByNameContributor {
         )
         val items: MutableList<NavigationItem> = ArrayList(result.size)
         for (element in result) {
+            // todo: add custom view for items
             items.add(element)
         }
         return items.toTypedArray()

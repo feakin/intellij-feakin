@@ -34,7 +34,8 @@ class FkNamedElementIndex : StringStubIndexExtension<FkNamedElement>() {
 
 inline fun <Key, reified Psi : PsiElement> getElements(
     indexKey: StubIndexKey<Key, Psi>,
-    key: Key, project: Project,
+    key: Key,
+    project: Project,
     scope: GlobalSearchScope?
 ): Collection<Psi> =
     StubIndex.getElements(indexKey, key, project, scope, Psi::class.java)
