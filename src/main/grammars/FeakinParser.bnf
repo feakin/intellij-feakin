@@ -68,8 +68,6 @@
       TO_KEYWORD            = 'to'
       FROM_KEYWORD          = 'from'
   ]
-
-
 }
 
 compilationUnit ::= declaration*
