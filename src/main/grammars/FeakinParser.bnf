@@ -83,13 +83,14 @@ declaration ::= contextMapDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody {
   pin = 1
+  name = ""
   implements = [
     "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
    ]
   mixin = "com.feakin.intellij.psi.ext.FkContextMapImplMixin"
   stubClass = "com.feakin.intellij.psi.stubs.FkContextMapDeclStub"
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
-//  methods = [getName setName getNameIdentifier]
 }
 
 contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE
