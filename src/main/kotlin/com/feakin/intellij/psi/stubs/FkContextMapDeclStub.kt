@@ -1,8 +1,3 @@
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-
 package com.feakin.intellij.psi.stubs
 
 import com.feakin.intellij.psi.FkContextMapDeclaration
@@ -20,7 +15,6 @@ class FkContextMapDeclStub(
     parent,
     elementType
 ), FkNamedStub {
-
     object Type : FkStubElementType<FkContextMapDeclStub, FkContextMapDeclaration>("CONTEXT_MAP_DECLARATION") {
         override fun indexStub(stub: FkContextMapDeclStub, sink: IndexSink) {
             stub.name?.let { sink.occurrence(FkNamedElementIndex.KEY, it) }
@@ -30,7 +24,6 @@ class FkContextMapDeclStub(
             return with(dataStream) {
                 writeName(stub.name)
             }
-
         }
 
         override fun deserialize(dataStream: StubInputStream, parentStub: StubElement<*>?): FkContextMapDeclStub {
