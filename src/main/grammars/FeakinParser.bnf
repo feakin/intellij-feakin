@@ -107,8 +107,15 @@ relSymbol ::= RARROW
              | CONNECTION
              ;
 
-contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody {
-  pin=1
+contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
+{
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+  ]
+  mixin = "com.feakin.intellij.psi.ext.FkContextImplMixin"
+  stubClass = "com.feakin.intellij.psi.stubs.FkContextDeclStub"
+  elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
 
 contextBody ::= LBRACE useAggregate* RBRACE
