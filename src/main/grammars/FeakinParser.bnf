@@ -1,22 +1,22 @@
 {
-  parserClass="com.feakin.intellij.parser.FeakinParser"
+  parserClass="com.feakin.intellij.parser.FkParser"
   parserUtilClass="com.intellij.lang.parser.GeneratedParserUtilBase"
-  psiImplUtilClass="com.feakin.intellij.parser.FkPsiImplUtil"
+//  psiImplUtilClass="com.feakin.intellij.parser.FkPsiImplUtilkt"
 
   implements="com.feakin.intellij.psi.FkElement"
   extends="com.feakin.intellij.psi.impl.FkElementImpl"
 
-  psiClassPrefix="Feakin"
+  psiClassPrefix="Fk"
   psiImplClassSuffix="Impl"
   psiPackage="com.feakin.intellij.psi"
   psiImplPackage="com.feakin.intellij.psi.impl"
 
-  elementTypeHolderClass="com.feakin.intellij.lexer.FeakinElementTypes"
-  elementTypeClass="com.feakin.intellij.psi.impl.FeakinElementType"
+  elementTypeHolderClass="com.feakin.intellij.lexer.FkElementTypes"
+  elementTypeClass="com.feakin.intellij.psi.impl.FkElementType"
 
-  tokenTypeClass="com.feakin.intellij.lexer.FeakinTokenType"
+  tokenTypeClass="com.feakin.intellij.lexer.FkTokenType"
 
-  tokenTypeClass="com.feakin.intellij.lexer.FeakinTokenType"
+  tokenTypeClass="com.feakin.intellij.lexer.FkTokenType"
   tokens = [
       COMMENT               = 'regexp://[^\r\n]*'
       BLOCK_COMMENT         = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
@@ -83,12 +83,14 @@ declaration ::= contextMapDeclaration
                | structDeclaration
                | implDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody {
-  pin = 1
-  implements = "com.feakin.intellij.psi.FkNamedElement"
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody
+{
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+  ]
   mixin = "com.feakin.intellij.psi.ext.FkContextMapImplMixin"
   stubClass = "com.feakin.intellij.psi.stubs.FkContextMapDeclStub"
-  methods = [getName setName getNameIdentifier]
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
 
@@ -241,11 +243,3 @@ contextNodeName ::= name_component
 implName ::= name_component
 
 name_component ::= IDENTIFIER
-{
-  mixin="com.feakin.intellij.psi.impl.FkNamedElementImpl"
-  implements="com.feakin.intellij.psi.FkNamedElement"
-
-  methods=[
-    getName getReference
-  ]
-}

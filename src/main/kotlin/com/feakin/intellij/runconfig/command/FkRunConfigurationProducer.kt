@@ -5,7 +5,7 @@
 
 package com.feakin.intellij.runconfig.command
 
-import com.feakin.intellij.psi.FeakinImplDeclaration
+import com.feakin.intellij.psi.FkImplDeclaration
 import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
 import com.feakin.intellij.runconfig.FkRunState
@@ -39,16 +39,16 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
     }
 
     init {
-        registerConfigProvider { elements -> createConfigFor<FeakinImplDeclaration>(elements) }
+        registerConfigProvider { elements -> createConfigFor<FkImplDeclaration>(elements) }
         log.debug("Registered ${runConfigProviders.size} config providers")
     }
 
-    private inline fun <reified T : FeakinImplDeclaration> createConfigFor(
+    private inline fun <reified T : FkImplDeclaration> createConfigFor(
         elements: List<PsiElement>
     ): RunImplConfig? {
         val path = elements.firstOrNull()?.containingFile?.virtualFile?.path ?: return null
         val sourceElement = elements.firstOrNull { it is T } ?: return null
-        return RunImplConfig(commandName, path, sourceElement as FeakinImplDeclaration)
+        return RunImplConfig(commandName, path, sourceElement as FkImplDeclaration)
     }
 
     private fun registerConfigProvider(provider: RunImplConfigProvider) {

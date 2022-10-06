@@ -5,18 +5,18 @@ import com.intellij.psi.tree.IElementType;
 
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
-import static com.feakin.intellij.lexer.FeakinElementTypes.*;
+import static com.feakin.intellij.lexer.FkElementTypes.*;
 
 %%
 
 %{
-  public _FeakinLexer() {
+  public _FkLexer() {
     this((java.io.Reader)null);
   }
 %}
 
 %public
-%class _FeakinLexer
+%class _FkLexer
 %implements FlexLexer
 %function advance
 %type IElementType

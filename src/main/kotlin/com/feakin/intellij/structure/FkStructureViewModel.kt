@@ -1,9 +1,9 @@
 package com.feakin.intellij.structure
 
 import com.feakin.intellij.FkFile
-import com.feakin.intellij.psi.FeakinAggregateDeclaration
-import com.feakin.intellij.psi.FeakinContextDeclaration
-import com.feakin.intellij.psi.FeakinContextMapDeclaration
+import com.feakin.intellij.psi.FkAggregateDeclaration
+import com.feakin.intellij.psi.FkContextDeclaration
+import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.ide.structureView.StructureViewModel.ElementInfoProvider
 import com.intellij.ide.structureView.StructureViewModelBase
@@ -27,9 +27,9 @@ class FkStructureViewModel(editor: Editor?, psiFile: FkFile) :
 
     override fun isAlwaysLeaf(element: StructureViewTreeElement): Boolean {
         return when (element.value) {
-            is FeakinContextMapDeclaration,
-            is FeakinContextDeclaration,
-            is FeakinAggregateDeclaration,
+            is FkContextMapDeclaration,
+            is FkContextDeclaration,
+            is FkAggregateDeclaration,
             -> true
 
             else -> false

@@ -1,7 +1,7 @@
 package com.feakin.intellij.formatter
 
-import com.feakin.intellij.lexer.FeakinElementTypes.LBRACE
-import com.feakin.intellij.lexer.FeakinElementTypes.RBRACE
+import com.feakin.intellij.lexer.FkElementTypes.LBRACE
+import com.feakin.intellij.lexer.FkElementTypes.RBRACE
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange

@@ -8,7 +8,7 @@
 package com.feakin.intellij.formatter
 
 import com.feakin.intellij.FkLanguage
-import com.feakin.intellij.lexer.FeakinElementTypes
+import com.feakin.intellij.lexer.FkElementTypes
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.tree.IElementType
@@ -26,19 +26,19 @@ private inline fun SpacingBuilder.applyForEach(
 
 fun createSpaceBuilder(settings: CodeStyleSettings): SpacingBuilder {
     return SpacingBuilder(settings, FkLanguage)
-        .after(FeakinElementTypes.COMMA).spacing(1, 1, 0, true, 0)
-        .before(FeakinElementTypes.COMMA).spaceIf(false)
-        .after(FeakinElementTypes.COLON).spaceIf(true)
-        .before(FeakinElementTypes.COLON).spaceIf(false)
-        .after(FeakinElementTypes.SEMICOLON).spaceIf(true)
-        .before(FeakinElementTypes.SEMICOLON).spaceIf(false)
+        .after(FkElementTypes.COMMA).spacing(1, 1, 0, true, 0)
+        .before(FkElementTypes.COMMA).spaceIf(false)
+        .after(FkElementTypes.COLON).spaceIf(true)
+        .before(FkElementTypes.COLON).spaceIf(false)
+        .after(FkElementTypes.SEMICOLON).spaceIf(true)
+        .before(FkElementTypes.SEMICOLON).spaceIf(false)
 
         //== empty parens
-        .between(FeakinElementTypes.LBRACE, FeakinElementTypes.RBRACE).spacing(0, 0, 0, false, 0)
+        .between(FkElementTypes.LBRACE, FkElementTypes.RBRACE).spacing(0, 0, 0, false, 0)
 
          //== Handling block
-        .afterInside(FeakinElementTypes.LBRACE, BLOCK_LIKE).parentDependentLFSpacing(1, 1, true, 0)
-        .beforeInside(FeakinElementTypes.RBRACE, BLOCK_LIKE).parentDependentLFSpacing(1, 1, true, 0)
+        .afterInside(FkElementTypes.LBRACE, BLOCK_LIKE).parentDependentLFSpacing(1, 1, true, 0)
+        .beforeInside(FkElementTypes.RBRACE, BLOCK_LIKE).parentDependentLFSpacing(1, 1, true, 0)
 
         .around(FK_KEYWORDS).spaces(1)
         .applyForEach(BLOCK_LIKE) { before(it).spaces(1) }

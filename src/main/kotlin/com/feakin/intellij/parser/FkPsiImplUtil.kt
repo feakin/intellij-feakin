@@ -1,26 +1,22 @@
 package com.feakin.intellij.parser
 
 import com.feakin.intellij.FkIcons
-import com.feakin.intellij.lexer.FeakinElementTypes
-import com.feakin.intellij.psi.FeakinAggregateDeclaration
-import com.feakin.intellij.psi.FeakinContextMapDeclaration
-import com.feakin.intellij.psi.FeakinEntityDeclaration
-import com.feakin.intellij.psi.FeakinNameComponent
+import com.feakin.intellij.lexer.FkElementTypes
+import com.feakin.intellij.psi.FkNameComponent
 import com.intellij.navigation.ItemPresentation
-import com.intellij.psi.PsiElement
 import javax.swing.Icon
 
 object FkPsiImplUtil {
-    fun getName(element: FeakinNameComponent): String {
+    fun getName(element: FkNameComponent): String {
         return element.identifier.text
     }
 
-    fun getKey(element: FeakinNameComponent): String? {
-        val keyNode = element.node.findChildByType(FeakinElementTypes.NAME_COMPONENT)
+    fun getKey(element: FkNameComponent): String? {
+        val keyNode = element.node.findChildByType(FkElementTypes.NAME_COMPONENT)
         return keyNode?.text?.replace("\\\\ ".toRegex(), " ")
     }
 
-    fun getPresentation(element: FeakinNameComponent): ItemPresentation {
+    fun getPresentation(element: FkNameComponent): ItemPresentation {
         return object : ItemPresentation {
             override fun getPresentableText(): String? {
                 return element.name
@@ -36,6 +32,4 @@ object FkPsiImplUtil {
             }
         }
     }
-
-    fun getNameIdentifier(o: FeakinContextMapDeclaration): PsiElement = o
 }

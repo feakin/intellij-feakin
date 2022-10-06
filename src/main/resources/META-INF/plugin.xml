@@ -18,27 +18,27 @@
         <!-- Parser -->
 
         <lang.parserDefinition language="Feakin"
-                               implementationClass="com.feakin.intellij.parser.FeakinParserDefinition"/>
+                               implementationClass="com.feakin.intellij.parser.FkParserDefinition"/>
 
         <lang.syntaxHighlighter language="Feakin"
-                                implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>
+                                implementationClass="com.feakin.intellij.highlight.FkSyntaxHighlighter"/>
 
         <lang.psiStructureViewFactory language="Feakin"
                                       implementationClass="com.feakin.intellij.structure.FkStructureViewFactory"/>
 
         <!-- Editor -->
-        <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FeakinBlockSelectionHandler"/>
+        <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FkBlockSelectionHandler"/>
         <lang.foldingBuilder language="Feakin"
-                             implementationClass="com.feakin.intellij.edit.FeakinFoldingBuilder"/>
+                             implementationClass="com.feakin.intellij.edit.FkFoldingBuilder"/>
 
-        <lang.commenter language="Feakin" implementationClass="com.feakin.intellij.completion.FeakinCommenter"/>
+        <lang.commenter language="Feakin" implementationClass="com.feakin.intellij.completion.FkCommenter"/>
         <lang.braceMatcher language="Feakin" implementationClass="com.feakin.intellij.ide.FkBraceMatcher"/>
 
 
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
         <indexedRootsProvider implementation="com.feakin.intellij.indexing.FkIndexableSetContributor"/>
 
-        <stubElementTypeHolder class="com.feakin.intellij.lexer.FeakinElementTypes"/>
+        <stubElementTypeHolder class="com.feakin.intellij.lexer.FkElementTypes"/>
 
         <stubIndex implementation="com.feakin.intellij.psi.index.FkNamedElementIndex"/>
         <stubIndex implementation="com.feakin.intellij.psi.index.FkGotoClassIndex"/>

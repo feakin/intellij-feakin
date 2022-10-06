@@ -5,7 +5,7 @@
 
 package com.feakin.intellij.psi
 
-import com.feakin.intellij.lexer.FeakinElementTypes.IDENTIFIER
+import com.feakin.intellij.lexer.FkElementTypes.IDENTIFIER
 import com.intellij.lang.ASTNode
 import com.intellij.navigation.NavigationItem
 import com.intellij.psi.PsiElement

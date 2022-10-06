@@ -1,9 +1,9 @@
 package com.feakin.intellij.parser.ide
 
-import com.feakin.intellij.parser.FeakinParserDefinition
+import com.feakin.intellij.parser.FkParserDefinition
 import com.intellij.testFramework.ParsingTestCase
 
-class FeakinParsingTest : ParsingTestCase("parser", "fkl", FeakinParserDefinition()) {
+class FeakinParsingTest : ParsingTestCase("parser", "fkl", FkParserDefinition()) {
     override fun getTestDataPath(): String {
         return "src/test/testData"
     }

@@ -1,6 +1,6 @@
 package com.feakin.intellij.completion
 
-import com.feakin.intellij.highlight.FeakinTokenTypeSets
+import com.feakin.intellij.highlight.FkTokenTypeSets
 import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -19,7 +19,7 @@ class FkKeywordCompletionContributor : CompletionContributor(), DumbAware {
                 context: ProcessingContext,
                 result: CompletionResultSet
             ) {
-                FeakinTokenTypeSets.KEY_WORDS.types.forEach {
+                FkTokenTypeSets.KEY_WORDS.types.forEach {
                     result.addElement(LookupElementBuilder.create(it.toString()))
                 }
             }

@@ -16,7 +16,7 @@ data class CommentHolder(val file: PsiFile) : CommenterDataHolder() {
     fun useSpaceAfterLineComment(): Boolean = CodeStyle.getLanguageSettings(file, FkLanguage).LINE_COMMENT_ADD_SPACE
 }
 
-class FeakinCommenter : Commenter, SelfManagingCommenter<CommentHolder> {
+class FkCommenter : Commenter, SelfManagingCommenter<CommentHolder> {
     override fun getLineCommentPrefix(): String = "//"
 
     override fun getBlockCommentPrefix(): String = "/*"

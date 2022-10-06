@@ -1,7 +1,7 @@
 package com.feakin.intellij.formatter
 
-import com.feakin.intellij.highlight.FeakinTokenTypeSets
-import com.feakin.intellij.lexer.FeakinElementTypes.*
+import com.feakin.intellij.highlight.FkTokenTypeSets
+import com.feakin.intellij.lexer.FkElementTypes.*
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
@@ -23,7 +23,7 @@ val BLOCK_LIKE = TokenSet.create(
     FLOW_BODY
 )
 
-val FK_KEYWORDS = FeakinTokenTypeSets.KEY_WORDS;
+val FK_KEYWORDS = FkTokenTypeSets.KEY_WORDS;
 
 class FkFormattingModelBuilder : FormattingModelBuilder {
     override fun getRangeAffectingIndent(file: PsiFile?, offset: Int, elementAtOffset: ASTNode?): TextRange? = null

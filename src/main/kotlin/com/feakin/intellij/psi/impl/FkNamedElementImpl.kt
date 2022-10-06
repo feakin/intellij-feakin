@@ -1,6 +1,6 @@
 package com.feakin.intellij.psi.impl
 
-import com.feakin.intellij.lexer.FeakinElementTypes.IDENTIFIER
+import com.feakin.intellij.lexer.FkElementTypes.IDENTIFIER
 import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement

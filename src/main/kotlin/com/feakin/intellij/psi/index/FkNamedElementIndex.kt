@@ -5,7 +5,10 @@ import com.intellij.psi.stubs.StringStubIndexExtension
 import com.intellij.psi.stubs.StubIndexKey
 
 class FkNamedElementIndex : StringStubIndexExtension<FkNamedElement>() {
-    override fun getVersion(): Int = 0
+    private val VERSION = 0
+    override fun getVersion(): Int {
+        return super.getVersion() + VERSION
+    }
 
     override fun getKey(): StubIndexKey<String, FkNamedElement> = KEY
 

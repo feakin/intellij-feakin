@@ -1,8 +1,8 @@
 package com.feakin.intellij.ide.editor
 
-import com.feakin.intellij.lexer.FeakinElementTypes
-import com.feakin.intellij.psi.FeakinContextBody
-import com.feakin.intellij.psi.FeakinContextMapBody
+import com.feakin.intellij.lexer.FkElementTypes
+import com.feakin.intellij.psi.FkContextBody
+import com.feakin.intellij.psi.FkContextMapBody
 import com.intellij.codeInsight.editorActions.wordSelection.AbstractWordSelectioner
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.util.TextRange
@@ -11,19 +11,19 @@ import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiUtilCore
 
-class FeakinBlockSelectionHandler : AbstractWordSelectioner() {
+class FkBlockSelectionHandler : AbstractWordSelectioner() {
     override fun canSelect(e: PsiElement): Boolean {
-        return e is FeakinContextBody || e is FeakinContextMapBody
+        return e is FkContextBody || e is FkContextMapBody
     }
 
     override fun select(e: PsiElement, editorText: CharSequence, cursorOffset: Int, editor: Editor): List<TextRange>? {
         val startNode =
-            e.childrenWithLeaves.firstOrNull { it.elementType == FeakinElementTypes.LBRACE }
+            e.childrenWithLeaves.firstOrNull { it.elementType == FkElementTypes.LBRACE }
                 ?.rightSiblings?.firstOrNull { it !is PsiWhiteSpace }
                 ?: return null
 
         val endNode =
-            startNode.rightSiblings.firstOrNull { it.elementType == FeakinElementTypes.RBRACE }
+            startNode.rightSiblings.firstOrNull { it.elementType == FkElementTypes.RBRACE }
                 ?.leftSiblings?.firstOrNull { it !is PsiWhiteSpace }
                 ?: return null
 

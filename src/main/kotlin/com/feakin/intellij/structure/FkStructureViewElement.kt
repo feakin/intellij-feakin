@@ -2,9 +2,9 @@ package com.feakin.intellij.structure
 
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkIcons
-import com.feakin.intellij.psi.FeakinContextDeclaration
-import com.feakin.intellij.psi.FeakinContextMapDeclaration
-import com.feakin.intellij.psi.FeakinDeclaration
+import com.feakin.intellij.psi.FkContextDeclaration
+import com.feakin.intellij.psi.FkContextMapDeclaration
+import com.feakin.intellij.psi.FkDeclaration
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.ide.structureView.StructureViewTreeElement
 import com.intellij.ide.util.treeView.TreeAnchorizer
@@ -36,14 +36,14 @@ class FkStructureViewElement(element: PsiElement) : StructureViewTreeElement {
         struct.setIcon(null)
 
         when (val psi = psi) {
-            is FeakinContextMapDeclaration -> {
+            is FkContextMapDeclaration -> {
                 val structNameDeclaration = psi.contextMapName
                 struct.setAttributesKey(DefaultLanguageHighlighterColors.IDENTIFIER)
                 struct.presentableText = structNameDeclaration?.text
                 return struct
             }
 
-            is FeakinContextDeclaration -> {
+            is FkContextDeclaration -> {
                 val structNameDeclaration = psi.contextName
                 struct.setAttributesKey(DefaultLanguageHighlighterColors.KEYWORD)
                 struct.presentableText = structNameDeclaration?.text
@@ -79,7 +79,7 @@ class FkStructureViewElement(element: PsiElement) : StructureViewTreeElement {
     // todo: make it better.
     private fun findContentNode(psi: PsiElement?): List<PsiElement?> {
         when (psi) {
-            is FeakinDeclaration -> {
+            is FkDeclaration -> {
                 val res = ArrayList<PsiElement?>()
                 psi.children.forEach {
                     res.addAll(findContentNode(it).filterNotNull())
@@ -87,11 +87,11 @@ class FkStructureViewElement(element: PsiElement) : StructureViewTreeElement {
                 return res
             }
 
-            is FeakinContextMapDeclaration -> {
+            is FkContextMapDeclaration -> {
                 return listOf(psi)
             }
 
-            is FeakinContextDeclaration -> {
+            is FkContextDeclaration -> {
                 return listOf(psi)
             }
 

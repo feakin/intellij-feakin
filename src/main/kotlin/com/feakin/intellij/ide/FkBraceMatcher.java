@@ -1,6 +1,6 @@
 package com.feakin.intellij.ide;
 
-import com.feakin.intellij.lexer.FeakinElementTypes;
+import com.feakin.intellij.lexer.FkElementTypes;
 import com.intellij.lang.BracePair;
 import com.intellij.lang.PairedBraceMatcher;
 import com.intellij.psi.PsiFile;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class FkBraceMatcher implements PairedBraceMatcher {
     private static final BracePair[] BRACE_PAIRS = {
-            new BracePair(FeakinElementTypes.LBRACE, FeakinElementTypes.RBRACE, true),
+            new BracePair(FkElementTypes.LBRACE, FkElementTypes.RBRACE, true),
     };
 
     @Override

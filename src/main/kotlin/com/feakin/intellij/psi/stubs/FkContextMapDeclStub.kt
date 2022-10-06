@@ -5,9 +5,9 @@
 
 package com.feakin.intellij.psi.stubs
 
-import com.feakin.intellij.psi.FeakinContextMapDeclaration
+import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkNamedStub
-import com.feakin.intellij.psi.impl.FeakinContextMapDeclarationImpl
+import com.feakin.intellij.psi.impl.FkContextMapDeclarationImpl
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 
@@ -15,8 +15,12 @@ class FkContextMapDeclStub(
     parent: StubElement<*>?,
     elementType: IStubElementType<*, *>,
     override val name: String?
-) : StubBase<FeakinContextMapDeclaration>(parent, elementType), FkNamedStub {
-    object Type : FkStubElementType<FkContextMapDeclStub, FeakinContextMapDeclaration>("CONTEXT_MAP_DECLARATION") {
+) : StubBase<FkContextMapDeclaration>(
+    parent,
+    elementType
+), FkNamedStub {
+
+    object Type : FkStubElementType<FkContextMapDeclStub, FkContextMapDeclaration>("CONTEXT_MAP_DECLARATION") {
         override fun serialize(stub: FkContextMapDeclStub, dataStream: StubOutputStream) {
             return with(dataStream) {
                 writeName(stub.name)
@@ -29,14 +33,14 @@ class FkContextMapDeclStub(
         }
 
         override fun createStub(
-            psi: FeakinContextMapDeclaration,
+            psi: FkContextMapDeclaration,
             parentStub: StubElement<out PsiElement>?
         ): FkContextMapDeclStub {
             return FkContextMapDeclStub(parentStub, this, psi.name)
         }
 
-        override fun createPsi(stub: FkContextMapDeclStub): FeakinContextMapDeclarationImpl {
-            return FeakinContextMapDeclarationImpl(stub, this)
+        override fun createPsi(stub: FkContextMapDeclStub): FkContextMapDeclarationImpl {
+            return FkContextMapDeclarationImpl(stub, this)
         }
 
     }

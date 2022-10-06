@@ -2,7 +2,7 @@ package com.feakin.intellij.parser
 
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkLanguage
-import com.feakin.intellij.lexer.FeakinElementTypes
+import com.feakin.intellij.lexer.FkElementTypes
 import com.feakin.intellij.lexer.FkLexer
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
@@ -12,13 +12,12 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.FileViewProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 
-class FeakinParserDefinition : ParserDefinition {
+class FkParserDefinition : ParserDefinition {
     companion object {
-        val COMMENTS = TokenSet.create(FeakinElementTypes.COMMENT)
+        val COMMENTS = TokenSet.create(FkElementTypes.COMMENT)
         val FILE = IFileElementType(FkLanguage)
     }
 
@@ -27,7 +26,7 @@ class FeakinParserDefinition : ParserDefinition {
     }
 
     override fun createParser(project: Project): PsiParser {
-        return com.feakin.intellij.parser.FeakinParser()
+        return com.feakin.intellij.parser.FkParser()
     }
 
     override fun getFileNodeType(): IFileElementType {
@@ -43,7 +42,7 @@ class FeakinParserDefinition : ParserDefinition {
     }
 
     override fun createElement(node: ASTNode): PsiElement {
-        return FeakinElementTypes.Factory.createElement(node)
+        return FkElementTypes.Factory.createElement(node)
     }
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile {
