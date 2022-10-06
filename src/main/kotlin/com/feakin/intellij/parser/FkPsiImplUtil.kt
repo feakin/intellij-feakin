@@ -2,15 +2,15 @@ package com.feakin.intellij.parser
 
 import com.feakin.intellij.FkIcons
 import com.feakin.intellij.lexer.FeakinElementTypes
+import com.feakin.intellij.psi.FeakinAggregateDeclaration
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
+import com.feakin.intellij.psi.FeakinEntityDeclaration
 import com.feakin.intellij.psi.FeakinNameComponent
-import com.intellij.lang.PsiBuilder
-import com.intellij.lang.parser.GeneratedParserUtilBase
 import com.intellij.navigation.ItemPresentation
-import com.intellij.psi.PsiReference
+import com.intellij.psi.PsiElement
 import javax.swing.Icon
 
-object FeakinPsiImplUtil {
+object FkPsiImplUtil {
     fun getName(element: FeakinNameComponent): String {
         return element.identifier.text
     }
@@ -36,4 +36,6 @@ object FeakinPsiImplUtil {
             }
         }
     }
+
+    fun getNameIdentifier(o: FeakinContextMapDeclaration): PsiElement = o
 }

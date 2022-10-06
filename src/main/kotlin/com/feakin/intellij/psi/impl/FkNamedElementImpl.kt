@@ -1,10 +1,8 @@
 package com.feakin.intellij.psi.impl
 
 import com.feakin.intellij.lexer.FeakinElementTypes.IDENTIFIER
-import com.feakin.intellij.psi.FeakinNamedElement
+import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.lang.ASTNode
-import com.intellij.navigation.ItemPresentation
-import com.intellij.navigation.NavigationItem
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.LeafPsiElement
@@ -13,7 +11,7 @@ import com.intellij.util.IncorrectOperationException
 import org.jetbrains.annotations.NonNls
 import java.util.*
 
-open class FeakinNamedElementImpl(node: ASTNode) : FeakinPsiCompositeElementImpl(node), FeakinNamedElement,
+open class FkNamedElementImpl(node: ASTNode) : FkElementImpl(node), FkNamedElement,
     PsiNameIdentifierOwner {
     override fun getNameIdentifier(): PsiElement? = findChildByType(IDENTIFIER)
 

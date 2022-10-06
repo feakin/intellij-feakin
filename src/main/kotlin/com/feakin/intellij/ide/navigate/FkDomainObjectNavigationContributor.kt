@@ -1,13 +1,11 @@
 package com.feakin.intellij.ide.navigate
 
-import com.feakin.intellij.FkLanguage
-import com.feakin.intellij.psi.FeakinContextDeclaration
-import com.feakin.intellij.psi.FeakinNamedElement
+import com.feakin.intellij.psi.FkNamedElement
 import com.feakin.intellij.psi.stubs.FkNamedElementIndex
-import com.intellij.lang.Language
 import com.intellij.navigation.ChooseByNameContributorEx
 import com.intellij.navigation.GotoClassContributor
 import com.intellij.navigation.NavigationItem
+import com.intellij.openapi.project.Project
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.stubs.StubIndexKey
@@ -16,9 +14,9 @@ import com.intellij.util.indexing.FindSymbolParameters
 import com.intellij.util.indexing.IdFilter
 
 class FkDomainObjectNavigationContributor : GotoClassContributor, ChooseByNameContributorEx {
-    private val indexKey: StubIndexKey<String, FeakinNamedElement> = FkNamedElementIndex.KEY
+    private val indexKey: StubIndexKey<String, FkNamedElement> = FkNamedElementIndex.KEY
 
-    override fun processNames(processor: Processor<in String?>, scope: GlobalSearchScope, filter: IdFilter?) {
+    override fun processNames(processor: Processor<in String>, scope: GlobalSearchScope, filter: IdFilter?) {
         StubIndex.getInstance().processAllKeys(
             indexKey,
             processor,
@@ -38,19 +36,25 @@ class FkDomainObjectNavigationContributor : GotoClassContributor, ChooseByNameCo
             parameters.project,
             parameters.searchScope,
             null,
-            FeakinNamedElement::class.java
+            FkNamedElement::class.java
         ) { element ->
             processor.process(element)
         }
     }
 
-    override fun getQualifiedName(item: NavigationItem): String? = (item as? FeakinNamedElement)?.name
+    override fun getQualifiedName(item: NavigationItem): String? = (item as? FkNamedElement)?.name
 
-    override fun getQualifiedNameSeparator(): String? {
-        return null
-    }
+    override fun getQualifiedNameSeparator(): String = ":"
 
-    override fun getElementLanguage(): Language {
-        return FkLanguage
+    override fun getItemsByName(
+        name: String,
+        pattern: String,
+        project: Project,
+        includeNonProjectItems: Boolean
+    ): Array<NavigationItem> {
+        val result = ArrayList<NavigationItem>()
+        val params = FindSymbolParameters("", "", FindSymbolParameters.searchScopeFor(project, includeNonProjectItems))
+        processElementsWithName(name, { result.add(it) }, params)
+        return if (result.isEmpty()) NavigationItem.EMPTY_NAVIGATION_ITEM_ARRAY else result.toTypedArray()
     }
 }

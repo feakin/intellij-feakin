@@ -1,10 +1,10 @@
 {
   parserClass="com.feakin.intellij.parser.FeakinParser"
   parserUtilClass="com.intellij.lang.parser.GeneratedParserUtilBase"
-  psiImplUtilClass="com.feakin.intellij.parser.FeakinPsiImplUtil"
+  psiImplUtilClass="com.feakin.intellij.parser.FkPsiImplUtil"
 
-  implements="com.feakin.intellij.psi.FeakinPsiCompositeElement"
-  extends="com.feakin.intellij.psi.impl.FeakinPsiCompositeElementImpl"
+  implements="com.feakin.intellij.psi.FkElement"
+  extends="com.feakin.intellij.psi.impl.FkElementImpl"
 
   psiClassPrefix="Feakin"
   psiImplClassSuffix="Impl"
@@ -69,6 +69,9 @@
       TO_KEYWORD            = 'to'
       FROM_KEYWORD          = 'from'
   ]
+
+//  implements("contextMapDeclaration|contextDeclaration|aggregateDeclaration|entityDeclaration|valueObjectDeclaration|structDeclaration|implDeclaration")="com.feakin.intellij.psi.FkNamedElement"
+//  implements("contextMapDeclaration")="com.feakin.intellij.psi.FkNamedElement"
 }
 
 compilationUnit ::= declaration*
@@ -81,7 +84,10 @@ declaration ::= contextMapDeclaration
                | structDeclaration
                | implDeclaration
 
-contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody
+contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody {
+  pin = 1
+  methods = [getName setName getNameIdentifier]
+}
 
 contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE
 
@@ -99,15 +105,27 @@ relSymbol ::= RARROW
              | CONNECTION
              ;
 
-contextDeclaration ::= CONTEXT_KEYWORD contextName contextBody
+contextDeclaration ::= CONTEXT_KEYWORD contextName contextBody {
+  pin=1
+  methods = [getName setName getNameIdentifier]
+}
 
 contextBody ::= LBRACE useAggregate* RBRACE
 
-aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName aggregateBody
+aggregateDeclaration ::= AGGREGATE_KEYWORD aggregateName aggregateBody {
+  pin=1
+  methods = [getName setName getNameIdentifier]
+}
 
-entityDeclaration ::= ENTITY_KEYWORD entityName entityBody
+entityDeclaration ::= ENTITY_KEYWORD entityName entityBody {
+  pin=1
+  methods = [getName setName getNameIdentifier]
+}
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName valueObjectBody
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD valueObjectName valueObjectBody {
+  pin=1
+  methods = [getName setName getNameIdentifier]
+}
 
 private useAggregate ::= AGGREGATE_KEYWORD name_component (COMMA name_component)* SEMICOLON
 
@@ -119,7 +137,10 @@ private useEntity ::= ENTITY_KEYWORD name_component (COMMA name_component)* SEMI
 
 entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)? RBRACE
 
-structDeclaration ::= STRUCT_KEYWORD structBody
+structDeclaration ::= STRUCT_KEYWORD structBody {
+  pin=1
+  methods = [getName setName getNameIdentifier]
+}
 
 structBody ::= LBRACE structEntry* RBRACE
 
@@ -135,7 +156,10 @@ private useStruct      ::= STRUCT_KEYWORD name_component (COMMA name_component)?
 
 valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
-implDeclaration ::= IMPL_KEYWORD implName implBody
+implDeclaration ::= IMPL_KEYWORD implName implBody {
+  pin=1
+  methods = [getName setName getNameIdentifier]
+}
 
 implBody ::= LBRACE (endpointDeclaration flowDeclaration?)? RBRACE
 
@@ -215,8 +239,8 @@ implName ::= name_component
 
 name_component ::= IDENTIFIER
 {
-  mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
-  implements="com.feakin.intellij.psi.FeakinNamedElement"
+  mixin="com.feakin.intellij.psi.impl.FkNamedElementImpl"
+  implements="com.feakin.intellij.psi.FkNamedElement"
 
   methods=[
     getName getReference

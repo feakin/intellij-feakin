@@ -2,12 +2,9 @@ package com.feakin.intellij.structure
 
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.psi.FeakinAggregateDeclaration
-import com.feakin.intellij.psi.FeakinAggregateName
 import com.feakin.intellij.psi.FeakinContextDeclaration
 import com.feakin.intellij.psi.FeakinContextMapDeclaration
-import com.feakin.intellij.psi.FeakinContextMapName
-import com.feakin.intellij.psi.FeakinContextName
-import com.feakin.intellij.psi.FeakinNamedElement
+import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.ide.structureView.StructureViewModel.ElementInfoProvider
 import com.intellij.ide.structureView.StructureViewModelBase
 import com.intellij.ide.structureView.StructureViewTreeElement
@@ -20,7 +17,7 @@ class FkStructureViewModel(editor: Editor?, psiFile: FkFile) :
 
     init {
         withSuitableClasses(
-            FeakinNamedElement::class.java
+            FkNamedElement::class.java
         )
     }
 
