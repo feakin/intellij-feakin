@@ -1,5 +1,6 @@
 package com.feakin.intellij.ide.navigate
 
+import com.feakin.intellij.psi.FeakinContextMapDeclaration
 import com.feakin.intellij.psi.FkNamedElement
 import com.feakin.intellij.psi.index.FkGotoClassIndex
 import com.intellij.navigation.ChooseByNameContributorEx
@@ -16,7 +17,7 @@ import com.intellij.util.indexing.IdFilter
 
 class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
 
-    private val indexKey: StubIndexKey<String, FkNamedElement> = FkGotoClassIndex.KEY
+    private val indexKey: StubIndexKey<String, FeakinContextMapDeclaration> = FkGotoClassIndex.KEY
 
     override fun processNames(processor: Processor<in String>, scope: GlobalSearchScope, filter: IdFilter?) {
         StubIndex.getInstance().processAllKeys(
@@ -47,7 +48,7 @@ class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
             parameters.project,
             parameters.searchScope,
             null,
-            FkNamedElement::class.java
+            FeakinContextMapDeclaration::class.java
         ) { element ->
             processor.process(element)
         }

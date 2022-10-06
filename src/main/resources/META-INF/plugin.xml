@@ -44,7 +44,7 @@
         <stubIndex implementation="com.feakin.intellij.psi.index.FkGotoClassIndex"/>
         <!-- TODO: add support for goto -->
         <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkGotoClassContributor"/>
-<!--        <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>-->
+        <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkGotoSymbolContributor"/>
 
         <!-- Completion -->
         <completion.contributor language="Feakin"
