@@ -18,7 +18,7 @@ class FkFile(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, FkLangu
     override fun getStub(): FkFileStub? = super.getStub() as FkFileStub?
 }
 
-class FkFileStub(file: FkFile) : PsiFileStubImpl<FkFile>(file) {
+class FkFileStub(file: FkFile?, private val flags: Int) : PsiFileStubImpl<FkFile>(file) {
 
     override fun getType() = Type
 
@@ -28,16 +28,16 @@ class FkFileStub(file: FkFile) : PsiFileStubImpl<FkFile>(file) {
         override fun getExternalId(): String = "Feakin.file"
 
         override fun serialize(stub: FkFileStub, dataStream: StubOutputStream) {
-            super.serialize(stub, dataStream)
+            dataStream.writeByte(stub.flags)
         }
 
         override fun deserialize(dataStream: StubInputStream, parentStub: StubElement<*>?): FkFileStub {
-            return super.deserialize(dataStream, parentStub)
+            return FkFileStub(null, dataStream.readUnsignedByte())
         }
 
         override fun getBuilder(): StubBuilder = object : DefaultStubBuilder() {
             override fun createStubForFile(file: PsiFile): StubElement<*> {
-                return FkFileStub(file as FkFile)
+                return FkFileStub(file as FkFile, 0)
             }
         }
     }
