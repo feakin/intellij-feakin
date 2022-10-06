@@ -69,9 +69,6 @@
       TO_KEYWORD            = 'to'
       FROM_KEYWORD          = 'from'
   ]
-
-//  implements("contextMapDeclaration|contextDeclaration|aggregateDeclaration|entityDeclaration|valueObjectDeclaration|structDeclaration|implDeclaration")="com.feakin.intellij.psi.FkNamedElement"
-//  implements("contextMapDeclaration")="com.feakin.intellij.psi.FkNamedElement"
 }
 
 compilationUnit ::= declaration*
@@ -86,7 +83,13 @@ declaration ::= contextMapDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody {
   pin = 1
-  methods = [getName setName getNameIdentifier]
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+   ]
+  mixin = "com.feakin.intellij.psi.ext.FkContextMapImplMixin"
+  stubClass = "com.feakin.intellij.psi.stubs.FkContextMapDeclStub"
+  elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
+//  methods = [getName setName getNameIdentifier]
 }
 
 contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE

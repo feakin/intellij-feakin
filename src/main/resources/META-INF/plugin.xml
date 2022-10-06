@@ -37,8 +37,8 @@
 
 
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
-        <stubIndex implementation="com.feakin.intellij.psi.stubs.FkNamedElementIndex"/>
-        <stubIndex implementation="com.feakin.intellij.psi.stubs.FkGotoClassIndex"/>
+        <stubIndex implementation="com.feakin.intellij.psi.index.FkNamedElementIndex"/>
+        <stubIndex implementation="com.feakin.intellij.psi.index.FkGotoClassIndex"/>
         <!-- TODO: add support for goto -->
         <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
         <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
