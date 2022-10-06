@@ -82,21 +82,12 @@ declaration ::= contextMapDeclaration
                | implDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody
-{
-  mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
-  implements="com.feakin.intellij.psi.FeakinNamedElement"
-  methods=[getName getPresentation]
-}
 
 contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE
 
 private contextNodeDecl ::= CONTEXT_KEYWORD contextName (COMMA contextName)*
 
 private contextNodeRel ::= leftContextNode relSymbol rightContextNode SEMICOLON
-{
-  implements="com.feakin.intellij.psi.FeakinContextNodeRel"
-  methods=[getLeftNode getRightNode]
-}
 
 private leftContextNode ::= contextNodeName;
 
@@ -108,12 +99,7 @@ relSymbol ::= RARROW
              | CONNECTION
              ;
 
-contextDeclaration ::= CONTEXT_KEYWORD contextName  contextBody
-{
-  mixin="com.feakin.intellij.psi.impl.FeakinNamedElementImpl"
-  implements="com.feakin.intellij.psi.FeakinNamedElement"
-  methods=[getName getPresentation]
-}
+contextDeclaration ::= CONTEXT_KEYWORD contextName contextBody
 
 contextBody ::= LBRACE useAggregate* RBRACE
 
@@ -233,6 +219,6 @@ name_component ::= IDENTIFIER
   implements="com.feakin.intellij.psi.FeakinNamedElement"
 
   methods=[
-    getReference
+    getName getReference
   ]
 }

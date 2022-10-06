@@ -27,11 +27,4 @@ open class FeakinNamedElementImpl(node: ASTNode) : FeakinPsiCompositeElementImpl
 
     private val leaf: LeafPsiElement?
         get() = Objects.requireNonNull(PsiTreeUtil.getChildOfType(this, LeafPsiElement::class.java))
-
-    override fun getPresentation(): ItemPresentation? {
-        val parent = parent
-        return if (parent is NavigationItem) {
-            (parent as NavigationItem).presentation
-        } else null
-    }
 }

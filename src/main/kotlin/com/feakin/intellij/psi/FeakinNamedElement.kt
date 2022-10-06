@@ -1,6 +1,6 @@
 package com.feakin.intellij.psi
 
 import com.intellij.navigation.NavigationItem
-import com.intellij.psi.PsiNamedElement
+import com.intellij.psi.PsiNameIdentifierOwner
 
-interface FeakinNamedElement : FeakinPsiCompositeElement, PsiNamedElement, NavigationItem
+interface FeakinNamedElement : FeakinPsiCompositeElement, PsiNameIdentifierOwner, NavigationItem
