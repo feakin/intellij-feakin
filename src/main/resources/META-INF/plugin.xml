@@ -73,7 +73,13 @@
         <!-- Formatter -->
         <lang.formatter language="Feakin" implementationClass="com.feakin.intellij.formatter.FkFormattingModelBuilder"/>
 
+        <!-- Resolve -->
+
+        <psi.referenceContributor language="Feakin"
+                                  implementation="com.feakin.intellij.resolve.ref.FkReferenceContributor"/>
+
         <!-- Usages Provider -->
+        <!--    Todo    -->
         <lang.findUsagesProvider language="Feakin" implementationClass="com.feakin.intellij.ide.search.FkFindUsagesProvider"/>
         <findUsagesHandlerFactory implementation="com.feakin.intellij.ide.search.FkFindUsagesHandlerFactory"/>
     </extensions>

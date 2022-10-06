@@ -48,7 +48,7 @@ abstract class FkStubbedNamedElementImpl<StubT> : FkStubbedElementImpl<StubT>,
         get() = Objects.requireNonNull(PsiTreeUtil.getChildOfType(this, LeafPsiElement::class.java))
 
     override fun setName(name: String): PsiElement? {
-        leaf?.replaceWithText(name)
+        nameIdentifier?.replace(FkPsiFactory(project).createIdentifier(name))
         return this
     }
 
