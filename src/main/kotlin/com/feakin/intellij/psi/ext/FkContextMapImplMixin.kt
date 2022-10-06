@@ -12,8 +12,12 @@ abstract class FkContextMapImplMixin : FkStubbedNamedElementImpl<FkContextMapDec
 
     constructor(stub: FkContextMapDeclStub, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 
-
     override fun getContext(): PsiElement? {
         return super.getContext()
+    }
+
+    // todo: change nameComponent to identifier
+    override fun getNameIdentifier(): PsiElement? {
+        return contextMapName.nameComponent
     }
 }

@@ -17,7 +17,7 @@ import com.intellij.util.indexing.IdFilter
 
 class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
 
-    private val indexKey: StubIndexKey<String, FkContextMapDeclaration> = FkGotoClassIndex.KEY
+    private val indexKey: StubIndexKey<String, FkNamedElement> = FkGotoClassIndex.KEY
 
     override fun processNames(processor: Processor<in String>, scope: GlobalSearchScope, filter: IdFilter?) {
         StubIndex.getInstance().processAllKeys(
@@ -48,7 +48,7 @@ class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
             parameters.project,
             parameters.searchScope,
             null,
-            FkContextMapDeclaration::class.java
+            FkNamedElement::class.java
         ) { element ->
             processor.process(element)
         }

@@ -33,11 +33,16 @@ abstract class FkStubbedNamedElementImpl<StubT> : FkStubbedElementImpl<StubT>,
 
     constructor(stub: StubT, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 
-    override fun getNameIdentifier(): PsiElement? = findChildByType(IDENTIFIER)
+    override fun getNameIdentifier(): PsiElement? {
+        return findChildByType(IDENTIFIER)
+    }
 
     override fun getTextOffset(): Int = nameIdentifier?.textOffset ?: super.getTextOffset()
 
-    override fun getName(): String? = nameIdentifier?.text
+    override fun getName(): String? {
+        val stub = greenStub
+        return if (stub !== null) stub.name else nameIdentifier?.text
+    }
 
     private val leaf: LeafPsiElement?
         get() = Objects.requireNonNull(PsiTreeUtil.getChildOfType(this, LeafPsiElement::class.java))
