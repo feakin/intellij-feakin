@@ -5,9 +5,9 @@
 
 package com.feakin.intellij.psi
 
+import com.feakin.intellij.FkIcons
 import com.feakin.intellij.lexer.FkElementTypes.IDENTIFIER
 import com.intellij.lang.ASTNode
-import com.intellij.navigation.NavigationItem
 import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
@@ -17,6 +17,7 @@ import com.intellij.psi.stubs.IStubElementType
 import com.intellij.psi.stubs.StubElement
 import com.intellij.psi.util.PsiTreeUtil
 import java.util.*
+import javax.swing.Icon
 
 interface FkNamedElement : FkElement, PsiNamedElement, NavigatablePsiElement
 
@@ -28,15 +29,13 @@ interface FkNamedStub {
 
 abstract class FkStubbedNamedElementImpl<StubT> : FkStubbedElementImpl<StubT>,
     FkNameIdentifierOwner where StubT : FkNamedStub, StubT : StubElement<*> {
+    override fun getIcon(flags: Int): Icon?  = FkIcons.FILE
 
     constructor(node: ASTNode) : super(node)
 
     constructor(stub: StubT, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 
-    override fun getNameIdentifier(): PsiElement? {
-        val element = findChildByType<PsiElement>(IDENTIFIER)
-        return element
-    }
+    override fun getNameIdentifier(): PsiElement? = findChildByType(IDENTIFIER)
 
     override fun getTextOffset(): Int = nameIdentifier?.textOffset ?: super.getTextOffset()
 
@@ -49,7 +48,6 @@ abstract class FkStubbedNamedElementImpl<StubT> : FkStubbedElementImpl<StubT>,
         get() = Objects.requireNonNull(PsiTreeUtil.getChildOfType(this, LeafPsiElement::class.java))
 
     override fun setName(name: String): PsiElement? {
-//        nameIdentifier?.replace(RsPsiFactory(project).createIdentifier(name))
         leaf?.replaceWithText(name)
         return this
     }

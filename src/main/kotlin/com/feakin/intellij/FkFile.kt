@@ -7,6 +7,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.StubBuilder
 import com.intellij.psi.stubs.*
 import com.intellij.psi.tree.IStubFileElementType
+import javax.swing.Icon
 
 class FkFile(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, FkLanguage) {
     override fun getFileType(): FileType = FkFileType
@@ -16,6 +17,10 @@ class FkFile(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, FkLangu
     override fun toString(): String = "Feakin"
 
     override fun getStub(): FkFileStub?  = super.getStub() as FkFileStub?
+
+    override fun getIcon(flags: Int): Icon? {
+        return super.getIcon(flags)
+    }
 }
 
 class FkFileStub(file: FkFile): PsiFileStubImpl<FkFile>(file) {
