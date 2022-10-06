@@ -69,6 +69,8 @@
       TO_KEYWORD            = 'to'
       FROM_KEYWORD          = 'from'
   ]
+
+
 }
 
 compilationUnit ::= declaration*
@@ -83,13 +85,10 @@ declaration ::= contextMapDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD contextMapName contextMapBody {
   pin = 1
-  name = ""
-  implements = [
-    "com.feakin.intellij.psi.FkNamedElement"
-    "com.feakin.intellij.psi.FkNameIdentifierOwner"
-   ]
+  implements = "com.feakin.intellij.psi.FkNamedElement"
   mixin = "com.feakin.intellij.psi.ext.FkContextMapImplMixin"
   stubClass = "com.feakin.intellij.psi.stubs.FkContextMapDeclStub"
+  methods = [getName setName getNameIdentifier]
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
 

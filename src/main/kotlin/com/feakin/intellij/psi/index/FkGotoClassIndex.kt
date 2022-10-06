@@ -9,6 +9,6 @@ class FkGotoClassIndex : StringStubIndexExtension<FkNamedElement>() {
 
     companion object {
         val KEY: StubIndexKey<String, FkNamedElement> =
-            StubIndexKey.createIndexKey("com.feakin.intellij.psi.stubs.FkGotoClassIndex")
+            StubIndexKey.createIndexKey("com.feakin.intellij.psi.index.FkGotoClassIndex")
     }
 }

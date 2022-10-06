@@ -19,7 +19,6 @@
 
         <lang.parserDefinition language="Feakin"
                                implementationClass="com.feakin.intellij.parser.FeakinParserDefinition"/>
-        <stubElementTypeHolder class="com.feakin.intellij.lexer.FeakinElementTypes"/>
 
         <lang.syntaxHighlighter language="Feakin"
                                 implementationClass="com.feakin.intellij.highlight.FeakinSyntaxHighlighter"/>
@@ -37,11 +36,15 @@
 
 
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
+        <indexedRootsProvider implementation="com.feakin.intellij.indexing.FkIndexableSetContributor"/>
+
+        <stubElementTypeHolder class="com.feakin.intellij.lexer.FeakinElementTypes"/>
+
         <stubIndex implementation="com.feakin.intellij.psi.index.FkNamedElementIndex"/>
         <stubIndex implementation="com.feakin.intellij.psi.index.FkGotoClassIndex"/>
         <!-- TODO: add support for goto -->
-        <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
-        <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>
+        <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkGotoClassContributor"/>
+<!--        <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkDomainObjectNavigationContributor"/>-->
 
         <!-- Completion -->
         <completion.contributor language="Feakin"

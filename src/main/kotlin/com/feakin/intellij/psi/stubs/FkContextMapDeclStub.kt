@@ -16,7 +16,7 @@ class FkContextMapDeclStub(
     elementType: IStubElementType<*, *>,
     override val name: String?
 ) : StubBase<FeakinContextMapDeclaration>(parent, elementType), FkNamedStub {
-    object Type : FkStubElementType<FkContextMapDeclStub, FeakinContextMapDeclaration>("FUNCTION") {
+    object Type : FkStubElementType<FkContextMapDeclStub, FeakinContextMapDeclaration>("CONTEXT_MAP") {
         override fun serialize(stub: FkContextMapDeclStub, dataStream: StubOutputStream) {
             return with(dataStream) {
                 writeName(stub.name)
@@ -35,7 +35,7 @@ class FkContextMapDeclStub(
             return FkContextMapDeclStub(parentStub, this, psi.name)
         }
 
-        override fun createPsi(stub: FkContextMapDeclStub): FeakinContextMapDeclaration {
+        override fun createPsi(stub: FkContextMapDeclStub): FeakinContextMapDeclarationImpl {
             return FeakinContextMapDeclarationImpl(stub, this)
         }
 

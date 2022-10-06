@@ -1,7 +1,7 @@
 package com.feakin.intellij.ide.navigate
 
 import com.feakin.intellij.psi.FkNamedElement
-import com.feakin.intellij.psi.index.FkNamedElementIndex
+import com.feakin.intellij.psi.index.FkGotoClassIndex
 import com.intellij.navigation.ChooseByNameContributorEx
 import com.intellij.navigation.GotoClassContributor
 import com.intellij.navigation.NavigationItem
@@ -9,12 +9,14 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.stubs.StubIndexKey
+import com.intellij.util.ArrayUtil
 import com.intellij.util.Processor
 import com.intellij.util.indexing.FindSymbolParameters
 import com.intellij.util.indexing.IdFilter
 
-class FkDomainObjectNavigationContributor : GotoClassContributor, ChooseByNameContributorEx {
-    private val indexKey: StubIndexKey<String, FkNamedElement> = FkNamedElementIndex.KEY
+class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
+
+    private val indexKey: StubIndexKey<String, FkNamedElement> = FkGotoClassIndex.KEY
 
     override fun processNames(processor: Processor<in String>, scope: GlobalSearchScope, filter: IdFilter?) {
         StubIndex.getInstance().processAllKeys(
@@ -22,6 +24,15 @@ class FkDomainObjectNavigationContributor : GotoClassContributor, ChooseByNameCo
             processor,
             scope,
             null
+        )
+    }
+
+    override fun getNames(project: Project?, includeNonProjectItems: Boolean): Array<String> {
+        return ArrayUtil.toStringArray(
+            StubIndex.getInstance().getAllKeys(
+                FkGotoClassIndex.KEY,
+                project!!
+            )
         )
     }
 
