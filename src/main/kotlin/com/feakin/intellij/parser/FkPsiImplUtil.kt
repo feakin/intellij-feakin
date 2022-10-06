@@ -19,7 +19,7 @@ object FkPsiImplUtil {
     fun getPresentation(element: FkNameComponent): ItemPresentation {
         return object : ItemPresentation {
             override fun getPresentableText(): String? {
-                return element.name
+                return element.text
             }
 
             override fun getLocationString(): String? {

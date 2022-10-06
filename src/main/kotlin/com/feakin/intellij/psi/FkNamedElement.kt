@@ -8,6 +8,7 @@ package com.feakin.intellij.psi
 import com.feakin.intellij.lexer.FkElementTypes.IDENTIFIER
 import com.intellij.lang.ASTNode
 import com.intellij.navigation.NavigationItem
+import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.PsiNamedElement
@@ -17,7 +18,7 @@ import com.intellij.psi.stubs.StubElement
 import com.intellij.psi.util.PsiTreeUtil
 import java.util.*
 
-interface FkNamedElement : FkElement, PsiNamedElement, NavigationItem
+interface FkNamedElement : FkElement, PsiNamedElement, NavigatablePsiElement
 
 interface FkNameIdentifierOwner : FkNamedElement, PsiNameIdentifierOwner
 
