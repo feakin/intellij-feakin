@@ -5,8 +5,6 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.psi.tree.IElementType
 
-open class FkElementImpl(node: ASTNode) : ASTWrapperPsiElement(node),
-    FkElement {
-    override val tokenType: IElementType?
-        get() = null
+open class FkElementImpl(node: ASTNode) : ASTWrapperPsiElement(node), FkElement {
+    override val tokenType: IElementType? get() = node.elementType
 }
