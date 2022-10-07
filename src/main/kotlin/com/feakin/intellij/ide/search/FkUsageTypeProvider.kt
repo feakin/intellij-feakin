@@ -10,6 +10,6 @@ class FkUsageTypeProvider : UsageTypeProviderEx {
         getUsageType(element, UsageTarget.EMPTY_ARRAY)
 
     override fun getUsageType(element: PsiElement): UsageType? {
-        TODO("Not yet implemented")
+        return null
     }
 }
