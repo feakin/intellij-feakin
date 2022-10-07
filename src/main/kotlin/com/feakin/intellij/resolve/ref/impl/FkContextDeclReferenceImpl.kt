@@ -4,7 +4,6 @@ import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType
 import com.feakin.intellij.psi.*
 import com.feakin.intellij.resolve.ref.FkReferenceBase
-import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
@@ -24,7 +23,6 @@ class FkContextDeclReferenceImpl(
         return element is FkContextDeclaration && super.isReferenceTo(element)
     }
 }
-
 
 private val CONTEXT_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("CONTEXT_NAME_INFERENCE_KEY")
 
@@ -54,11 +52,11 @@ private fun inferContextName(
             PsiTreeUtil.getChildrenOfType(it, FkContextMapDeclaration::class.java)?.toList()
         }?.flatten()?.toTypedArray()
 
-        val mapBodys: Array<out FkContextMapBody>? = contextMaps?.mapNotNull {
+        val mapBodies: Array<out FkContextMapBody>? = contextMaps?.mapNotNull {
             PsiTreeUtil.getChildrenOfType(it, FkContextMapBody::class.java)?.toList()
         }?.flatten()?.toTypedArray()
 
-        mapBodys?.forEach { contextMapDeclaration ->
+        mapBodies?.forEach { contextMapDeclaration ->
             PsiTreeUtil.getChildrenOfType(contextMapDeclaration, FkContextName::class.java)
                 ?.forEach { contextName ->
                     if (contextName.text == element.name) {

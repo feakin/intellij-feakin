@@ -34,6 +34,5 @@ object FkTokenTypeSets {
         FkElementTypes.TO_KEYWORD,
         FkElementTypes.RECEIVE_KEYWORD,
         FkElementTypes.FLOW_KEYWORD,
-//        FkElementTypes.FROM_KEYWORD,
     )
 }

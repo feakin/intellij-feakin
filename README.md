@@ -47,4 +47,7 @@ Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 inspired and based on [https://github.com/intellij-rust/intellij-rust](https://github.com/intellij-rust/intellij-rust)
 
+- MIT license. Copyright (c) 2015 Aleksey Kladov, Evgeny Kurbatsky, Alexey Kudinkin and contributors
+- MIT license. Copyright (c) 2016 JetBrains
+
 @2022 This code is distributed under the MPL license. See `LICENSE` in this directory.
