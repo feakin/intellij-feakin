@@ -97,9 +97,9 @@ private contextNodeDecl ::= CONTEXT_KEYWORD contextName (COMMA contextName)*
 
 private contextNodeRel ::= leftContextNode relSymbol rightContextNode SEMICOLON
 
-private leftContextNode ::= contextNodeName;
+private leftContextNode ::= contextName;
 
-private rightContextNode ::= contextNodeName;
+private rightContextNode ::= contextName;
 
 relSymbol ::= RARROW
              | LARROW
@@ -231,11 +231,7 @@ responseEntityName ::= IDENTIFIER
 
 contextName ::= IDENTIFIER
 {
-  implements = [
-      "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
-  ]
+  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
   mixin = "com.feakin.intellij.psi.stubs.ext.FkUseContextNameMixin"
 }
 
-
-contextNodeName ::= IDENTIFIER

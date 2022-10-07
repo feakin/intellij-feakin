@@ -1,4 +1,4 @@
-package com.feakin.intellij.resolve.ref
+package com.feakin.intellij.resolve.ref.impl
 
 import com.feakin.intellij.psi.FkContextDeclaration
 import com.feakin.intellij.psi.FkContextName
