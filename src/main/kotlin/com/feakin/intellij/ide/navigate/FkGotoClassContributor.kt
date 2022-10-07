@@ -28,15 +28,6 @@ class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
         )
     }
 
-    override fun getNames(project: Project?, includeNonProjectItems: Boolean): Array<String> {
-        return ArrayUtil.toStringArray(
-            StubIndex.getInstance().getAllKeys(
-                FkGotoClassIndex.KEY,
-                project!!
-            )
-        )
-    }
-
     override fun processElementsWithName(
         name: String,
         processor: Processor<in NavigationItem>,
@@ -57,16 +48,4 @@ class FkGotoClassContributor : GotoClassContributor, ChooseByNameContributorEx {
     override fun getQualifiedName(item: NavigationItem): String? = (item as? FkNamedElement)?.name
 
     override fun getQualifiedNameSeparator(): String = ":"
-
-    override fun getItemsByName(
-        name: String,
-        pattern: String,
-        project: Project,
-        includeNonProjectItems: Boolean
-    ): Array<NavigationItem> {
-        val result = ArrayList<NavigationItem>()
-        val params = FindSymbolParameters("", "", FindSymbolParameters.searchScopeFor(project, includeNonProjectItems))
-        processElementsWithName(name, { result.add(it) }, params)
-        return if (result.isEmpty()) NavigationItem.EMPTY_NAVIGATION_ITEM_ARRAY else result.toTypedArray()
-    }
 }
