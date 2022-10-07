@@ -25,7 +25,7 @@ class FkNamedElementIndex : StringStubIndexExtension<FkNamedElement>() {
         fun findElementsByName(
             target: String,
             project: Project,
-            resolveScope: GlobalSearchScope,
+            resolveScope: GlobalSearchScope = GlobalSearchScope.allScope(project),
         ): Collection<FkElement> {
             val key = StubIndex.getInstance().getAllKeys(
                 KEY,
@@ -41,8 +41,5 @@ inline fun <Key, reified Psi : PsiElement> getElements(
     key: Key,
     project: Project,
     scope: GlobalSearchScope?
-): Collection<Psi> {
-    val elements = StubIndex.getElements(indexKey, key, project, scope, Psi::class.java)
-    return elements
-}
-
+): Collection<Psi> =
+    StubIndex.getElements(indexKey, key, project, scope, Psi::class.java)
