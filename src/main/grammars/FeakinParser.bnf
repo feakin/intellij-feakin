@@ -193,7 +193,7 @@ flowBody ::= LBRACE stepDeclaration* RBRACE
 private stepDeclaration ::= viaMethodDeclaration
                      | viaMessageDeclaration
 
-viaMethodDeclaration ::= VIA_KEYWORD objectName (DOUBLE_COLON viaMethodName parameters?)? RECEIVE_KEYWORD receiveObject SEMICOLON?
+viaMethodDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? RECEIVE_KEYWORD receiveObject SEMICOLON?
 
 parameters ::= LPAREN parameter (COMMA parameter)* RPAREN
 
