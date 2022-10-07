@@ -1,6 +1,7 @@
 .gradle
-.idea
 .qodana
 build
 **/.DS_Store
 src/gen/**
+.idea/**
+!.idea/icon.png
