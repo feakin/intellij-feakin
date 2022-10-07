@@ -21,7 +21,9 @@ open class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCom
     @Suppress("UnstableApiUsage")
     override fun createEditor(): JComponent = panel {
         row("Command:") {
-            cell(command).horizontalAlign(HorizontalAlign.FILL)
+            cell(command)
+                .horizontalAlign(HorizontalAlign.FILL)
+                .resizableColumn()
         }
     }
 }

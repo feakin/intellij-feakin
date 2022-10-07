@@ -112,7 +112,7 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
   implements = [
     "com.feakin.intellij.psi.FkNamedElement"
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
-//    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkContextDeclMixin"
   stubClass = "com.feakin.intellij.stubs.FkContextDeclStub"
