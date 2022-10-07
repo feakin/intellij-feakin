@@ -18,6 +18,5 @@ abstract class FkContextDeclMixin : FkStubbedNamedElementImpl<FkContextDeclStub>
     override fun getReference(): FkReference = FkContextDeclReferenceImpl(this)
 
     override val referenceNameElement: PsiElement get() = identifier
-
     override val referenceName: String get() = greenStub?.name ?: super.referenceName
 }
