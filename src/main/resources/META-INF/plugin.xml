@@ -43,7 +43,6 @@
         <stubIndex implementation="com.feakin.intellij.psi.stubs.index.FkNamedElementIndex"/>
         <stubIndex implementation="com.feakin.intellij.psi.stubs.index.FkGotoClassIndex"/>
 
-        <gotoClassContributor implementation="com.feakin.intellij.ide.navigate.FkGotoClassContributor"/>
         <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkGotoSymbolContributor"/>
 
         <!-- Completion -->
