@@ -114,7 +114,7 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
-  mixin = "com.feakin.intellij.stubs.ext.FkContextDeclMixin"
+  mixin = "com.feakin.intellij.stubs.ext.FkContextDeclarationImplMixin"
   stubClass = "com.feakin.intellij.stubs.FkContextDeclStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
@@ -145,7 +145,6 @@ entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)? RBRACE
 
 structDeclaration ::= STRUCT_KEYWORD structBody {
   pin=1
-  methods = [getName setName getNameIdentifier]
 }
 
 structBody ::= LBRACE structEntry* RBRACE
@@ -164,7 +163,6 @@ valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
 implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody {
   pin=1
-  methods = [getName setName getNameIdentifier]
 }
 
 implBody ::= LBRACE (endpointDeclaration flowDeclaration?)? RBRACE
