@@ -3,7 +3,7 @@ package com.feakin.intellij.resolve.ref.impl
 import com.feakin.intellij.psi.FkContextDeclaration
 import com.feakin.intellij.psi.FkContextName
 import com.feakin.intellij.psi.FkElement
-import com.feakin.intellij.psi.stubs.index.FkNamedElementIndex
+import com.feakin.intellij.resolve.indexes.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 
 // todo: change to contextNameRef

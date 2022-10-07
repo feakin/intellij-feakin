@@ -1,4 +1,4 @@
-package com.feakin.intellij.psi.stubs
+package com.feakin.intellij.stubs
 
 fun factory(name: String): FkStubElementType<*, *> = when (name) {
     "CONTEXT_MAP_DECLARATION" -> FkContextMapDeclStub.Type

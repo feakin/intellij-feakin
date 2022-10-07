@@ -1,4 +1,4 @@
-package com.feakin.intellij.psi.impl
+package com.feakin.intellij.psi
 
 import com.feakin.intellij.FkLanguage
 import com.intellij.psi.tree.IElementType

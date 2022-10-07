@@ -1,4 +1,4 @@
-package com.feakin.intellij.psi.stubs
+package com.feakin.intellij.stubs
 
 import com.feakin.intellij.FkLanguage
 import com.feakin.intellij.psi.FkElement

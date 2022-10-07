@@ -1,8 +1,8 @@
-package com.feakin.intellij.psi.stubs.ext
+package com.feakin.intellij.stubs.ext
 
 import com.feakin.intellij.psi.FkContextMapDeclaration
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl
-import com.feakin.intellij.psi.stubs.FkContextMapDeclStub
+import com.feakin.intellij.stubs.FkContextMapDeclStub
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.IStubElementType

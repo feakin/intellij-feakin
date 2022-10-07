@@ -11,7 +11,7 @@
   psiImplPackage="com.feakin.intellij.psi.impl"
 
   elementTypeHolderClass="com.feakin.intellij.lexer.FkElementTypes"
-  elementTypeClass="com.feakin.intellij.psi.impl.FkElementType"
+  elementTypeClass="com.feakin.intellij.psi.FkElementType"
 
   tokenTypeClass="com.feakin.intellij.lexer.FkTokenType"
 
@@ -86,8 +86,8 @@ contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
     "com.feakin.intellij.psi.FkNamedElement"
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
   ]
-  mixin = "com.feakin.intellij.psi.stubs.ext.FkContextMapImplMixin"
-  stubClass = "com.feakin.intellij.psi.stubs.FkContextMapDeclStub"
+  mixin = "com.feakin.intellij.stubs.ext.FkContextMapImplMixin"
+  stubClass = "com.feakin.intellij.stubs.FkContextMapDeclStub"
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
 
@@ -114,8 +114,8 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
 //    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
-  mixin = "com.feakin.intellij.psi.stubs.ext.FkContextDeclMixin"
-  stubClass = "com.feakin.intellij.psi.stubs.FkContextDeclStub"
+  mixin = "com.feakin.intellij.stubs.ext.FkContextDeclMixin"
+  stubClass = "com.feakin.intellij.stubs.FkContextDeclStub"
   elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
 }
 
@@ -232,6 +232,6 @@ responseEntityName ::= IDENTIFIER
 contextName ::= IDENTIFIER
 {
   implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
-  mixin = "com.feakin.intellij.psi.stubs.ext.FkUseContextNameMixin"
+  mixin = "com.feakin.intellij.stubs.ext.FkUseContextNameMixin"
 }
 

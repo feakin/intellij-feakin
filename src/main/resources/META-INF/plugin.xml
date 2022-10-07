@@ -40,8 +40,8 @@
 
         <stubElementTypeHolder class="com.feakin.intellij.lexer.FkElementTypes"/>
 
-        <stubIndex implementation="com.feakin.intellij.psi.stubs.index.FkNamedElementIndex"/>
-        <stubIndex implementation="com.feakin.intellij.psi.stubs.index.FkGotoClassIndex"/>
+        <stubIndex implementation="com.feakin.intellij.resolve.indexes.FkNamedElementIndex"/>
+        <stubIndex implementation="com.feakin.intellij.resolve.indexes.FkGotoClassIndex"/>
 
         <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkGotoSymbolContributor"/>
 

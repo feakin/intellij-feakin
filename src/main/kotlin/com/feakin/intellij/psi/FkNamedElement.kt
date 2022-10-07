@@ -29,7 +29,7 @@ interface FkNamedStub {
 
 abstract class FkStubbedNamedElementImpl<StubT> : FkStubbedElementImpl<StubT>,
     FkNameIdentifierOwner where StubT : FkNamedStub, StubT : StubElement<*> {
-    override fun getIcon(flags: Int): Icon?  = FkIcons.FILE
+    override fun getIcon(flags: Int): Icon? = FkIcons.FILE
 
     constructor(node: ASTNode) : super(node)
 

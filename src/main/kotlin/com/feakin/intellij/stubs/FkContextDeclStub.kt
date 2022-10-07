@@ -1,9 +1,9 @@
-package com.feakin.intellij.psi.stubs
+package com.feakin.intellij.stubs
 
 import com.feakin.intellij.psi.FkContextDeclaration
 import com.feakin.intellij.psi.FkNamedStub
 import com.feakin.intellij.psi.impl.FkContextDeclarationImpl
-import com.feakin.intellij.psi.stubs.index.FkNamedElementIndex
+import com.feakin.intellij.resolve.indexes.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 
