@@ -1,8 +1,8 @@
 package com.feakin.intellij.psi.stubs.index
 
+import com.feakin.intellij.psi.FkElement
 import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.PsiElement
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StringStubIndexExtension
@@ -26,8 +26,12 @@ class FkNamedElementIndex : StringStubIndexExtension<FkNamedElement>() {
             target: String,
             project: Project,
             resolveScope: GlobalSearchScope,
-        ): Collection<FkNamedElement> {
-            return getElements(KEY, target, project, resolveScope)
+        ): Collection<FkElement> {
+            val key = StubIndex.getInstance().getAllKeys(
+                KEY,
+                project
+            ).firstOrNull { it == target } ?: return emptyList()
+            return getElements(KEY, key, project, resolveScope)
         }
     }
 }
@@ -37,6 +41,8 @@ inline fun <Key, reified Psi : PsiElement> getElements(
     key: Key,
     project: Project,
     scope: GlobalSearchScope?
-): Collection<Psi> =
-    StubIndex.getElements(indexKey, key, project, scope, Psi::class.java)
+): Collection<Psi> {
+    val elements = StubIndex.getElements(indexKey, key, project, scope, Psi::class.java)
+    return elements
+}
 
