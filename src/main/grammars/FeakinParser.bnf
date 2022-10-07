@@ -109,11 +109,9 @@ relSymbol ::= RARROW
 
 contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
 {
-  implements = [
-    "com.feakin.intellij.psi.FkNamedElement"
+  implements = [ "com.feakin.intellij.psi.FkNamedElement"
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
-    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
-  ]
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
   mixin = "com.feakin.intellij.stubs.ext.FkContextDeclarationImplMixin"
   stubClass = "com.feakin.intellij.stubs.FkContextDeclStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
@@ -122,15 +120,12 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
 contextBody ::= LBRACE useAggregate* RBRACE
 
 aggregateDeclaration ::= AGGREGATE_KEYWORD IDENTIFIER aggregateBody {
-  pin=1
 }
 
 entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
-  pin=1
 }
 
 valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
-  pin=1
 }
 
 private useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
@@ -144,15 +139,13 @@ private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)? RBRACE
 
 structDeclaration ::= STRUCT_KEYWORD structBody {
-  pin=1
 }
 
 structBody ::= LBRACE structEntry* RBRACE
 
 private structEntry ::= IDENTIFIER COLON fieldType defaultValue? SEMICOLON?
 
-fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')?
-              ;
+fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')? ;
 
 private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 
@@ -161,9 +154,7 @@ private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)? SEMICOL
 
 valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
-implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody {
-  pin=1
-}
+implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody {}
 
 implBody ::= LBRACE (endpointDeclaration flowDeclaration?)? RBRACE
 
@@ -208,8 +199,7 @@ parameters ::= LPAREN parameter (COMMA parameter)* RPAREN
 
 parameter ::= IDENTIFIER COLON paramType
 
-paramType ::= IDENTIFIER ('<' IDENTIFIER '>')?
-              ;
+paramType ::= IDENTIFIER ('<' IDENTIFIER '>')?;
 
 private receiveObject ::= objectName (COLON viaMethodName)?
 
