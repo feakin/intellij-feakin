@@ -7,7 +7,7 @@ import com.feakin.intellij.resolve.indexes.FkNamedElementIndex
 import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.intellij.psi.PsiElement
 
-class FkUseContextReferenceImpl(element: FkContextName) : FkReferenceBase<FkContextName>(element) {
+class FkContextNameReferenceImpl(element: FkContextName) : FkReferenceBase<FkContextName>(element) {
     override fun multiResolve(): List<FkElement> {
         val collection =
             FkNamedElementIndex.findElementsByName(element.identifier.text, element.project)

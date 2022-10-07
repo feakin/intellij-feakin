@@ -88,7 +88,7 @@ contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkContextMapImplMixin"
   stubClass = "com.feakin.intellij.stubs.FkContextMapDeclStub"
-  elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
+  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
 contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE
@@ -116,7 +116,7 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkContextDeclMixin"
   stubClass = "com.feakin.intellij.stubs.FkContextDeclStub"
-  elementTypeFactory = "com.feakin.intellij.psi.stubs.StubImplementationsKt.factory"
+  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
 contextBody ::= LBRACE useAggregate* RBRACE
@@ -232,6 +232,6 @@ responseEntityName ::= IDENTIFIER
 contextName ::= IDENTIFIER
 {
   implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
-  mixin = "com.feakin.intellij.stubs.ext.FkUseContextNameMixin"
+  mixin = "com.feakin.intellij.stubs.ext.FkContextNameImplMixin"
 }
 
