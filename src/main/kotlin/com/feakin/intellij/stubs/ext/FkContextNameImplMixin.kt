@@ -8,6 +8,8 @@ import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 
 abstract class FkContextNameImplMixin(node: ASTNode) : FkElementImpl(node), FkContextName {
+    override val referenceName: String get() = referenceNameElement.text
+
     override val referenceNameElement: PsiElement get() = identifier
 
     override fun getReference(): FkReference = FkContextNameReferenceImpl(this)
