@@ -5,8 +5,10 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/20026-feakin.svg)](https://plugins.jetbrains.com/plugin/20026-feakin)
 
 <!-- Plugin description -->
-Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate
-structure, and others.
+Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate structure, and others.
+
+Fklang 是一个架构设计 DSL，通过显性化软件架构设计，以确保软件系统描述与实现的一致性。并在工作流中，内嵌对于 AI 代码生成软件的支持，以构筑完整的开发者体验。
+
 <!-- Plugin description end -->
 
 Features:
@@ -14,15 +16,18 @@ Features:
 - [x] Lexer and Parser Definition
 - [x] Highlight code
 - [x] Line Marker Provider
-- [ ] Completion Contributor
-- [ ] Structure View
-- [ ] Folding
-- [ ] Brace Matching
+- [x] Completion Contributor
+- [x] Structure View
+- [x] Folding
+- [x] Brace Matching
 - [x] Block Selection
 - [x] Code Formatting
 - [ ] Code Style Settings
-- [ ] Reference Contributor
-- [ ] Commenter
+- [x] Reference Contributor
+  - [x] ContextName
+  - [ ] Others
+- [x] Commenter
+- [ ] Rename Refactoring
 - [ ] Quick Fix
 
 ## Installation
