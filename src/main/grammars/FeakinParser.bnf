@@ -67,6 +67,10 @@
       SEND_KEYWORD          = 'send'
       TO_KEYWORD            = 'to'
       FROM_KEYWORD          = 'from'
+      LAYERED_KEYWORD       = 'layered'
+      LAYER_KEYWORD         = 'layer'
+      DEPENDENCY_KEYWORD    = 'dependency'
+      PACKAGE_KEYWORD       = 'package'
   ]
 }
 
@@ -79,6 +83,7 @@ declaration ::= contextMapDeclaration
                | valueObjectDeclaration
                | structDeclaration
                | implDeclaration
+               | layeredDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {
@@ -206,6 +211,23 @@ private receiveObject ::= objectName (COLON viaMethodName)?
 viaMessageDeclaration ::= VIA_KEYWORD objectName SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
 
 private passObject ::= objectName (COLON viaMethodName)?
+
+layeredDeclaration ::= LAYERED_KEYWORD IDENTIFIER layeredBody
+
+layeredBody ::= LBRACE dependency? layerDeclaration* RBRACE
+
+dependency ::= DEPENDENCY_KEYWORD LBRACE dependency_rule* RBRACE
+
+dependency_rule ::= dep_source RARROW dep_target SEMICOLON?
+
+dep_source ::= STRING_LITERAL
+dep_target ::= STRING_LITERAL
+
+layerDeclaration ::= LAYER_KEYWORD IDENTIFIER layerBody
+
+layerBody ::= LBRACE (packageName)* RBRACE
+
+packageName ::= PACKAGE_KEYWORD COLON STRING_LITERAL SEMICOLON?
 
 topic ::= STRING_LITERAL
 

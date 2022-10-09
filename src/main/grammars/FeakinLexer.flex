@@ -75,6 +75,10 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "send"                { return SEND_KEYWORD; }
   "to"                  { return TO_KEYWORD; }
   "from"                { return FROM_KEYWORD; }
+  "layered"             { return LAYERED_KEYWORD; }
+  "layer"               { return LAYER_KEYWORD; }
+  "dependency"          { return DEPENDENCY_KEYWORD; }
+  "package"             { return PACKAGE_KEYWORD; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }
