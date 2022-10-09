@@ -20,7 +20,10 @@ val BLOCK_LIKE = TokenSet.create(
     IMPL_BODY,
     ENDPOINT_BODY,
 
-    FLOW_BODY
+    FLOW_BODY,
+    LAYERED_BODY,
+    LAYER_BODY,
+    DEPENDENCY_BODY
 )
 
 val FK_KEYWORDS = FkTokenTypeSets.KEY_WORDS;

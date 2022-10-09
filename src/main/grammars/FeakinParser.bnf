@@ -216,8 +216,9 @@ layeredDeclaration ::= LAYERED_KEYWORD IDENTIFIER layeredBody
 
 layeredBody ::= LBRACE dependency? layerDeclaration* RBRACE
 
-dependency ::= DEPENDENCY_KEYWORD LBRACE dependency_rule* RBRACE
+dependency ::= DEPENDENCY_KEYWORD LBRACE dependencyBody RBRACE
 
+dependencyBody ::= dependency_rule*
 dependency_rule ::= dep_source RARROW dep_target SEMICOLON?
 
 dep_source ::= STRING_LITERAL

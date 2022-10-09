@@ -34,5 +34,11 @@ object FkTokenTypeSets {
         FkElementTypes.TO_KEYWORD,
         FkElementTypes.RECEIVE_KEYWORD,
         FkElementTypes.FLOW_KEYWORD,
+
+        //layered
+        FkElementTypes.LAYERED_KEYWORD,
+        FkElementTypes.LAYER_KEYWORD,
+        FkElementTypes.PACKAGE_KEYWORD,
+        FkElementTypes.DEPENDENCY_KEYWORD,
     )
 }
