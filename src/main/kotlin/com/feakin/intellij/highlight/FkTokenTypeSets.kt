@@ -40,5 +40,7 @@ object FkTokenTypeSets {
         FkElementTypes.LAYER_KEYWORD,
         FkElementTypes.PACKAGE_KEYWORD,
         FkElementTypes.DEPENDENCY_KEYWORD,
+        FkElementTypes.AGGREGATE_S_KEYWORD,
+        FkElementTypes.ENTITY_S_KEYWORD,
     )
 }

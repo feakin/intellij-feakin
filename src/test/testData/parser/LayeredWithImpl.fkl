@@ -1,0 +1,31 @@
+/// Hello Got event ?
+impl HelloGot {
+  aggregate: Hello;
+  endpoint {
+    GET "/hello";
+    response: String;
+  }
+}
+
+layered DDD {
+  // by default
+  dependency {
+    "interface" -> "application"
+    "interface" -> "domain"
+    "domain" -> "application"
+    "application" -> "infrastructure"
+    "interface" -> "infrastructure"
+  }
+  layer interface {
+    package: "com.feakin.demo.rest";
+  }
+  layer domain {
+    package: "com.feakin.demo.domain";
+  }
+  layer application {
+    package: "com.feakin.demo.application";
+  }
+  layer infrastructure {
+    package: "com.feakin.demo.infrastructure";
+  }
+}

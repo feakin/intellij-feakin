@@ -51,6 +51,8 @@
       ENDPOINT_KEYWORD      = 'endpoint'
       REQUEST_KEYWORD       = 'request'
       RESPONSE_KEYWORD      = 'response'
+      AGGREGATE_S_KEYWORD   = 'aggregate'
+      ENTITY_S_KEYWORD      = 'entity'
 
       GET_KEYWORD           = 'GET'
       POST_KEYWORD          = 'POST'
@@ -159,9 +161,9 @@ private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)? SEMICOL
 
 valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
-implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody {}
+implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody
 
-implBody ::= LBRACE (endpointDeclaration flowDeclaration?)? RBRACE
+implBody ::= LBRACE (set_target_object? endpointDeclaration flowDeclaration?)? RBRACE
 
 endpointDeclaration ::= ENDPOINT_KEYWORD endpointBody
 
@@ -214,7 +216,13 @@ private passObject ::= objectName (COLON viaMethodName)?
 
 layeredDeclaration ::= LAYERED_KEYWORD IDENTIFIER layeredBody
 
-layeredBody ::= LBRACE dependency? layerDeclaration* RBRACE
+layeredBody ::= LBRACE  dependency? layerDeclaration* RBRACE
+
+set_target_object ::= AGGREGATE_S_KEYWORD COLON setAggregateName SEMICOLON?
+                    | ENTITY_S_KEYWORD COLON setEntityName SEMICOLON?
+
+setAggregateName ::= IDENTIFIER
+setEntityName ::= IDENTIFIER
 
 dependency ::= DEPENDENCY_KEYWORD LBRACE dependencyBody RBRACE
 

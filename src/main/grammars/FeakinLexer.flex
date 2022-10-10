@@ -61,6 +61,8 @@ STRING_LITERAL=\"([^\\\"\r\n]|\\[^\r\n])*\"?
   "endpoint"            { return ENDPOINT_KEYWORD; }
   "request"             { return REQUEST_KEYWORD; }
   "response"            { return RESPONSE_KEYWORD; }
+  "aggregate"           { return AGGREGATE_S_KEYWORD; }
+  "entity"              { return ENTITY_S_KEYWORD; }
   "GET"                 { return GET_KEYWORD; }
   "POST"                { return POST_KEYWORD; }
   "PUT"                 { return PUT_KEYWORD; }
