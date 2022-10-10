@@ -42,7 +42,7 @@ class FkKeywordCompletionContributor : CompletionContributor(), DumbAware {
 
             if (withParent.accepts(position)) {
                 FkTokenTypeSets.KEY_WORDS.types.forEach {
-                    result.addElement(LookupElementBuilder.create(it.debugName).bold())
+                    result.addElement(LookupElementBuilder.create(it).bold())
                 }
             }
         }
