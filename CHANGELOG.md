@@ -4,6 +4,23 @@
 
 ## [Unreleased]
 
+## [0.2.2]
+
+### Features
+
+- add support for aggregate/entity binding by impl ([81d44e2](https://github.com/feakin/intellij-feakin/commit/81d44e2bbdd2abca585277fa9ae8df75d173d99f))
+- **goto:** init symbol for testing ([1c8593b](https://github.com/feakin/intellij-feakin/commit/1c8593b86444dc40ab83b85312fa600f0841260d))
+- init basic completion ([fafb650](https://github.com/feakin/intellij-feakin/commit/fafb65072fe3e20b2583c6b95361d5f42269e5c8))
+- make find by contextNmae usage works ([650a057](https://github.com/feakin/intellij-feakin/commit/650a05781b32bd5fc67d61a866f89ab34a019615))
+- **stubs:** add icon for display ([74fdd31](https://github.com/feakin/intellij-feakin/commit/74fdd3154c94e82d54e7f99052cc3aeedf4f5c08))
+- **stubs:** init basic context map stubs ([2437c25](https://github.com/feakin/intellij-feakin/commit/2437c255909ff2fe231b73230ddf6282a2d54ea3))
+- **stubs:** make searchable for index ([647634e](https://github.com/feakin/intellij-feakin/commit/647634eab659078f78b6a7b51c1bd2d39719c3c3))
+- update syntax for feakin layered ([f26567a](https://github.com/feakin/intellij-feakin/commit/f26567a9ecf758c2d3e51dc5b836b115e24b101d))
+- **usage:** add cached for reference ([6ffeab4](https://github.com/feakin/intellij-feakin/commit/6ffeab49dc516f5093b5d0c5a3f0f06b98e66dc3))
+- **usage:** fix rename issues ([466a302](https://github.com/feakin/intellij-feakin/commit/466a3025fbe95381198fc1561ee22ae9cdd4a70c))
+- **usage:** make context map to usage ([228f8eb](https://github.com/feakin/intellij-feakin/commit/228f8eb1bb15db310c10815e30872383073e0dd2))
+
+
 ## [0.2.1]
 
 ### Features
