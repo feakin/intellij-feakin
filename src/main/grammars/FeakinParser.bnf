@@ -146,7 +146,7 @@ private domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMI
 
 private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
-entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)? RBRACE
+entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)* RBRACE
 
 structDeclaration ::= STRUCT_KEYWORD structBody {
 }
@@ -159,8 +159,8 @@ fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')? ;
 
 private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 
-private useValueObject ::= VALUE_OBJECT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)? SEMICOLON
-private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)? SEMICOLON
+private useValueObject ::= VALUE_OBJECT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
+private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
 valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
 
@@ -179,7 +179,7 @@ authorizationType ::= IDENTIFIER
 
 requestDeclaration ::= httpRequestDeclaration
 
-private httpRequestDeclaration ::= httpMethod uri SEMICOLON
+private httpRequestDeclaration ::= httpMethod uri SEMICOLON?
 
 httpMethod ::= GET_KEYWORD
               | POST_KEYWORD
@@ -192,9 +192,9 @@ httpMethod ::= GET_KEYWORD
 
 uri ::= STRING_LITERAL
 
-requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | structDeclaration) SEMICOLON;
+requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | structDeclaration) SEMICOLON?;
 
-responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON;
+responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON?;
 
 flowDeclaration ::= FLOW_KEYWORD flowBody
 
@@ -203,9 +203,9 @@ flowBody ::= LBRACE stepDeclaration* RBRACE
 private stepDeclaration ::= viaMethodDeclaration
                      | viaMessageDeclaration
 
-viaMethodDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? RECEIVE_KEYWORD receiveObject SEMICOLON?
+viaMethodDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? (RECEIVE_KEYWORD receiveObject)? SEMICOLON?
 
-parameters ::= LPAREN parameter (COMMA parameter)* RPAREN
+parameters ::= LPAREN (parameter (COMMA parameter)*)? RPAREN
 
 parameter ::= IDENTIFIER COLON paramType
 
@@ -213,9 +213,9 @@ paramType ::= IDENTIFIER ('<' IDENTIFIER '>')?;
 
 private receiveObject ::= objectName (COLON viaMethodName)?
 
-viaMessageDeclaration ::= VIA_KEYWORD objectName SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
+viaMessageDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)?  SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
 
-private passObject ::= objectName (COLON viaMethodName)?
+private passObject ::= objectName
 
 layeredDeclaration ::= LAYERED_KEYWORD IDENTIFIER layeredBody
 
