@@ -200,10 +200,13 @@ flowDeclaration ::= FLOW_KEYWORD flowBody
 
 flowBody ::= LBRACE stepDeclaration* RBRACE
 
-private stepDeclaration ::= viaMethodDeclaration
-                     | viaMessageDeclaration
+private stepDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? (viaMethodDeclaration | viaMessageDeclaration)
 
-viaMethodDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? (RECEIVE_KEYWORD receiveObject)? SEMICOLON?
+viaMethodDeclaration ::= RECEIVE_KEYWORD receiveObject SEMICOLON?
+
+viaMessageDeclaration ::= SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
+
+private passObject ::= objectName
 
 parameters ::= LPAREN (parameter (COMMA parameter)*)? RPAREN
 
@@ -212,10 +215,6 @@ parameter ::= IDENTIFIER COLON paramType
 paramType ::= IDENTIFIER ('<' IDENTIFIER '>')?;
 
 private receiveObject ::= objectName (COLON viaMethodName)?
-
-viaMessageDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)?  SEND_KEYWORD passObject TO_KEYWORD topic SEMICOLON?
-
-private passObject ::= objectName
 
 layeredDeclaration ::= LAYERED_KEYWORD IDENTIFIER layeredBody
 

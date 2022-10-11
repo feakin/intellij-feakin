@@ -57,6 +57,8 @@
                                         implementationClass="com.feakin.intellij.linemarkers.FkImplMessageProvider"/>
         <codeInsight.lineMarkerProvider language="Feakin"
                                         implementationClass="com.feakin.intellij.linemarkers.FkImplMethodProvider"/>
+        <codeInsight.lineMarkerProvider language="Feakin"
+                                        implementationClass="com.feakin.intellij.linemarkers.FkLayeredLineMarkerContributor"/>
 
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkImplLineMarkerContributor"/>
