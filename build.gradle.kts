@@ -71,7 +71,10 @@ idea {
 
 sourceSets {
     main {
-        java.srcDirs("src/gen")
+        java.srcDirs("src", "src/gen")
+    }
+    test {
+        resources.srcDirs("src/test/resources")
     }
 }
 
