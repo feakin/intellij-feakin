@@ -3,7 +3,5 @@ Aggregate Cart {
   just-demo for test
   """
 
-  Entity Cart {
-    ValueObject CartTotal
-  }
+  Entity Ticket, Reservation;
 }

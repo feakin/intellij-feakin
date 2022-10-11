@@ -19,9 +19,9 @@ import com.intellij.psi.tree.TokenSet
 
 class FkParserDefinition : ParserDefinition {
     companion object {
-        @JvmField val INNER_BLOCK_DOC_COMMENT = FkTokenType("inner_block_doc")
+        @JvmField val INLINE_DOC = FkTokenType("inner_block_doc")
 
-        val COMMENTS = TokenSet.create(FkElementTypes.COMMENT, INNER_BLOCK_DOC_COMMENT)
+        val COMMENTS = TokenSet.create(FkElementTypes.COMMENT, INLINE_DOC)
         val FILE = IFileElementType(FkLanguage)
     }
 

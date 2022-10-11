@@ -24,45 +24,6 @@ import static com.feakin.intellij.parser.FkParserDefinition.*;
 %type IElementType
 %unicode
 
-%s INNER_BLOCK_DOC
-
-
-%{}
-  /**
-    * '#+' stride demarking start/end of raw string/byte literal
-    */
-  private int zzShaStride = -1;
-
-  /**
-    * Dedicated storage for starting position of some previously successful
-    * match
-    */
-  private int zzPostponedMarkedPos = -1;
-
-  /**
-    * Dedicated nested-comment level counter
-    */
-  private int zzNestedCommentLevel = 0;
-%}
-
-%{
-  IElementType imbueBlockComment() {
-      assert(zzNestedCommentLevel == 0);
-      yybegin(YYINITIAL);
-
-      zzStartRead = zzPostponedMarkedPos;
-      zzPostponedMarkedPos = -1;
-
-      System.out.println((yylength()) + " " + yytext());
-      if (yylength() >= 3) {
-          if (yycharat(2) == '"') {
-              return INNER_BLOCK_DOC_COMMENT;
-          }
-      }
-
-      return BLOCK_COMMENT;
-  }
-%}
 
 EOL=\R
 WHITE_SPACE=\s+
@@ -76,11 +37,12 @@ EOL_WS           = \n | \r | \r\n
 LINE_WS          = [\ \t]
 WHITE_SPACE_CHAR = {EOL_WS} | {LINE_WS}
 WHITE_SPACE      = {WHITE_SPACE_CHAR}+
+INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
 
 %%
 <YYINITIAL> {
   {WHITE_SPACE}         { return WHITE_SPACE; }
-  "\"\"\""              { yybegin(INNER_BLOCK_DOC); yypushback(3); }
+  {INLINE_DOC}          { return INLINE_DOC; }
 
   ","                   { return COMMA; }
   ":"                   { return COLON; }
@@ -135,20 +97,6 @@ WHITE_SPACE      = {WHITE_SPACE_CHAR}+
   {IDENTIFIER}          { return IDENTIFIER; }
   {STRING_LITERAL}      { return STRING_LITERAL; }
 
-}
-
-<INNER_BLOCK_DOC> {
-  "\"\"\""    { if (zzNestedCommentLevel++ == 0)
-                zzPostponedMarkedPos = zzStartRead;
-              }
-
-  "\"\"\""    { if (--zzNestedCommentLevel == 0)
-                return imbueBlockComment();
-              }
-
-  <<EOF>> { zzNestedCommentLevel = 0; return imbueBlockComment(); }
-
-  [^]     { }
 }
 
 [^] { return BAD_CHARACTER; }
