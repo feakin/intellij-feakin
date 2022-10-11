@@ -11,6 +11,7 @@ object FkTokenTypeSets {
         FkElementTypes.AGGREGATE_KEYWORD,
         FkElementTypes.VALUE_OBJECT_KEYWORD,
         FkElementTypes.STRUCT_KEYWORD,
+        FkElementTypes.DOMAIN_EVENT_KEYWORD,
 
         // Fk impl API
         FkElementTypes.IMPL_KEYWORD,

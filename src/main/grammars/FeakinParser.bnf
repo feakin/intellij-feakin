@@ -73,6 +73,7 @@
       LAYER_KEYWORD         = 'layer'
       DEPENDENCY_KEYWORD    = 'dependency'
       PACKAGE_KEYWORD       = 'package'
+      DOMAIN_EVENT_KEYWORD  = 'DomainEvent'
   ]
 }
 
@@ -139,7 +140,9 @@ private useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICO
 
 aggregateBody ::= LBRACE (aggregateEntry*)? RBRACE
 
-private aggregateEntry ::= useEntity
+private aggregateEntry ::= domainEvent | useEntity
+
+private domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
 private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
@@ -169,7 +172,7 @@ endpointDeclaration ::= ENDPOINT_KEYWORD endpointBody
 
 endpointBody ::= LBRACE requestDeclaration requestBody? authorizationDecl? responseDeclaration? RBRACE
 
-private authorizationDecl ::= AUTH_KEYWORD COLON authorizationType? authorizationValue* SEMICOLON?
+private authorizationDecl ::= AUTH_KEYWORD COLON authorizationType (authorizationValue | STRING_LITERAL)* SEMICOLON?
 
 authorizationValue ::= IDENTIFIER
 authorizationType ::= IDENTIFIER

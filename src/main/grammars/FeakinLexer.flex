@@ -67,6 +67,7 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "Entity"              { return ENTITY_KEYWORD; }
   "ValueObject"         { return VALUE_OBJECT_KEYWORD; }
   "Struct"              { return STRUCT_KEYWORD; }
+  "DomainEvent"         { return DOMAIN_EVENT_KEYWORD; }
   "impl"                { return IMPL_KEYWORD; }
   "endpoint"            { return ENDPOINT_KEYWORD; }
   "request"             { return REQUEST_KEYWORD; }
