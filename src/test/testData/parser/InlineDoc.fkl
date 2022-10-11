@@ -1,0 +1,9 @@
+Aggregate Cart {
+  """ inline doc sample
+  just-demo for test
+  """
+
+  Entity Cart {
+    ValueObject CartTotal
+  }
+}

@@ -1,0 +1,10 @@
+Feakin
+  PsiElement(FeakinTokenType.Aggregate)('Aggregate')
+  PsiWhiteSpace(' ')
+  PsiElement(FeakinTokenType.IDENTIFIER)('Cart')
+  PsiWhiteSpace(' ')
+  PsiElement(FeakinTokenType.{)('{')
+  PsiErrorElement:FeakinTokenType.Entity or FeakinTokenType.} expected
+    <empty list>
+  PsiWhiteSpace('\n  ')
+  PsiComment(FeakinTokenType.inner_block_doc)('""" inline doc sample\n  just-demo for test\n  """\n\n  Entity Cart {\n    ValueObject CartTotal\n  }\n}')

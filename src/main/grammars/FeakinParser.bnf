@@ -137,7 +137,7 @@ valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
 
 private useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
-aggregateBody ::= LBRACE aggregateEntry* RBRACE
+aggregateBody ::= LBRACE (aggregateEntry*)? RBRACE
 
 private aggregateEntry ::= useEntity
 

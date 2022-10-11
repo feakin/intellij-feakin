@@ -39,4 +39,8 @@ class FeakinParsingTest : ParsingTestCase("parser", "fkl", FkParserDefinition())
     fun testLayeredWithImpl() {
         doTest(true)
     }
+
+    fun testInlineDoc() {
+        doTest(true)
+    }
 }

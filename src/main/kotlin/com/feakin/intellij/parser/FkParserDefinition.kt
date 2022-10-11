@@ -5,6 +5,7 @@ import com.feakin.intellij.FkFileStub
 import com.feakin.intellij.FkLanguage
 import com.feakin.intellij.lexer.FkElementTypes
 import com.feakin.intellij.lexer.FkLexer
+import com.feakin.intellij.lexer.FkTokenType
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.lang.PsiParser
@@ -18,7 +19,9 @@ import com.intellij.psi.tree.TokenSet
 
 class FkParserDefinition : ParserDefinition {
     companion object {
-        val COMMENTS = TokenSet.create(FkElementTypes.COMMENT)
+        @JvmField val INNER_BLOCK_DOC_COMMENT = FkTokenType("inner_block_doc")
+
+        val COMMENTS = TokenSet.create(FkElementTypes.COMMENT, INNER_BLOCK_DOC_COMMENT)
         val FILE = IFileElementType(FkLanguage)
     }
 
