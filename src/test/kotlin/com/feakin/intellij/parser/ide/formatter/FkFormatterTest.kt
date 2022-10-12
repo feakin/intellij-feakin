@@ -22,4 +22,13 @@ Aggregate Reservation;
 }"""
         )
     }
+
+    fun testSourceSetFormatter() {
+        val origin = """SourceSet sourceSet {
+    feakin {
+        srcDir: ["src/main/resources/uml"]
+    }
+}"""
+        doTextTest(origin, origin)
+    }
 }
