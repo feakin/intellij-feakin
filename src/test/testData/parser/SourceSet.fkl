@@ -1,0 +1,9 @@
+SourceSet sourceSet {
+  feakin {
+    srcDir: ["src/main/resources/uml"]
+  }
+  puml {
+    parser: "PlantUML"
+    srcDir: ["src/main/resources/uml"]
+  }
+}

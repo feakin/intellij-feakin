@@ -43,4 +43,8 @@ class FeakinParsingTest : ParsingTestCase("parser", "fkl", FkParserDefinition())
     fun testInlineDoc() {
         doTest(true)
     }
+
+    fun testSourceSet() {
+        doTest(true)
+    }
 }

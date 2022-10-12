@@ -74,6 +74,8 @@
       DEPENDENCY_KEYWORD    = 'dependency'
       PACKAGE_KEYWORD       = 'package'
       DOMAIN_EVENT_KEYWORD  = 'DomainEvent'
+
+      SOURCE_SET_KEYWORD    = 'SourceSet'
   ]
 }
 
@@ -87,6 +89,7 @@ declaration ::= contextMapDeclaration
                | structDeclaration
                | implDeclaration
                | layeredDeclaration
+               | sourceSetDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {
@@ -249,6 +252,22 @@ viaMethodName ::= IDENTIFIER
 requestEntityName ::= IDENTIFIER
 
 responseEntityName ::= IDENTIFIER
+
+sourceSetDeclaration ::= SOURCE_SET_KEYWORD IDENTIFIER sourceSetDeclBody
+
+sourceSetDeclBody ::= LBRACE (sourceSetItem)* RBRACE
+
+sourceSetItem ::= IDENTIFIER sourceSetItemBody
+
+sourceSetItemBody ::= LBRACE sourceSetEntry* RBRACE
+
+sourceSetEntry ::= entryKey COLON entryValue SEMICOLON?
+
+entryKey ::= IDENTIFIER
+
+entryValue ::= value | '[' value* ']'
+
+value ::= STRING_LITERAL | IDENTIFIER | NUMBER_LITERAL
 
 contextName ::= IDENTIFIER
 {

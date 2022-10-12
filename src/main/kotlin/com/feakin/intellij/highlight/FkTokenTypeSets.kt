@@ -43,5 +43,8 @@ object FkTokenTypeSets {
         FkElementTypes.DEPENDENCY_KEYWORD,
         FkElementTypes.AGGREGATE_S_KEYWORD,
         FkElementTypes.ENTITY_S_KEYWORD,
+
+        //sourceSet
+        FkElementTypes.SOURCE_SET_KEYWORD
     )
 }

@@ -24,7 +24,6 @@ import static com.feakin.intellij.parser.FkParserDefinition.*;
 %type IElementType
 %unicode
 
-
 EOL=\R
 WHITE_SPACE=\s+
 
@@ -67,7 +66,6 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "Entity"              { return ENTITY_KEYWORD; }
   "ValueObject"         { return VALUE_OBJECT_KEYWORD; }
   "Struct"              { return STRUCT_KEYWORD; }
-  "DomainEvent"         { return DOMAIN_EVENT_KEYWORD; }
   "impl"                { return IMPL_KEYWORD; }
   "endpoint"            { return ENDPOINT_KEYWORD; }
   "request"             { return REQUEST_KEYWORD; }
@@ -92,6 +90,8 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "layer"               { return LAYER_KEYWORD; }
   "dependency"          { return DEPENDENCY_KEYWORD; }
   "package"             { return PACKAGE_KEYWORD; }
+  "DomainEvent"         { return DOMAIN_EVENT_KEYWORD; }
+  "SourceSet"           { return SOURCE_SET_KEYWORD; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }
