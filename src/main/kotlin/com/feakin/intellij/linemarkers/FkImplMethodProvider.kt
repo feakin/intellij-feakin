@@ -16,7 +16,7 @@ class FkImplMethodProvider : LineMarkerProvider {
             element,
             element.textRange,
             FkIcons.Method,
-            { "Method Call" },
+            { "create Method call (TODO)" },
             { _: MouseEvent?, _: PsiElement? -> run {} },
             GutterIconRenderer.Alignment.LEFT,
             { "Method Call" }
