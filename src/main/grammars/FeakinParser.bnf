@@ -291,7 +291,11 @@ whenEntryBody ::= LBRACE stepDeclaration* RBRACE
 
 variableDeclaration ::= VAR_KEYWORD IDENTIFIER COLON fieldType variableBody
 
-variableBody ::= LBRACE structEntry* RBRACE
+variableBody ::= LBRACE variableEntry* RBRACE
+
+variableEntry ::= variableKey COLON entryValue SEMICOLON?
+
+variableKey ::= IDENTIFIER | PACKAGE_KEYWORD
 
 value ::= STRING_LITERAL | IDENTIFIER | NUMBER_LITERAL
 

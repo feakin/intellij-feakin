@@ -1,0 +1,8 @@
+var source: JavaSource {
+  language: "Java";
+  package: "com.phodal.coco";
+}
+
+def ContextMap {
+   // todo: parser generator
+}
