@@ -12,5 +12,14 @@ impl CinemaCreated {
     via UserRepository::save(user: User) receive user: User;
     //
     via MessageQueue send CinemaCreated to "CinemaCreated"
+
+    when(isUserValid) {
+      is true => {
+        // do something
+      }
+      is false => {
+        // do something
+      }
+    }
   }
 }

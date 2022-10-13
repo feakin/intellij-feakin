@@ -76,6 +76,13 @@
       DOMAIN_EVENT_KEYWORD  = 'DomainEvent'
 
       SOURCE_SET_KEYWORD    = 'SourceSet'
+
+      // expression
+      WHEN_KEYWORD          = 'when'
+      IS_KEYWORD            = 'is'
+
+      VAR_KEYWORD           = 'var'
+      DEF_KEYWORD           = 'def'
   ]
 }
 
@@ -90,6 +97,8 @@ declaration ::= contextMapDeclaration
                | implDeclaration
                | layeredDeclaration
                | sourceSetDeclaration
+               | variableDeclaration
+               | definitionDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {
@@ -204,6 +213,7 @@ flowDeclaration ::= FLOW_KEYWORD flowBody
 flowBody ::= LBRACE stepDeclaration* RBRACE
 
 private stepDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? (viaMethodDeclaration | viaMessageDeclaration)
+                        | whenExpression
 
 viaMethodDeclaration ::= RECEIVE_KEYWORD receiveObject SEMICOLON?
 
@@ -269,7 +279,25 @@ entryKey ::= IDENTIFIER
 
 entryValue ::= value | '[' value* ']'
 
+whenExpression ::= WHEN_KEYWORD whenBody
+
+private whenBody ::= LPAREN IDENTIFIER RPAREN LBRACE whenEntry* RBRACE
+
+whenEntry ::= IS_KEYWORD whenCondition "=>" whenEntryBody?
+
+whenCondition ::= IDENTIFIER
+
+whenEntryBody ::= LBRACE stepDeclaration* RBRACE
+
+variableDeclaration ::= VAR_KEYWORD IDENTIFIER COLON fieldType variableBody
+
+variableBody ::= LBRACE structEntry* RBRACE
+
 value ::= STRING_LITERAL | IDENTIFIER | NUMBER_LITERAL
+
+definitionDeclaration ::= DEFINITION_KEYWORD IDENTIFIER definitionBody
+
+definitionBody ::= LBRACE structEntry* RBRACE
 
 contextName ::= IDENTIFIER
 {
