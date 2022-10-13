@@ -6,7 +6,10 @@
 
     <depends>com.intellij.modules.platform</depends>
 
+    <resource-bundle>messages.FkBundle</resource-bundle>
+
     <extensions defaultExtensionNs="com.intellij">
+
         <!-- File-type Factory -->
         <fileType name="Feakin File"
                   language="Feakin"
@@ -84,5 +87,8 @@
         <!-- spellchecker -->
         <spellchecker.bundledDictionaryProvider implementation="com.feakin.intellij.spelling.FkBundledDictionaryProvider"/>
         <spellchecker.support language="Feakin" implementationClass="com.feakin.intellij.spelling.FkSpellcheckingStrategy"/>
+
+        <!-- Color Settings -->
+        <additionalTextAttributes scheme="Darcula" file="colors/FeakinDefault.xml"/>
     </extensions>
 </idea-plugin>

@@ -92,6 +92,7 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "package"             { return PACKAGE_KEYWORD; }
   "DomainEvent"         { return DOMAIN_EVENT_KEYWORD; }
   "SourceSet"           { return SOURCE_SET_KEYWORD; }
+  "NUMBER_LITERAL"      { return NUMBER_LITERAL; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }

@@ -1,7 +1,9 @@
 package com.feakin.intellij.highlight
 
-import com.feakin.intellij.lexer.FkLexer
+import com.feakin.intellij.colors.FkColors
 import com.feakin.intellij.lexer.FkElementTypes
+import com.feakin.intellij.lexer.FkLexer
+import com.feakin.intellij.parser.FkParserDefinition
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
@@ -24,9 +26,6 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
             fillMap(ATTRIBUTES, FkTokenTypeSets.KEY_WORDS, DefaultLanguageHighlighterColors.KEYWORD)
             ATTRIBUTES[FkElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.LABEL
 
-            ATTRIBUTES[FkElementTypes.COMMENT] = DefaultLanguageHighlighterColors.LINE_COMMENT;
-            ATTRIBUTES[FkElementTypes.BLOCK_COMMENT] = DefaultLanguageHighlighterColors.BLOCK_COMMENT;
-
             ATTRIBUTES[FkElementTypes.LBRACE] = DefaultLanguageHighlighterColors.BRACES;
             ATTRIBUTES[FkElementTypes.RBRACE] = DefaultLanguageHighlighterColors.BRACES;
 
@@ -41,6 +40,12 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
 
             ATTRIBUTES[FkElementTypes.STRING_LITERAL] = DefaultLanguageHighlighterColors.STRING;
             ATTRIBUTES[FkElementTypes.AUTHORIZATION_VALUE] = DefaultLanguageHighlighterColors.STRING;
+
+            ATTRIBUTES[FkElementTypes.ENTRY_KEY] = DefaultLanguageHighlighterColors.LOCAL_VARIABLE;
+
+            ATTRIBUTES[FkElementTypes.COMMENT] = FkColors.COMMENT.textAttributesKey;
+            ATTRIBUTES[FkElementTypes.BLOCK_COMMENT] = FkColors.COMMENT.textAttributesKey;
+            ATTRIBUTES[FkParserDefinition.INLINE_DOC] = FkColors.COMMENT.textAttributesKey;
         }
     }
 }

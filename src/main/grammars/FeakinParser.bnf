@@ -257,7 +257,9 @@ sourceSetDeclaration ::= SOURCE_SET_KEYWORD IDENTIFIER sourceSetDeclBody
 
 sourceSetDeclBody ::= LBRACE (sourceSetItem)* RBRACE
 
-sourceSetItem ::= IDENTIFIER sourceSetItemBody
+sourceSetItem ::= sourceSetName sourceSetItemBody
+
+sourceSetName ::= IDENTIFIER
 
 sourceSetItemBody ::= LBRACE sourceSetEntry* RBRACE
 
