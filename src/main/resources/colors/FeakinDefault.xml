@@ -5,4 +5,9 @@
             <option name="FOREGROUND" value="FFD700"/>
         </value>
     </option>
+    <option name="com.feakin.INCLUDE">
+        <value>
+            <option name="FOREGROUND" value="74759b"/>
+        </value>
+    </option>
 </list>

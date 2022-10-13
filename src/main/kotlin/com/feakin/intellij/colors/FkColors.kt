@@ -10,6 +10,7 @@ import java.util.function.Supplier
 @Suppress("UnstableApiUsage")
 enum class FkColors(humanName: Supplier<@NlsContexts.AttributeDescriptor String>, default: TextAttributesKey? = null) {
     COMMENT(FkBundle.messagePointer("settings.feakin.color.inline.doc"), DefaultLanguageHighlighterColors.DOC_COMMENT),
+    INCLUDE(FkBundle.messagePointer("settings.feakin.color.include"), DefaultLanguageHighlighterColors.IDENTIFIER),
     ;
 
     val textAttributesKey = TextAttributesKey.createTextAttributesKey("com.feakin.$name", default)

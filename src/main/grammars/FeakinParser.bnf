@@ -83,12 +83,14 @@
 
       VAR_KEYWORD           = 'var'
       DEF_KEYWORD           = 'def'
+      INCLUDE_KEYWORD       = 'include'
   ]
 }
 
 compilationUnit ::= declaration*
 
-declaration ::= contextMapDeclaration
+declaration ::= includeDeclaration
+               | contextMapDeclaration
                | contextDeclaration
                | aggregateDeclaration
                | entityDeclaration
@@ -99,6 +101,8 @@ declaration ::= contextMapDeclaration
                | sourceSetDeclaration
                | variableDeclaration
                | defDeclaration
+
+includeDeclaration ::= INCLUDE_KEYWORD STRING_LITERAL ";"?
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {

@@ -46,6 +46,8 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
             ATTRIBUTES[FkElementTypes.COMMENT] = FkColors.COMMENT.textAttributesKey;
             ATTRIBUTES[FkElementTypes.BLOCK_COMMENT] = FkColors.COMMENT.textAttributesKey;
             ATTRIBUTES[FkParserDefinition.INLINE_DOC] = FkColors.COMMENT.textAttributesKey;
+
+            ATTRIBUTES[FkElementTypes.INCLUDE_KEYWORD] = FkColors.INCLUDE.textAttributesKey;
         }
     }
 }
