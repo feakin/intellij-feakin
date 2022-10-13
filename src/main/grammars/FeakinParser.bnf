@@ -102,7 +102,13 @@ declaration ::= includeDeclaration
                | variableDeclaration
                | defDeclaration
 
-includeDeclaration ::= INCLUDE_KEYWORD STRING_LITERAL ";"?
+includeDeclaration ::= INCLUDE_KEYWORD STRING_LITERAL ";"?  {
+    pin = 1
+    name = ""
+    stubClass = "com.feakin.intellij.stubs.FkIncludeStub"
+    mixin = "com.feakin.intellij.stubs.ext.FkIncludeMixin"
+    elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
+}
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {
