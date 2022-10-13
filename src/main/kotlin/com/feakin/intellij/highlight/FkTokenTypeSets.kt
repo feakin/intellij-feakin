@@ -39,12 +39,15 @@ object FkTokenTypeSets {
         //layered
         FkElementTypes.LAYERED_KEYWORD,
         FkElementTypes.LAYER_KEYWORD,
-        FkElementTypes.PACKAGE_KEYWORD,
         FkElementTypes.DEPENDENCY_KEYWORD,
         FkElementTypes.AGGREGATE_S_KEYWORD,
         FkElementTypes.ENTITY_S_KEYWORD,
 
         //sourceSet
-        FkElementTypes.SOURCE_SET_KEYWORD
+        FkElementTypes.SOURCE_SET_KEYWORD,
+        FkElementTypes.WHEN_KEYWORD,
+        FkElementTypes.IS_KEYWORD,
+        FkElementTypes.VAR_KEYWORD,
+        FkElementTypes.DEF_KEYWORD,
     )
 }

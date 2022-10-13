@@ -98,7 +98,7 @@ declaration ::= contextMapDeclaration
                | layeredDeclaration
                | sourceSetDeclaration
                | variableDeclaration
-               | definitionDeclaration
+               | defDeclaration
 
 contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 {
@@ -281,7 +281,7 @@ entryValue ::= value | '[' value* ']'
 
 whenExpression ::= WHEN_KEYWORD whenBody
 
-private whenBody ::= LPAREN IDENTIFIER RPAREN LBRACE whenEntry* RBRACE
+whenBody ::= LPAREN IDENTIFIER RPAREN LBRACE whenEntry* RBRACE
 
 whenEntry ::= IS_KEYWORD whenCondition "=>" whenEntryBody?
 
@@ -299,9 +299,15 @@ variableKey ::= IDENTIFIER | PACKAGE_KEYWORD
 
 value ::= STRING_LITERAL | IDENTIFIER | NUMBER_LITERAL
 
-definitionDeclaration ::= DEFINITION_KEYWORD IDENTIFIER definitionBody
+defDeclaration ::= DEF_KEYWORD defIdent defBody
 
-definitionBody ::= LBRACE structEntry* RBRACE
+defIdent ::=  CONTEXT_MAP_KEYWORD
+             | CONTEXT_KEYWORD
+             | AGGREGATE_KEYWORD
+             | ENTITY_KEYWORD
+             | VALUE_OBJECT_KEYWORD
+
+defBody ::= LBRACE structEntry* RBRACE
 
 contextName ::= IDENTIFIER
 {
