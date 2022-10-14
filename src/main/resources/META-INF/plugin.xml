@@ -45,6 +45,7 @@
 
         <stubIndex implementation="com.feakin.intellij.resolve.indexes.FkNamedElementIndex"/>
         <stubIndex implementation="com.feakin.intellij.resolve.indexes.FkGotoClassIndex"/>
+        <stubIndex implementation="com.feakin.intellij.resolve.indexes.FkPathIndex"/>
 
         <gotoSymbolContributor implementation="com.feakin.intellij.ide.navigate.FkGotoSymbolContributor"/>
 
