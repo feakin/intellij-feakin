@@ -106,6 +106,7 @@ includeDeclaration ::= INCLUDE_KEYWORD STRING_LITERAL ";"?  {
     pin = 1
     name = ""
     stubClass = "com.feakin.intellij.stubs.FkIncludeStub"
+    implements = "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
     mixin = "com.feakin.intellij.stubs.ext.FkIncludeMixin"
     elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
