@@ -15,15 +15,12 @@ abstract class FkPathMixin : FkStubbedNamedElementImpl<FkPathStub>, FkPath {
 
     constructor(stub: FkPathStub, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 
-    override val referenceName: String
-        get() {
-            val stub = greenStub
-            return stub?.name ?: super.referenceName
-        }
+    override val referenceName: String = referenceNameElement.text
 
-    override val referenceNameElement: PsiElement get() {
-        return node.findChildByType(STRING_LITERAL)?.psi ?: this
-    }
+    final override val referenceNameElement: PsiElement
+        get() {
+            return node.findChildByType(STRING_LITERAL)?.psi ?: this
+        }
 
     override fun getReference(): FkReference = FkPathReferenceImpl(this)
 }
