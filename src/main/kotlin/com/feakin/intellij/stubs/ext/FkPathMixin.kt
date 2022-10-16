@@ -8,6 +8,8 @@ import com.feakin.intellij.resolve.ref.impl.FkPathReferenceImpl
 import com.feakin.intellij.stubs.FkPathStub
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiReference
+import com.intellij.psi.PsiReferenceBase
 import com.intellij.psi.stubs.IStubElementType
 
 abstract class FkPathMixin : FkStubbedNamedElementImpl<FkPathStub>, FkPath {
@@ -19,8 +21,15 @@ abstract class FkPathMixin : FkStubbedNamedElementImpl<FkPathStub>, FkPath {
 
     final override val referenceNameElement: PsiElement
         get() {
+            // todo: change by path
             return node.findChildByType(STRING_LITERAL)?.psi ?: this
         }
 
-    override fun getReference(): FkReference = FkPathReferenceImpl(this)
+    override fun getReference(): FkReference? {
+        if (node.text.length > 2) {
+            return FkPathReferenceImpl(this)
+        }
+
+        return null
+    }
 }

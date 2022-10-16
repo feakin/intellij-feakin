@@ -25,6 +25,7 @@ Features:
 - [ ] Code Style Settings
 - [x] Reference Contributor
   - [x] ContextName
+  - [x] File Importer
   - [ ] Others
 - [x] Commenter
 - [ ] Rename Refactoring

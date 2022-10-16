@@ -19,5 +19,5 @@ interface FkMandatoryReferenceElement : FkReferenceElement {
 
     override val referenceName: String get() = referenceNameElement.text
 
-    override fun getReference(): FkReference
+    override fun getReference(): FkReference?
 }
