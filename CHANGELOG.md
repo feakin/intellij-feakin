@@ -4,6 +4,25 @@
 
 ## [Unreleased]
 
+## [0.2.3]
+
+### Features
+
+- add import for relative path support ([6cc1c9d](https://github.com/feakin/intellij-feakin/commit/6cc1c9db66a90bb3d637725f079e187efe847dd8))
+- add line marker for layered ([a2a1fc7](https://github.com/feakin/intellij-feakin/commit/a2a1fc7514c0bf557b2d6c329d94d1cad759ecfb))
+- add source set support for highlight ([636f0df](https://github.com/feakin/intellij-feakin/commit/636f0dfd5904772e9c9ea18cd7b253d4ebfe69ca))
+- add type for include stub ([ee32c7a](https://github.com/feakin/intellij-feakin/commit/ee32c7a30ee5b01cc1b9b1d0ce814a69457f52b8))
+- **color:** add color for comments ([b4c9e4a](https://github.com/feakin/intellij-feakin/commit/b4c9e4ae0c1a74f0efdb5da1afb343fe9050249d))
+- **goto:** init symbol for testing ([1c8593b](https://github.com/feakin/intellij-feakin/commit/1c8593b86444dc40ab83b85312fa600f0841260d))
+- init basic completion ([fafb650](https://github.com/feakin/intellij-feakin/commit/fafb65072fe3e20b2583c6b95361d5f42269e5c8))
+- init bnf for path ref ([f49b371](https://github.com/feakin/intellij-feakin/commit/f49b37182319ec399d237253d8c4ea46507bc9c9))
+- init for include syntax ([bca7fb4](https://github.com/feakin/intellij-feakin/commit/bca7fb42fadbff3c32080a98b53bc79ce80ff414))
+- make find by contextNmae usage works ([650a057](https://github.com/feakin/intellij-feakin/commit/650a05781b32bd5fc67d61a866f89ab34a019615))
+- **spelling:** init origin design ([77820bd](https://github.com/feakin/intellij-feakin/commit/77820bdcf6d3974d2b9473c95c9489db5e0f8c3d))
+- **syntax:** add support for var and typedef ([ab9bb12](https://github.com/feakin/intellij-feakin/commit/ab9bb1253b91c450abb66bce57a8453615110f7c))
+- **syntax:** add when is support ([0947624](https://github.com/feakin/intellij-feakin/commit/0947624e191f34f070d00993b9a9c3937aad0df4))
+- try to add parsing for def ([947fe71](https://github.com/feakin/intellij-feakin/commit/947fe71ff32adc2f9a6ef4ecb043c11d73cf8f23))
+
 ## [0.2.2]
 
 ### Features
