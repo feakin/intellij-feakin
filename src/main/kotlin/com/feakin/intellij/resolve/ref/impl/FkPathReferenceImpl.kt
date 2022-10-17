@@ -6,7 +6,6 @@ import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.intellij.openapi.util.TextRange
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.psi.PsiElement
-import com.intellij.util.containers.ContainerUtil
 
 class FkPathReferenceImpl(element: FkPath) : FkReferenceBase<FkPath>(element) {
     override fun multiResolve(): List<FkElement> {
