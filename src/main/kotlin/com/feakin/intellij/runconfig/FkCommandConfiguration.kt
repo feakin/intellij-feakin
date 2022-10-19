@@ -17,7 +17,7 @@ class FkCommandConfiguration(project: Project, name: String, factory: Configurat
 
     // for debugging
     var command: String = ""
-    var commandLine: FkCommandLine = FkCommandLine("", "", "gen");
+    var commandLine: FkCommandLine = FkCommandLine("", "", "");
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState {
         return FkRunState(environment, this, commandLine)

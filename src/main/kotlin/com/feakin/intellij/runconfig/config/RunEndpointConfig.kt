@@ -10,7 +10,7 @@ data class RunEndpointConfig(
 ) {
     val parent = (sourceElement.parent.parent as FkImplDeclaration)
     private val implName: String = parent.identifier.text ?: ""
-    val configurationName: String = "Test Request $implName"
+    val configurationName: String = "Req $implName"
 
     val fkCommandLine = fromImplDecl(parent, path)
 }
@@ -18,5 +18,5 @@ data class RunEndpointConfig(
 private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
     val implName = feakinImplDecl.identifier.text ?: ""
     val subcommand = "run"
-    return FkCommandLine(path, implName, subcommand)
+    return FkCommandLine(path, implName, subcommand, "request")
 }
