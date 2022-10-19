@@ -18,5 +18,5 @@ data class RunEndpointConfig(
 private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
     val implName = feakinImplDecl.identifier.text ?: ""
     val subcommand = "run"
-    return FkCommandLine(path, implName, subcommand, "request")
+    return FkCommandLine(path, implName, subcommand, "http-request")
 }
