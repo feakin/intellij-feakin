@@ -29,8 +29,11 @@
         <lang.psiStructureViewFactory language="Feakin"
                                       implementationClass="com.feakin.intellij.structure.FkStructureViewFactory"/>
 
-        <!-- Editor -->
+        <!-- Selection Handler -->
         <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FkBlockSelectionHandler"/>
+        <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FkFlowEntrySelectionHandler"/>
+
+        <!-- Editor -->
         <lang.foldingBuilder language="Feakin"
                              implementationClass="com.feakin.intellij.edit.FkFoldingBuilder"/>
 

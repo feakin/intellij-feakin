@@ -225,7 +225,7 @@ flowDeclaration ::= FLOW_KEYWORD flowBody
 
 flowBody ::= LBRACE stepDeclaration* RBRACE
 
-private stepDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? (viaMethodDeclaration | viaMessageDeclaration)
+stepDeclaration ::= VIA_KEYWORD objectName ((DOUBLE_COLON | DOT) viaMethodName parameters?)? (viaMethodDeclaration | viaMessageDeclaration)
                         | whenExpression
 
 viaMethodDeclaration ::= RECEIVE_KEYWORD receiveObject SEMICOLON?
