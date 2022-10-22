@@ -39,8 +39,6 @@
 
 
         <!-- Navigate between useDomainObject and DomainObjectDecl -->
-        <indexedRootsProvider implementation="com.feakin.intellij.indexing.FkIndexableSetContributor"/>
-
         <stubElementTypeHolder class="com.feakin.intellij.lexer.FkElementTypes"/>
 
         <stubIndex implementation="com.feakin.intellij.resolve.indexes.FkNamedElementIndex"/>
