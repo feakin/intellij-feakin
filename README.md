@@ -7,7 +7,7 @@
 <!-- Plugin description -->
 Feakin is an architecture design and visualization tool, based on Diagram-as-code. It can highlight code, generate structure, and others.
 
-Fklang 是一个架构设计 DSL，通过显性化软件架构设计，以确保软件系统描述与实现的一致性。并在工作流中，内嵌对于 AI 代码生成软件的支持，以构筑完整的开发者体验。
+Fklang 是一个基于软件开发工业化思想设计的架构设计 DSL。通过显性化软件架构设计，以确保软件系统描述与实现的一致性。并在工作流中，内嵌对于 AI 代码生成软件的支持，以构筑完整的开发者体验。
 
 <!-- Plugin description end -->
 
