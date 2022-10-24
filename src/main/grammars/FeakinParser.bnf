@@ -257,8 +257,8 @@ dependency ::= DEPENDENCY_KEYWORD LBRACE dependencyBody RBRACE
 dependencyBody ::= dependency_rule*
 dependency_rule ::= dep_source RARROW dep_target SEMICOLON?
 
-dep_source ::= STRING_LITERAL
-dep_target ::= STRING_LITERAL
+dep_source ::= STRING_LITERAL | IDENTIFIER
+dep_target ::= STRING_LITERAL | IDENTIFIER
 
 layerDeclaration ::= LAYER_KEYWORD IDENTIFIER layerBody
 
