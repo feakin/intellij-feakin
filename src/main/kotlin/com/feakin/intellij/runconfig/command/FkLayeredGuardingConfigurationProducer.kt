@@ -32,9 +32,11 @@ class FkLayeredGuardingConfigurationProducer : BaseLazyRunConfigurationProducer(
     private inline fun <reified T : FkLayeredDeclaration> createConfigFor(
         elements: List<PsiElement>
     ): RunGuardingConfig? {
-        val path = elements.firstOrNull()?.containingFile?.virtualFile?.path ?: return null
+        val config = elements.firstOrNull()?.containingFile?.virtualFile?.path ?: return null
         val sourceElement = elements.firstOrNull { it is T } ?: return null
-        return RunGuardingConfig(commandName, path, sourceElement as FkLayeredDeclaration)
+
+        val rootPath = sourceElement.project.basePath ?: return null
+        return RunGuardingConfig(commandName, config, sourceElement as FkLayeredDeclaration, rootPath)
     }
 
     private fun registerConfigProvider(provider: (List<PsiElement>) -> RunGuardingConfig?) {
