@@ -7,14 +7,14 @@ data class RunImplConfig(
     val path: String,
     val sourceElement: FkImplDeclaration
 ) {
-    private val implName: String = sourceElement.identifier?.text ?: ""
+    private val implName: String = sourceElement.identifier.text ?: ""
     val configurationName: String = "Gen $implName"
 
     val fkCommandLine = fromImplDecl(sourceElement, path)
 }
 
 private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
-    val implName = feakinImplDecl.identifier?.text ?: ""
+    val implName = feakinImplDecl.identifier.text ?: ""
     val subcommand = "gen"
     return FkCommandLine(path, implName, subcommand, path = "")
 }
