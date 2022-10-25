@@ -30,6 +30,7 @@
                                       implementationClass="com.feakin.intellij.structure.FkStructureViewFactory"/>
 
         <!-- Selection Handler -->
+        <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FkStringLiteralSelectionHandler"/>
         <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FkBlockSelectionHandler"/>
         <extendWordSelectionHandler implementation="com.feakin.intellij.ide.editor.FkFlowEntrySelectionHandler"/>
 
