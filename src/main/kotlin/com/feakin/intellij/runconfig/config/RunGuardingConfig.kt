@@ -1,11 +1,11 @@
 package com.feakin.intellij.runconfig.config
 
-import com.feakin.intellij.psi.FkImplDeclaration
+import com.feakin.intellij.psi.FkLayeredDeclaration
 
-data class RunImplConfig(
+data class RunGuardingConfig(
     val commandName: String,
     val path: String,
-    val sourceElement: FkImplDeclaration
+    val sourceElement: FkLayeredDeclaration
 ) {
     private val implName: String = sourceElement.identifier.text ?: ""
     val configurationName: String = "Gen $implName"
@@ -13,9 +13,8 @@ data class RunImplConfig(
     val fkCommandLine = fromImplDecl(sourceElement, path)
 }
 
-private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
+private fun fromImplDecl(feakinImplDecl: FkLayeredDeclaration, path: String): FkCommandLine {
     val implName = feakinImplDecl.identifier.text ?: ""
-    val subcommand = "gen"
-    return FkCommandLine(path, implName, subcommand, path = "")
+    val subcommand = "run"
+    return FkCommandLine(path, implName, subcommand, "http-request", "")
 }
-

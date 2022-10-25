@@ -5,28 +5,20 @@ import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
 import com.feakin.intellij.runconfig.FkRunState
 import com.feakin.intellij.runconfig.config.RunEndpointConfig
-import com.intellij.execution.PsiLocation
-import com.intellij.execution.RunManager
-import com.intellij.execution.RunnerAndConfigurationSettings
 import com.intellij.execution.actions.ConfigurationContext
-import com.intellij.execution.actions.ConfigurationFromContext
-import com.intellij.execution.actions.LazyRunConfigurationProducer
 import com.intellij.execution.configurations.ConfigurationFactory
-import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
-private typealias SendRequestConfigProvider = (List<PsiElement>) -> RunEndpointConfig?
-
-class FkEndpointConfigurationProducer : FkLazyRunConfigurationProducer() {
+class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer() {
     companion object {
         private val log: Logger = logger<FkRunState>()
     }
 
     private val commandName: String = "run"
-    private val runConfigProviders: MutableList<SendRequestConfigProvider> = mutableListOf()
+    private val runConfigProviders: MutableList<(List<PsiElement>) -> RunEndpointConfig?> = mutableListOf()
 
     override fun getConfigurationFactory(): ConfigurationFactory {
         return FkCommandConfigurationType.getInstance().factory
@@ -45,7 +37,7 @@ class FkEndpointConfigurationProducer : FkLazyRunConfigurationProducer() {
         return RunEndpointConfig(commandName, path, sourceElement as FkEndpointDeclaration)
     }
 
-    private fun registerConfigProvider(provider: SendRequestConfigProvider) {
+    private fun registerConfigProvider(provider: (List<PsiElement>) -> RunEndpointConfig?) {
         runConfigProviders.add(provider)
     }
 

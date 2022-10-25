@@ -75,9 +75,11 @@
         <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>
 
         <runConfigurationProducer
-                implementation="com.feakin.intellij.runconfig.command.FkRunConfigurationProducer"/>
+                implementation="com.feakin.intellij.runconfig.command.FkGenImplConfigurationProducer"/>
         <runConfigurationProducer
-                implementation="com.feakin.intellij.runconfig.command.FkEndpointConfigurationProducer"/>
+                implementation="com.feakin.intellij.runconfig.command.FkRunEndpointConfigurationProducer"/>
+        <runConfigurationProducer
+                implementation="com.feakin.intellij.runconfig.command.FkLayeredGuardingConfigurationProducer"/>
 
         <!-- Formatter -->
         <lang.formatter language="Feakin" implementationClass="com.feakin.intellij.formatter.FkFormattingModelBuilder"/>

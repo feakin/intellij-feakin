@@ -9,7 +9,8 @@ import com.intellij.execution.actions.ConfigurationFromContext
 import com.intellij.execution.actions.LazyRunConfigurationProducer
 import com.intellij.execution.configurations.RunConfiguration
 
-abstract class FkLazyRunConfigurationProducer: LazyRunConfigurationProducer<FkCommandConfiguration>() {
+
+abstract class BaseLazyRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfiguration>() {
     override fun findExistingConfiguration(context: ConfigurationContext): RunnerAndConfigurationSettings? {
         val preferredConfig = createConfigurationFromContext(context) ?: return null
         val runManager = RunManager.getInstance(context.project)
