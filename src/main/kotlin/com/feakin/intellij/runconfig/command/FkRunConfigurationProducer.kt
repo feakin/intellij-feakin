@@ -10,14 +10,9 @@ import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.feakin.intellij.runconfig.FkCommandConfigurationType
 import com.feakin.intellij.runconfig.FkRunState
 import com.feakin.intellij.runconfig.config.RunImplConfig
-import com.intellij.execution.PsiLocation
-import com.intellij.execution.RunManager
-import com.intellij.execution.RunnerAndConfigurationSettings
 import com.intellij.execution.actions.ConfigurationContext
-import com.intellij.execution.actions.ConfigurationFromContext
 import com.intellij.execution.actions.LazyRunConfigurationProducer
 import com.intellij.execution.configurations.ConfigurationFactory
-import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.util.Ref
@@ -25,7 +20,7 @@ import com.intellij.psi.PsiElement
 
 private typealias RunImplConfigProvider = (List<PsiElement>) -> RunImplConfig?
 
-class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfiguration>() {
+class FkRunConfigurationProducer : FkLazyRunConfigurationProducer() {
     companion object {
         private val log: Logger = logger<FkRunState>()
     }
@@ -93,43 +88,5 @@ class FkRunConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfigu
 
         return true
     }
-
-    override fun findExistingConfiguration(context: ConfigurationContext): RunnerAndConfigurationSettings? {
-        val preferredConfig = createConfigurationFromContext(context) ?: return null
-        val runManager = RunManager.getInstance(context.project)
-        val configurations = getConfigurationSettingsList(runManager)
-        for (configurationSettings in configurations) {
-            if (preferredConfig.configuration.isSame(configurationSettings.configuration)) {
-                return configurationSettings
-            }
-        }
-
-        return null
-    }
-
-    override fun findOrCreateConfigurationFromContext(context: ConfigurationContext): ConfigurationFromContext? {
-        val preferredConfig = createConfigurationFromContext(context) ?: return null
-
-        val psiElement = preferredConfig.sourceElement
-        val locationFromContext = context.location ?: return null
-        val locationFromElement = PsiLocation.fromPsiElement(psiElement, locationFromContext.module)
-        if (locationFromElement != null) {
-            val settings = findExistingConfiguration(context)
-            if (preferredConfig.configuration.isSame(settings?.configuration)) {
-                preferredConfig.setConfigurationSettings(settings)
-            } else {
-                RunManager.getInstance(context.project).setUniqueNameIfNeeded(preferredConfig.configuration)
-            }
-        }
-        return preferredConfig
-    }
-
-    private fun RunConfiguration.isSame(other: RunConfiguration?): Boolean =
-        when {
-            this === other -> true
-            this !is FkCommandConfiguration || other !is FkCommandConfiguration -> equals(other)
-            command != other.command -> false
-            else -> true
-        }
 
 }

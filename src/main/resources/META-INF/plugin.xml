@@ -61,13 +61,13 @@
                                         implementationClass="com.feakin.intellij.linemarkers.FkImplMessageProvider"/>
         <codeInsight.lineMarkerProvider language="Feakin"
                                         implementationClass="com.feakin.intellij.linemarkers.FkImplMethodProvider"/>
-        <codeInsight.lineMarkerProvider language="Feakin"
-                                        implementationClass="com.feakin.intellij.linemarkers.FkLayeredLineMarkerProvider"/>
 
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkImplLineMarkerContributor"/>
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkEndpointRequestLineMarkerContributor"/>
+        <runLineMarkerContributor language="Feakin"
+                                  implementationClass="com.feakin.intellij.linemarkers.FkLayeredGuardingLineMarkerContributor"/>
 
         <!-- Run Configurations -->
         <configurationType implementation="com.feakin.intellij.runconfig.FkCommandConfigurationType"/>

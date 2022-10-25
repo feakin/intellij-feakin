@@ -20,7 +20,7 @@ import com.intellij.psi.PsiElement
 
 private typealias SendRequestConfigProvider = (List<PsiElement>) -> RunEndpointConfig?
 
-class FkEndpointConfigurationProducer : LazyRunConfigurationProducer<FkCommandConfiguration>() {
+class FkEndpointConfigurationProducer : FkLazyRunConfigurationProducer() {
     companion object {
         private val log: Logger = logger<FkRunState>()
     }
@@ -87,43 +87,4 @@ class FkEndpointConfigurationProducer : LazyRunConfigurationProducer<FkCommandCo
 
         return true
     }
-
-    override fun findExistingConfiguration(context: ConfigurationContext): RunnerAndConfigurationSettings? {
-        val preferredConfig = createConfigurationFromContext(context) ?: return null
-        val runManager = RunManager.getInstance(context.project)
-        val configurations = getConfigurationSettingsList(runManager)
-        for (configurationSettings in configurations) {
-            if (preferredConfig.configuration.isSame(configurationSettings.configuration)) {
-                return configurationSettings
-            }
-        }
-
-        return null
-    }
-
-    override fun findOrCreateConfigurationFromContext(context: ConfigurationContext): ConfigurationFromContext? {
-        val preferredConfig = createConfigurationFromContext(context) ?: return null
-
-        val psiElement = preferredConfig.sourceElement
-        val locationFromContext = context.location ?: return null
-        val locationFromElement = PsiLocation.fromPsiElement(psiElement, locationFromContext.module)
-        if (locationFromElement != null) {
-            val settings = findExistingConfiguration(context)
-            if (preferredConfig.configuration.isSame(settings?.configuration)) {
-                preferredConfig.setConfigurationSettings(settings)
-            } else {
-                RunManager.getInstance(context.project).setUniqueNameIfNeeded(preferredConfig.configuration)
-            }
-        }
-        return preferredConfig
-    }
-
-    private fun RunConfiguration.isSame(other: RunConfiguration?): Boolean =
-        when {
-            this === other -> true
-            this !is FkCommandConfiguration || other !is FkCommandConfiguration -> equals(other)
-            command != other.command -> false
-            else -> true
-        }
-
 }
