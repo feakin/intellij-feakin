@@ -16,6 +16,6 @@ data class RunImplConfig(
 private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
     val implName = feakinImplDecl.identifier?.text ?: ""
     val subcommand = "gen"
-    return FkCommandLine(path, implName, subcommand)
+    return FkCommandLine(path, implName, subcommand, path = "")
 }
 
