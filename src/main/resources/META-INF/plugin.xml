@@ -62,24 +62,25 @@
         <codeInsight.lineMarkerProvider language="Feakin"
                                         implementationClass="com.feakin.intellij.linemarkers.FkImplMethodProvider"/>
 
+        <!-- Run Configurations -->
         <runLineMarkerContributor language="Feakin"
                                   implementationClass="com.feakin.intellij.linemarkers.FkImplLineMarkerContributor"/>
-        <runLineMarkerContributor language="Feakin"
-                                  implementationClass="com.feakin.intellij.linemarkers.FkEndpointRequestLineMarkerContributor"/>
-        <runLineMarkerContributor language="Feakin"
-                                  implementationClass="com.feakin.intellij.linemarkers.FkLayeredGuardingLineMarkerContributor"/>
-
-        <!-- Run Configurations -->
-        <configurationType implementation="com.feakin.intellij.runconfig.FkCommandConfigurationType"/>
-
-        <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>
-
         <runConfigurationProducer
                 implementation="com.feakin.intellij.runconfig.command.FkGenImplConfigurationProducer"/>
+
+        <runLineMarkerContributor language="Feakin"
+                                  implementationClass="com.feakin.intellij.linemarkers.FkEndpointRequestLineMarkerContributor"/>
         <runConfigurationProducer
                 implementation="com.feakin.intellij.runconfig.command.FkRunEndpointConfigurationProducer"/>
+
+        <runLineMarkerContributor language="Feakin"
+                                  implementationClass="com.feakin.intellij.linemarkers.FkLayeredGuardingLineMarkerContributor"/>
         <runConfigurationProducer
                 implementation="com.feakin.intellij.runconfig.command.FkLayeredGuardingConfigurationProducer"/>
+
+        <!-- Command Runner Config -->
+        <configurationType implementation="com.feakin.intellij.runconfig.FkCommandConfigurationType"/>
+        <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>
 
         <!-- Formatter -->
         <lang.formatter language="Feakin" implementationClass="com.feakin.intellij.formatter.FkFormattingModelBuilder"/>
