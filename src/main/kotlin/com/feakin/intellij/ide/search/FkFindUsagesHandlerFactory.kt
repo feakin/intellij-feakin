@@ -1,6 +1,7 @@
 package com.feakin.intellij.ide.search
 
 import com.feakin.intellij.psi.FkContextDeclaration
+import com.feakin.intellij.psi.FkLayerDeclaration
 import com.feakin.intellij.psi.FkNamedElement
 import com.intellij.find.findUsages.FindUsagesHandler
 import com.intellij.find.findUsages.FindUsagesHandlerFactory
@@ -18,6 +19,9 @@ class FkFindUsagesHandlerFactory : FindUsagesHandlerFactory() {
     private fun findSecondaryElements(element: PsiElement): List<PsiElement> {
         when(element) {
             is FkContextDeclaration -> {
+                return ReferencesSearch.search(element).findAll().map { it.element }
+            }
+            is FkLayerDeclaration -> {
                 return ReferencesSearch.search(element).findAll().map { it.element }
             }
             else -> return emptyList()

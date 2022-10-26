@@ -264,11 +264,11 @@ dep_target ::= dep_node
 
 dep_node ::= STRING_LITERAL | IDENTIFIER
 {
-  stubClass = "com.feakin.intellij.stubs.FkDepNodeStub"
   implements = [
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkDepNodeMixin"
+  stubClass = "com.feakin.intellij.stubs.FkDepNodeStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
