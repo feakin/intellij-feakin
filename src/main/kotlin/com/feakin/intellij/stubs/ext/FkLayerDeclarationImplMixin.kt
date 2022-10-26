@@ -17,6 +17,5 @@ abstract class FkLayerDeclarationImplMixin : FkStubbedNamedElementImpl<FkLayerDe
     override fun getReference(): FkReference = FkLayerDeclarationReferenceImpl(this)
 
     override val referenceNameElement: PsiElement get() = identifier
-
     override val referenceName: String get() = referenceNameElement.text
 }

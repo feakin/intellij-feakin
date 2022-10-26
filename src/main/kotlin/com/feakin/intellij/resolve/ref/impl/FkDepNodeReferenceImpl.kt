@@ -10,11 +10,13 @@ import com.intellij.psi.PsiElement
 class FkDepNodeReferenceImpl(element: FkDepNode) : FkReferenceBase<FkDepNode>(element) {
     override fun multiResolve(): List<FkElement> {
         val collection =
-            FkNamedElementIndex.findElementsByName(element.text, element.project)
-                .filterIsInstance<FkLayerDeclaration>()
-                .toCollection(mutableListOf())
+            element.identifier?.let {
+                FkNamedElementIndex.findElementsByName(it.text, element.project)
+                    .filterIsInstance<FkLayerDeclaration>()
+                    .toCollection(mutableListOf())
+            }
 
-        return collection
+        return collection?.toList() ?: emptyList()
     }
 
     override fun isReferenceTo(element: PsiElement): Boolean {
