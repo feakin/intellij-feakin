@@ -15,7 +15,6 @@ class FkContextDeclStub(
     parent,
     elementType
 ), FkNamedStub {
-
     object Type : FkStubElementType<FkContextDeclStub, FkContextDeclaration>("CONTEXT_DECLARATION") {
         override fun indexStub(stub: FkContextDeclStub, sink: IndexSink) {
             stub.name?.let { sink.occurrence(FkNamedElementIndex.KEY, it) }

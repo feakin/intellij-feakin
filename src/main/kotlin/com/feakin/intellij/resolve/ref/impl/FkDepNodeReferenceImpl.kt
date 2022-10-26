@@ -18,6 +18,6 @@ class FkDepNodeReferenceImpl(element: FkDepNode) : FkReferenceBase<FkDepNode>(el
     }
 
     override fun isReferenceTo(element: PsiElement): Boolean {
-        return element is FkLayerDeclaration && super.isReferenceTo(element)
+        return element is FkDepNode && super.isReferenceTo(element)
     }
 }

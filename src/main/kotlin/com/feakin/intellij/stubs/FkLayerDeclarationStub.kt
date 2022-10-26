@@ -36,7 +36,7 @@ class FkLayerDeclarationStub(
             psi: FkLayerDeclaration,
             parentStub: StubElement<out PsiElement>?
         ): FkLayerDeclarationStub {
-            return FkLayerDeclarationStub(parentStub, this, psi.text)
+            return FkLayerDeclarationStub(parentStub, this, psi.name)
         }
     }
 }

@@ -274,8 +274,9 @@ layerDeclaration ::= LAYER_KEYWORD IDENTIFIER layerBody
 {
   stubClass = "com.feakin.intellij.stubs.FkLayerDeclarationStub"
   implements = [
-     "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNamedElement"
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkLayerDeclarationImplMixin"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
