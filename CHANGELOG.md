@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [0.3.0]
+
+- add layered guarding support
+- enable for http endpoint running
+- refactor cli usage
+
 ## [0.2.3]
 
 ### Features
