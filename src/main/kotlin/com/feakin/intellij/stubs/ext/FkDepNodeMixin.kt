@@ -1,10 +1,8 @@
 package com.feakin.intellij.stubs.ext
 
-import com.feakin.intellij.lexer.FkElementTypes.STRING_LITERAL
 import com.feakin.intellij.psi.FkDepNode
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl
 import com.feakin.intellij.resolve.ref.FkReference
-import com.feakin.intellij.resolve.ref.impl.FkContextDeclReferenceImpl
 import com.feakin.intellij.resolve.ref.impl.FkDepNodeReferenceImpl
 import com.feakin.intellij.stubs.FkDepNodeStub
 import com.intellij.lang.ASTNode

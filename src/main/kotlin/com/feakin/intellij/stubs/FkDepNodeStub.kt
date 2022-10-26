@@ -3,7 +3,6 @@ package com.feakin.intellij.stubs
 import com.feakin.intellij.psi.FkDepNode
 import com.feakin.intellij.psi.FkNamedStub
 import com.feakin.intellij.psi.impl.FkDepNodeImpl
-import com.feakin.intellij.resolve.indexes.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 
