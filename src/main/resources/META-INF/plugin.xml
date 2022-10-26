@@ -97,5 +97,15 @@
 
         <!-- Color Settings -->
         <additionalTextAttributes scheme="Darcula" file="colors/FeakinDefault.xml"/>
+
+        <!-- Smart Enter Processor -->
+        <lang.smartEnterProcessor language="Feakin"
+                                  implementationClass="com.feakin.intellij.typing.assist.FkSmartEnterProcessor"/>
+
+        <!-- Inspections -->
+        <localInspection language="Feakin" groupPath="Feakin" groupName="Lints"
+                         displayName="Duplicate context declaration"
+                         enabledByDefault="true" level="ERROR"
+                         implementationClass="com.feakin.intellij.inspections.lints.FkDuplicateContextDeclInspection"/>
     </extensions>
 </idea-plugin>
