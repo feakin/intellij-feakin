@@ -16,11 +16,17 @@ Features:
 - [x] Lexer and Parser Definition
 - [x] Highlight code
 - [x] Line Marker Provider
+  - [x] LayeredGuarding
+  - [ ] Endpoint Run
+  - [ ] Endpoint Test
+  - [x] GenImpl
 - [x] Completion Contributor
 - [x] Structure View
 - [x] Folding
 - [x] Brace Matching
 - [x] Block Selection
+  - [x] Block
+  - [x] Flow Entry
 - [x] Code Formatting
 - [ ] Code Style Settings
 - [x] Reference Contributor
