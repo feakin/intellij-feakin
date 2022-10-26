@@ -104,8 +104,8 @@
 
         <!-- Inspections -->
         <localInspection language="Feakin" groupPath="Feakin" groupName="Lints"
-                         displayName="Duplicate context declaration"
+                         displayName="Duplicate declaration"
                          enabledByDefault="true" level="ERROR"
-                         implementationClass="com.feakin.intellij.inspections.lints.FkDuplicateContextDeclInspection"/>
+                         implementationClass="com.feakin.intellij.inspections.lints.FkDuplicateDeclInspection"/>
     </extensions>
 </idea-plugin>
