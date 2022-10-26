@@ -257,8 +257,16 @@ dependency ::= DEPENDENCY_KEYWORD LBRACE dependencyBody RBRACE
 dependencyBody ::= dependency_rule*
 dependency_rule ::= dep_source RARROW dep_target SEMICOLON?
 
-dep_source ::= STRING_LITERAL | IDENTIFIER
-dep_target ::= STRING_LITERAL | IDENTIFIER
+dep_source ::= dep_node
+dep_target ::= dep_node
+
+dep_node ::= STRING_LITERAL | IDENTIFIER
+//{
+//    stubClass = "com.feakin.intellij.stubs.FkDependencyNodeStub"
+//    implements = "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+//    mixin = "com.feakin.intellij.stubs.ext.FkDependencyNodeMixin"
+//    elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
+//}
 
 layerDeclaration ::= LAYER_KEYWORD IDENTIFIER layerBody
 
