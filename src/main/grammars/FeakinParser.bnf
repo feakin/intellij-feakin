@@ -169,7 +169,7 @@ aggregateBody ::= LBRACE (aggregateEntry*)? RBRACE
 
 private aggregateEntry ::= domainEvent | useEntity
 
-private domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
+domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
 private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
