@@ -38,6 +38,20 @@ WHITE_SPACE_CHAR = {EOL_WS} | {LINE_WS}
 WHITE_SPACE      = {WHITE_SPACE_CHAR}+
 INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
 
+SUFFIX        = {IDENTIFIER}
+EXPONENT      = [eE] [-+]? [0-9_]+
+
+INT_LITERAL = ( {DEC_LITERAL}
+              | {HEX_LITERAL}
+              | {OCT_LITERAL}
+              | {BIN_LITERAL} ) {EXPONENT}? {SUFFIX}?
+
+DEC_LITERAL = [0-9] [0-9_]*
+HEX_LITERAL = "0x" [a-fA-F0-9_]*
+OCT_LITERAL = "0o" [0-7_]*
+BIN_LITERAL = "0b" [01_]*
+
+
 %%
 <YYINITIAL> {
   {WHITE_SPACE}         { return WHITE_SPACE; }
@@ -101,6 +115,8 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "datasource"          { return DATASOURCE_KEYWORD; }
   "server"              { return SERVER_KEYWORD; }
 
+  "true"|"false"        { return BOOL_LITERAL; }
+  {INT_LITERAL}         { return INTEGER_LITERAL; }
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }
