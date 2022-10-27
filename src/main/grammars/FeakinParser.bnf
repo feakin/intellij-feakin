@@ -322,7 +322,9 @@ sourceSetEntry ::= entryKey COLON entryValue SEMICOLON?
 
 entryKey ::= IDENTIFIER
 
-entryValue ::= value | '[' value* ']'
+entryValue ::= value | '[' value (COMMA value)* ']'
+
+value ::= STRING_LITERAL | IDENTIFIER | INTEGER_LITERAL | FLOAT_LITERAL | BOOL_LITERAL
 
 whenExpression ::= WHEN_KEYWORD whenBody
 
@@ -342,8 +344,6 @@ variableEntry ::= variableKey COLON entryValue SEMICOLON?
 
 variableKey ::= IDENTIFIER | PACKAGE_KEYWORD
 
-value ::= STRING_LITERAL | IDENTIFIER | NUMBER_LITERAL
-
 defDeclaration ::= DEF_KEYWORD defIdent defBody
 
 defIdent ::=  CONTEXT_MAP_KEYWORD
@@ -356,12 +356,16 @@ defBody ::= LBRACE structEntry* RBRACE
 
 envDeclaration ::= ENV_KEYWORD IDENTIFIER envBody
 
-envBody ::= LBRACE (datasourceConf | serverConf)* RBRACE
+envBody ::= LBRACE (datasourceDecl | serverDecl)* RBRACE
 
-datasourceConf ::= DATASOURCE_KEYWORD LBRACE (dsConfEntry)* RBRACE
+datasourceDecl ::= DATASOURCE_KEYWORD datasourceBody
+
+datasourceBody ::=  LBRACE (dsConfEntry)* RBRACE
 
 dsConfEntry ::= entryKey COLON entryValue SEMICOLON?
 
-serverConf ::= SERVER_KEYWORD LBRACE (serverConfEntry)* RBRACE
+serverDecl ::= SERVER_KEYWORD serverBody
+
+serverBody ::= LBRACE (serverConfEntry)* RBRACE
 
 serverConfEntry ::= entryKey COLON entryValue SEMICOLON?

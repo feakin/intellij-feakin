@@ -100,7 +100,6 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "env"                 { return ENV_KEYWORD; }
   "datasource"          { return DATASOURCE_KEYWORD; }
   "server"              { return SERVER_KEYWORD; }
-  "NUMBER_LITERAL"      { return NUMBER_LITERAL; }
 
 
   {COMMENT}             { return COMMENT; }
