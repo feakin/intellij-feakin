@@ -84,6 +84,9 @@
       VAR_KEYWORD           = 'var'
       DEF_KEYWORD           = 'def'
       INCLUDE_KEYWORD       = 'include'
+      ENV_KEYWORD           = 'env'
+      DATASOURCE_KEYWORD    = 'datasource'
+      SERVER_KEYWORD        = 'server'
   ]
 }
 
@@ -101,6 +104,7 @@ declaration ::= includeDeclaration
                | sourceSetDeclaration
                | variableDeclaration
                | defDeclaration
+               | envDeclaration
 
 includeDeclaration ::= INCLUDE_KEYWORD path ";"?
 path ::= STRING_LITERAL
@@ -133,6 +137,12 @@ private contextNodeRel ::= leftContextNode relSymbol rightContextNode SEMICOLON
 private leftContextNode ::= contextName;
 
 private rightContextNode ::= contextName;
+
+contextName ::= IDENTIFIER
+{
+  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  mixin = "com.feakin.intellij.stubs.ext.FkContextNameImplMixin"
+}
 
 relSymbol ::= RARROW
              | LARROW
@@ -344,9 +354,14 @@ defIdent ::=  CONTEXT_MAP_KEYWORD
 
 defBody ::= LBRACE structEntry* RBRACE
 
-contextName ::= IDENTIFIER
-{
-  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
-  mixin = "com.feakin.intellij.stubs.ext.FkContextNameImplMixin"
-}
+envDeclaration ::= ENV_KEYWORD IDENTIFIER envBody
 
+envBody ::= LBRACE (datasourceConf | serverConf)* RBRACE
+
+datasourceConf ::= DATASOURCE_KEYWORD LBRACE (dsConfEntry)* RBRACE
+
+dsConfEntry ::= entryKey COLON entryValue SEMICOLON?
+
+serverConf ::= SERVER_KEYWORD LBRACE (serverConfEntry)* RBRACE
+
+serverConfEntry ::= entryKey COLON entryValue SEMICOLON?

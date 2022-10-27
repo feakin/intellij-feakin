@@ -97,7 +97,11 @@ INLINE_DOC       = [\"][\"][^\"]*[\"]+([^\"]*[\"][\"]+)*
   "var"                 { return VAR_KEYWORD; }
   "def"                 { return DEF_KEYWORD; }
   "include"             { return INCLUDE_KEYWORD; }
+  "env"                 { return ENV_KEYWORD; }
+  "datasource"          { return DATASOURCE_KEYWORD; }
+  "server"              { return SERVER_KEYWORD; }
   "NUMBER_LITERAL"      { return NUMBER_LITERAL; }
+
 
   {COMMENT}             { return COMMENT; }
   {BLOCK_COMMENT}       { return BLOCK_COMMENT; }

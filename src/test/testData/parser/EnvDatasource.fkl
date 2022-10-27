@@ -1,0 +1,8 @@
+env Local {
+  datasource {
+    url: "jdbc:postgresql://localhost:5432/yourdb"
+    driver: "org.postgresql.Driver"
+    user: "youruser"
+    password: "yourpassword"
+  }
+}
