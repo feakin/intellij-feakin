@@ -43,9 +43,11 @@ class FkCommandConfiguration(project: Project, name: String, factory: Configurat
 
     override fun readExternal(element: Element) {
         super.readExternal(element)
-        element.readString("command")?.let { command = it }
-        element.readString("path")?.let { commandLine.main = it }
-        element.readString("impl")?.let { commandLine.impl = it }
+        if(this::commandLine.isInitialized) {
+            element.readString("command")?.let { command = it }
+            element.readString("path")?.let { commandLine.main = it }
+            element.readString("impl")?.let { commandLine.impl = it }
+        }
     }
 }
 
