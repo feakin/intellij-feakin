@@ -67,19 +67,19 @@
 
         <!-- Run Configurations -->
         <runLineMarkerContributor language="Feakin"
-                                  implementationClass="com.feakin.intellij.linemarkers.FkImplLineMarkerContributor"/>
+                                  implementationClass="com.feakin.intellij.linemarkers.FkCodegenImplLineMarkerContributor"/>
         <runConfigurationProducer
-                implementation="com.feakin.intellij.runconfig.command.FkGenImplConfigurationProducer"/>
+                implementation="com.feakin.intellij.runconfig.command.GencodeImplConfigurationProducer"/>
 
         <runLineMarkerContributor language="Feakin"
-                                  implementationClass="com.feakin.intellij.linemarkers.FkEndpointRequestLineMarkerContributor"/>
+                                  implementationClass="com.feakin.intellij.linemarkers.FkRunEndpointRequestLineMarkerContributor"/>
         <runConfigurationProducer
-                implementation="com.feakin.intellij.runconfig.command.FkRunEndpointConfigurationProducer"/>
+                implementation="com.feakin.intellij.runconfig.command.RunEndpointConfigurationProducer"/>
 
         <runLineMarkerContributor language="Feakin"
-                                  implementationClass="com.feakin.intellij.linemarkers.FkLayeredGuardingLineMarkerContributor"/>
+                                  implementationClass="com.feakin.intellij.linemarkers.FkRunGuardingLineMarkerContributor"/>
         <runConfigurationProducer
-                implementation="com.feakin.intellij.runconfig.command.FkLayeredGuardingConfigurationProducer"/>
+                implementation="com.feakin.intellij.runconfig.command.RunGuardingConfigurationProducer"/>
 
         <!-- Command Runner Config -->
         <configurationType implementation="com.feakin.intellij.runconfig.FkCommandConfigurationType"/>

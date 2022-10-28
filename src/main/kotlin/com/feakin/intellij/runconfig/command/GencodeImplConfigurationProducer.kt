@@ -1,10 +1,10 @@
 package com.feakin.intellij.runconfig.command
 
 import com.feakin.intellij.psi.FkImplDeclaration
-import com.feakin.intellij.runconfig.config.GenImplConfig
+import com.feakin.intellij.runconfig.config.GencodeConfig
 import com.intellij.psi.PsiElement
 
-class FkGenImplConfigurationProducer : BaseLazyRunConfigurationProducer<GenImplConfig, FkImplDeclaration>() {
+class GencodeImplConfigurationProducer : BaseLazyRunConfigurationProducer<GencodeConfig, FkImplDeclaration>() {
     override val commandName: String = "gen"
 
     init {
@@ -13,13 +13,13 @@ class FkGenImplConfigurationProducer : BaseLazyRunConfigurationProducer<GenImplC
 
     private inline fun <reified T : FkImplDeclaration> createConfigFor(
         elements: List<PsiElement>
-    ): GenImplConfig? {
+    ): GencodeConfig? {
         val path = elements.firstOrNull()?.containingFile?.virtualFile?.path ?: return null
         val sourceElement = elements.firstOrNull { it is T } ?: return null
-        return GenImplConfig(commandName, path, sourceElement as FkImplDeclaration)
+        return GencodeConfig(commandName, path, sourceElement as FkImplDeclaration)
     }
 
-    private fun registerConfigProvider(provider: (List<PsiElement>) -> GenImplConfig?) {
+    private fun registerConfigProvider(provider: (List<PsiElement>) -> GencodeConfig?) {
         runConfigProviders.add(provider)
     }
 }

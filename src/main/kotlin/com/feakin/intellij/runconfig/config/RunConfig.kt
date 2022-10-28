@@ -43,7 +43,7 @@ data class RunGuardingConfig(
     }
 }
 
-class GenImplConfig(
+class GencodeConfig(
     override val commandName: String,
     override val main: String,
     override val sourceElement: FkImplDeclaration

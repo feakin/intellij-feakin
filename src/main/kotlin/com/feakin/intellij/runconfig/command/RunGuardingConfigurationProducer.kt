@@ -4,7 +4,7 @@ import com.feakin.intellij.psi.FkLayeredDeclaration
 import com.feakin.intellij.runconfig.config.RunGuardingConfig
 import com.intellij.psi.PsiElement
 
-class FkLayeredGuardingConfigurationProducer :
+class RunGuardingConfigurationProducer :
     BaseLazyRunConfigurationProducer<RunGuardingConfig, FkLayeredDeclaration>() {
     init {
         registerConfigProvider { elements -> createConfigFor<FkLayeredDeclaration>(elements) }

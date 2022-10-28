@@ -4,7 +4,7 @@ import com.feakin.intellij.psi.FkEndpointDeclaration
 import com.feakin.intellij.runconfig.config.RunEndpointConfig
 import com.intellij.psi.PsiElement
 
-class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunEndpointConfig, FkEndpointDeclaration>() {
+class RunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunEndpointConfig, FkEndpointDeclaration>() {
     init {
         registerConfigProvider { elements -> createConfigFor<FkEndpointDeclaration>(elements) }
     }
