@@ -5,15 +5,15 @@ import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.SystemIndependent
 
 data class RunGuardingConfig(
-    val commandName: String,
-    val config: String,
-    val sourceElement: FkLayeredDeclaration,
+    override val commandName: String,
+    override val main: String,
+    override val sourceElement: FkLayeredDeclaration,
     val rootPath: @SystemIndependent @NonNls String
-) {
-    private val implName: String = sourceElement.identifier.text ?: ""
-    val configurationName: String = "Guard $implName"
+) : BaseConfig<FkLayeredDeclaration>(commandName, rootPath, sourceElement) {
+    override val implName: String = sourceElement.identifier.text ?: ""
+    override val configurationName: String = "Guard $implName"
 
-    val fkCommandLine = fromImplDecl(sourceElement, config, rootPath)
+    override val fkCommandLine = fromImplDecl(sourceElement, main, rootPath)
 
     private fun fromImplDecl(
         sourceElement: FkLayeredDeclaration,

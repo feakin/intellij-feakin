@@ -40,6 +40,15 @@ class FkLayeredGuardingConfigurationProducer : BaseLazyRunConfigurationProducer<
         runConfigProviders.add(provider)
     }
 
+    fun findLayered(elements: List<PsiElement>): RunGuardingConfig? {
+        for (provider in runConfigProviders) {
+            val config = provider(elements)
+            if (config != null) return config
+        }
+
+        return null
+    }
+
     override fun setupConfigurationFromContext(
         configuration: FkCommandConfiguration,
         context: ConfigurationContext,
@@ -52,15 +61,6 @@ class FkLayeredGuardingConfigurationProducer : BaseLazyRunConfigurationProducer<
         configuration.setCommand(layered.fkCommandLine)
 
         return true
-    }
-
-    fun findLayered(elements: List<PsiElement>): RunGuardingConfig? {
-        for (provider in runConfigProviders) {
-            val config = provider(elements)
-            if (config != null) return config
-        }
-
-        return null
     }
 
     private fun findLayeredContext(context: ConfigurationContext): RunGuardingConfig? {

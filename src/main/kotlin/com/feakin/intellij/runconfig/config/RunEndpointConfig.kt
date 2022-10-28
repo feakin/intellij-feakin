@@ -4,19 +4,18 @@ import com.feakin.intellij.psi.FkEndpointDeclaration
 import com.feakin.intellij.psi.FkImplDeclaration
 
 data class RunEndpointConfig(
-    val commandName: String,
-    val path: String,
-    val sourceElement: FkEndpointDeclaration
-) {
+    override val commandName: String,
+    override val main: String,
+    override val sourceElement: FkEndpointDeclaration
+) : BaseConfig<FkEndpointDeclaration>(commandName, main, sourceElement) {
     val parent = (sourceElement.parent.parent as FkImplDeclaration)
-    private val implName: String = parent.identifier.text ?: ""
-    val configurationName: String = "Req $implName"
+    override val implName: String = parent.identifier.text ?: ""
+    override val configurationName: String = "Req $implName"
+    override val fkCommandLine = fromImplDecl(parent, main)
 
-    val fkCommandLine = fromImplDecl(parent, path)
-}
-
-private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
-    val implName = feakinImplDecl.identifier.text ?: ""
-    val subcommand = "run"
-    return FkCommandLine(path, implName, subcommand, "http-request", "")
+    private fun fromImplDecl(feakinImplDecl: FkImplDeclaration, path: String): FkCommandLine {
+        val implName = feakinImplDecl.identifier.text ?: ""
+        val subcommand = "run"
+        return FkCommandLine(path, implName, subcommand, "http-request", "")
+    }
 }
