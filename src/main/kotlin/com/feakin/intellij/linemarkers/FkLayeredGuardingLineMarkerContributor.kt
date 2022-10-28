@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElement
 class FkLayeredGuardingLineMarkerContributor : RunLineMarkerContributor() {
     override fun getInfo(element: PsiElement): Info? {
         if (element !is FkLayeredDeclaration) return null
-        val state = FkLayeredGuardingConfigurationProducer().findLayered(listOf(element)) ?: return null
+        val state = FkLayeredGuardingConfigurationProducer().findConfig(listOf(element)) ?: return null
 
         val actions = ExecutorAction.getActions(0)
         return Info(

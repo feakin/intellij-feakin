@@ -12,7 +12,7 @@ import com.intellij.psi.PsiElement
 class FkImplLineMarkerContributor : RunLineMarkerContributor() {
     override fun getInfo(element: PsiElement): Info? {
         if (element !is FkImplDeclaration) return null
-        val state = FkGenImplConfigurationProducer().findImplConfig(listOf(element)) ?: return null
+        val state = FkGenImplConfigurationProducer().findConfig(listOf(element)) ?: return null
 
         val actions = ExecutorAction.getActions(0)
         return Info(

@@ -1,16 +1,10 @@
 package com.feakin.intellij.runconfig.command
 
 import com.feakin.intellij.psi.FkEndpointDeclaration
-import com.feakin.intellij.runconfig.FkCommandConfiguration
-import com.feakin.intellij.runconfig.FkRunState
 import com.feakin.intellij.runconfig.config.RunEndpointConfig
-import com.intellij.execution.actions.ConfigurationContext
-import com.intellij.openapi.diagnostic.Logger
-import com.intellij.openapi.diagnostic.logger
-import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
-class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunEndpointConfig>() {
+class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunEndpointConfig, FkEndpointDeclaration>() {
     init {
         registerConfigProvider { elements -> createConfigFor<FkEndpointDeclaration>(elements) }
     }
@@ -25,44 +19,5 @@ class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunE
 
     private fun registerConfigProvider(provider: (List<PsiElement>) -> RunEndpointConfig?) {
         runConfigProviders.add(provider)
-    }
-
-    override fun setupConfigurationFromContext(
-        configuration: FkCommandConfiguration,
-        context: ConfigurationContext,
-        sourceElement: Ref<PsiElement>
-    ): Boolean {
-        val endpoint = findIEndpointByContext(context) ?: return false
-        sourceElement.set(endpoint.sourceElement)
-
-        configuration.name = endpoint.configurationName
-        configuration.setCommand(endpoint.fkCommandLine)
-
-        return true
-    }
-
-    fun findRequest(elements: List<PsiElement>): RunEndpointConfig? {
-        for (provider in runConfigProviders) {
-            val config = provider(elements)
-            if (config != null) return config
-        }
-
-        return null
-    }
-
-    private fun findIEndpointByContext(context: ConfigurationContext): RunEndpointConfig? {
-        val elements = context.location?.psiElement?.let { listOf(it) }
-        return elements?.let { findRequest(it) }
-    }
-
-    override fun isConfigurationFromContext(
-        configuration: FkCommandConfiguration,
-        context: ConfigurationContext
-    ): Boolean {
-        val implConfig = findIEndpointByContext(context) ?: return false
-        configuration.name = implConfig.configurationName
-        configuration.setCommand(implConfig.fkCommandLine)
-
-        return true
     }
 }

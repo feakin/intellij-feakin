@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElement
 class FkEndpointRequestLineMarkerContributor : RunLineMarkerContributor() {
     override fun getInfo(element: PsiElement): Info? {
         if (element !is FkEndpointDeclaration) return null
-        val state = FkRunEndpointConfigurationProducer().findRequest(listOf(element)) ?: return null
+        val state = FkRunEndpointConfigurationProducer().findConfig(listOf(element)) ?: return null
 
         val actions = ExecutorAction.getActions(0)
         return Info(
