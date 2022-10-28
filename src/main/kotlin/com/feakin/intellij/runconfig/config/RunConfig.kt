@@ -1,5 +1,6 @@
 package com.feakin.intellij.runconfig.config
 
+import com.feakin.intellij.psi.FkDatasourceDecl
 import com.feakin.intellij.psi.FkEndpointDeclaration
 import com.feakin.intellij.psi.FkImplDeclaration
 import com.feakin.intellij.psi.FkLayeredDeclaration
@@ -56,3 +57,17 @@ class GencodeConfig(
         return FkCommandLine(path, implName, "gen", path = "")
     }
 }
+
+data class RunDatabaseConfig(
+    override val commandName: String,
+    override val main: String,
+    override val sourceElement: FkDatasourceDecl
+) : BaseConfig<FkDatasourceDecl>(commandName, main, sourceElement) {
+    override val configurationName: String = "Test Conn $implName"
+    override val fkCommandLine = fromDecl(sourceElement, main)
+
+    private fun fromDecl(connect: FkDatasourceDecl, path: String): FkCommandLine {
+        return FkCommandLine(path, "", "run", "test-connection", "")
+    }
+}
+

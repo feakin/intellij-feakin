@@ -12,10 +12,13 @@ class FkCommandLine(
     }
 
     fun toCommand(): List<String> {
-        val cmdList = mutableListOf("fkl", subcommand, "--main", main, "--impl", impl)
-
+        val cmdList = mutableListOf("fkl", subcommand, "--main", main)
         if (subcommand == "run") {
             cmdList += listOf("--func", funcName)
+        }
+
+        if (impl.isNotEmpty()) {
+            cmdList.addAll(listOf("--impl", impl))
         }
 
         if (path.isNotEmpty()) {
