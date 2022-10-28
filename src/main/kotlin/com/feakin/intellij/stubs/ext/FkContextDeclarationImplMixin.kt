@@ -16,7 +16,7 @@ abstract class FkContextDeclarationImplMixin : FkStubbedNamedElementImpl<FkConte
 
     override fun getReference(): FkReference = FkContextDeclReferenceImpl(this)
 
-    override val referenceNameElement: PsiElement get() = identifier ?: this
+    override val referenceNameElement: PsiElement get() = identifier
 
     override val referenceName: String get() = referenceNameElement.text
 }

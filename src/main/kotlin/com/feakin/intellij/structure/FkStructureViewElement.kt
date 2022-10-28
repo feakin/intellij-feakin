@@ -46,7 +46,7 @@ class FkStructureViewElement(element: PsiElement) : StructureViewTreeElement {
             is FkContextDeclaration -> {
                 val structNameDeclaration = psi.identifier
                 struct.setAttributesKey(DefaultLanguageHighlighterColors.KEYWORD)
-                struct.presentableText = structNameDeclaration?.text
+                struct.presentableText = structNameDeclaration.text
                 return struct
             }
 

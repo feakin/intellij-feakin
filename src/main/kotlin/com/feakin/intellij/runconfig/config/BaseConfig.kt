@@ -9,7 +9,7 @@ abstract class BaseConfig<T>(
     open val implName: String = ""
     open val configurationName: String = "Gen $implName"
 
-    open val fkCommandLine = FkCommandLine(main, implName, commandName, path = "")
+    abstract val fkCommandLine: FkCommandLine
 
     open fun fromImplDecl(decl: T, path: String): FkCommandLine {
         return FkCommandLine(path, implName, commandName, path = "")
