@@ -18,19 +18,10 @@ import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
 class FkGenImplConfigurationProducer : BaseLazyRunConfigurationProducer<GenImplConfig>() {
-    companion object {
-        private val log: Logger = logger<FkRunState>()
-    }
-
     override val commandName: String = "gen"
-
-    override fun getConfigurationFactory(): ConfigurationFactory {
-        return FkCommandConfigurationType.getInstance().factory
-    }
 
     init {
         registerConfigProvider { elements -> createConfigFor<FkImplDeclaration>(elements) }
-        log.debug("Registered ${runConfigProviders.size} config providers")
     }
 
     private inline fun <reified T : FkImplDeclaration> createConfigFor(

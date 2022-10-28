@@ -13,17 +13,8 @@ import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
 class FkLayeredGuardingConfigurationProducer : BaseLazyRunConfigurationProducer<RunGuardingConfig>() {
-    companion object {
-        private val log: Logger = logger<FkRunState>()
-    }
-
-    override fun getConfigurationFactory(): ConfigurationFactory {
-        return FkCommandConfigurationType.getInstance().factory
-    }
-
     init {
         registerConfigProvider { elements -> createConfigFor<FkLayeredDeclaration>(elements) }
-        log.debug("Registered ${runConfigProviders.size} config providers")
     }
 
     private inline fun <reified T : FkLayeredDeclaration> createConfigFor(

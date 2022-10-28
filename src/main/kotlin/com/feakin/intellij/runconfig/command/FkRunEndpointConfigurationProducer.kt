@@ -11,13 +11,8 @@ import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
 class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunEndpointConfig>() {
-    companion object {
-        private val log: Logger = logger<FkRunState>()
-    }
-
     init {
         registerConfigProvider { elements -> createConfigFor<FkEndpointDeclaration>(elements) }
-        log.debug("Registered ${runConfigProviders.size} config providers")
     }
 
     private inline fun <reified T : FkEndpointDeclaration> createConfigFor(
