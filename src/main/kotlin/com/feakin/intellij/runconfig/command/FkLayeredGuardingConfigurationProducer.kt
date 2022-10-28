@@ -12,13 +12,10 @@ import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
-class FkLayeredGuardingConfigurationProducer : BaseLazyRunConfigurationProducer() {
+class FkLayeredGuardingConfigurationProducer : BaseLazyRunConfigurationProducer<RunGuardingConfig>() {
     companion object {
         private val log: Logger = logger<FkRunState>()
     }
-
-    private val commandName: String = "run"
-    private val runConfigProviders: MutableList<(List<PsiElement>) -> RunGuardingConfig?> = mutableListOf()
 
     override fun getConfigurationFactory(): ConfigurationFactory {
         return FkCommandConfigurationType.getInstance().factory

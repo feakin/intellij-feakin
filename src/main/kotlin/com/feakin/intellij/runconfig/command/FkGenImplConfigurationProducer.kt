@@ -17,15 +17,13 @@ import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
-class FkGenImplConfigurationProducer : BaseLazyRunConfigurationProducer() {
+class FkGenImplConfigurationProducer : BaseLazyRunConfigurationProducer<GenImplConfig>() {
     companion object {
         private val log: Logger = logger<FkRunState>()
     }
 
-    private val commandName: String = "gen"
+    override val commandName: String = "gen"
 
-    // lost some config in here
-    private val runConfigProviders: MutableList<(List<PsiElement>) -> GenImplConfig?> = mutableListOf()
     override fun getConfigurationFactory(): ConfigurationFactory {
         return FkCommandConfigurationType.getInstance().factory
     }

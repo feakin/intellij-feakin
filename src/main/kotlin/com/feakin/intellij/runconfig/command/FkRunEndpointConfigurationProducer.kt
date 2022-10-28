@@ -2,26 +2,17 @@ package com.feakin.intellij.runconfig.command
 
 import com.feakin.intellij.psi.FkEndpointDeclaration
 import com.feakin.intellij.runconfig.FkCommandConfiguration
-import com.feakin.intellij.runconfig.FkCommandConfigurationType
 import com.feakin.intellij.runconfig.FkRunState
 import com.feakin.intellij.runconfig.config.RunEndpointConfig
 import com.intellij.execution.actions.ConfigurationContext
-import com.intellij.execution.configurations.ConfigurationFactory
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
-class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer() {
+class FkRunEndpointConfigurationProducer : BaseLazyRunConfigurationProducer<RunEndpointConfig>() {
     companion object {
         private val log: Logger = logger<FkRunState>()
-    }
-
-    private val commandName: String = "run"
-    private val runConfigProviders: MutableList<(List<PsiElement>) -> RunEndpointConfig?> = mutableListOf()
-
-    override fun getConfigurationFactory(): ConfigurationFactory {
-        return FkCommandConfigurationType.getInstance().factory
     }
 
     init {
