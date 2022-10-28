@@ -21,13 +21,10 @@ class FkCommandRunner : GenericProgramRunner<RunnerSettings>() {
     }
 
     override fun doExecute(state: RunProfileState, environment: ExecutionEnvironment): RunContentDescriptor? {
-        val configuration = environment.runProfile
-        if (configuration is FkCommandConfiguration) {
-            FileDocumentManager.getInstance().saveAllDocuments()
-            return showRunContent(state.execute(environment.executor, this), environment)
-        } else {
-            return null
-        }
+        if (environment.runProfile !is FkCommandConfiguration) return null
+
+        FileDocumentManager.getInstance().saveAllDocuments()
+        return showRunContent(state.execute(environment.executor, this), environment)
     }
 
     @Suppress("UnstableApiUsage")
