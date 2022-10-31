@@ -86,6 +86,11 @@
         <runConfigurationProducer
                 implementation="com.feakin.intellij.runconfig.command.RunDatasourceConfigurationProducer"/>
 
+        <runLineMarkerContributor language="Feakin"
+                                  implementationClass="com.feakin.intellij.linemarkers.FkRunMockServerMarkerContributor"/>
+        <runConfigurationProducer
+                implementation="com.feakin.intellij.runconfig.command.RunMockServerConfigurationProducer"/>
+
         <!-- Command Runner Config -->
         <configurationType implementation="com.feakin.intellij.runconfig.FkCommandConfigurationType"/>
         <programRunner implementation="com.feakin.intellij.runconfig.FkCommandRunner"/>

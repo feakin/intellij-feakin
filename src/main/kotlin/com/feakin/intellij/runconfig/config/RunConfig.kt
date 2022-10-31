@@ -4,6 +4,7 @@ import com.feakin.intellij.psi.FkDatasourceDecl
 import com.feakin.intellij.psi.FkEndpointDeclaration
 import com.feakin.intellij.psi.FkImplDeclaration
 import com.feakin.intellij.psi.FkLayeredDeclaration
+import com.feakin.intellij.psi.FkServerDecl
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.SystemIndependent
 
@@ -68,6 +69,19 @@ data class RunDatabaseConfig(
 
     private fun fromDecl(connect: FkDatasourceDecl, path: String): FkCommandLine {
         return FkCommandLine(path, "", "run", "test-connection", "")
+    }
+}
+
+data class RunMockServerConfig(
+    override val commandName: String,
+    override val main: String,
+    override val sourceElement: FkServerDecl
+) : BaseConfig<FkServerDecl>(commandName, main, sourceElement) {
+    override val configurationName: String = "Mock Server $implName"
+    override val fkCommandLine = fromDecl(sourceElement, main)
+
+    private fun fromDecl(connect: FkServerDecl, path: String): FkCommandLine {
+        return FkCommandLine(path, "", "run", "mock-server", "")
     }
 }
 
