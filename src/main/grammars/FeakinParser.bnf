@@ -356,7 +356,7 @@ defBody ::= LBRACE structEntry* RBRACE
 
 envDeclaration ::= ENV_KEYWORD IDENTIFIER envBody
 
-envBody ::= LBRACE (datasourceDecl | serverDecl)* RBRACE
+envBody ::= LBRACE (datasourceDecl | serverDecl | customDecl)* RBRACE
 
 datasourceDecl ::= DATASOURCE_KEYWORD datasourceBody
 
@@ -369,3 +369,11 @@ serverDecl ::= SERVER_KEYWORD serverBody
 serverBody ::= LBRACE (serverConfEntry)* RBRACE
 
 serverConfEntry ::= entryKey COLON entryValue SEMICOLON?
+
+customDecl ::= customKeyword customBody
+
+customKeyword ::= IDENTIFIER
+
+customBody ::= LBRACE (customConfEntry)* RBRACE
+
+customConfEntry ::= entryKey COLON entryValue SEMICOLON?
