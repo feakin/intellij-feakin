@@ -24,7 +24,9 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
 
         init {
             fillMap(ATTRIBUTES, FkTokenTypeSets.KEY_WORDS, DefaultLanguageHighlighterColors.KEYWORD)
-            ATTRIBUTES[FkElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.LABEL
+
+//            ATTRIBUTES[FkElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.LABEL
+            ATTRIBUTES[FkElementTypes.CUSTOM_KEYWORD] = DefaultLanguageHighlighterColors.KEYWORD
 
             ATTRIBUTES[FkElementTypes.LBRACE] = DefaultLanguageHighlighterColors.BRACES;
             ATTRIBUTES[FkElementTypes.RBRACE] = DefaultLanguageHighlighterColors.BRACES;

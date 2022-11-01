@@ -36,6 +36,8 @@ val BLOCK_LIKE = TokenSet.create(
     ENV_BODY,
     DATASOURCE_BODY,
     SERVER_BODY,
+
+    CUSTOM_BODY
 )
 
 val FK_KEYWORDS = FkTokenTypeSets.KEY_WORDS;

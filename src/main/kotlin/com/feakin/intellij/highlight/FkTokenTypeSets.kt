@@ -54,5 +54,7 @@ object FkTokenTypeSets {
         FkElementTypes.ENV_KEYWORD,
         FkElementTypes.DATASOURCE_KEYWORD,
         FkElementTypes.SERVER_KEYWORD,
+
+        FkElementTypes.CUSTOM_KEYWORD
     )
 }

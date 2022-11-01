@@ -81,6 +81,8 @@ class FkFoldingBuilder : CustomFoldingBuilder(), DumbAware {
 
         override fun visitServerBody(o: FkServerBody) = fold(o)
 
+        override fun visitCustomBody(o: FkCustomBody) = fold(o)
+
         private fun fold(element: PsiElement) {
             descriptors += FoldingDescriptor(element.node, element.textRange)
         }
