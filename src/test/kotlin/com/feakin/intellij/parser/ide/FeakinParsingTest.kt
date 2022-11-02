@@ -55,4 +55,8 @@ class FeakinParsingTest : ParsingTestCase("parser", "fkl", FkParserDefinition())
     fun testEnvDatasource() {
         doTest(true)
     }
+
+    fun testCustomEnv() {
+        doTest(true)
+    }
 }

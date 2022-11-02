@@ -3,6 +3,7 @@ package com.feakin.intellij.highlight
 import com.feakin.intellij.colors.FkColors
 import com.feakin.intellij.lexer.FkElementTypes
 import com.feakin.intellij.lexer.FkLexer
+import com.feakin.intellij.lexer.FkTokenType
 import com.feakin.intellij.parser.FkParserDefinition
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
@@ -16,6 +17,10 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
+        if (tokenType == FkTokenType("inner_block_doc")) {
+            return pack(FkColors.CUSTOM.textAttributesKey)
+        }
+
         return pack(ATTRIBUTES[tokenType])
     }
 
@@ -25,8 +30,7 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
         init {
             fillMap(ATTRIBUTES, FkTokenTypeSets.KEY_WORDS, DefaultLanguageHighlighterColors.KEYWORD)
 
-//            ATTRIBUTES[FkElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.LABEL
-            ATTRIBUTES[FkElementTypes.CUSTOM_KEYWORD] = DefaultLanguageHighlighterColors.KEYWORD
+            ATTRIBUTES[FkElementTypes.IDENTIFIER] = DefaultLanguageHighlighterColors.LABEL
 
             ATTRIBUTES[FkElementTypes.LBRACE] = DefaultLanguageHighlighterColors.BRACES;
             ATTRIBUTES[FkElementTypes.RBRACE] = DefaultLanguageHighlighterColors.BRACES;

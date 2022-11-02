@@ -1,0 +1,6 @@
+env Local {
+  kafka {
+    host: "localhost"
+    port: 9092
+  }
+}
