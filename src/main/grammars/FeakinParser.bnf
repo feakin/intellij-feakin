@@ -190,7 +190,7 @@ structDeclaration ::= STRUCT_KEYWORD structBody {
 
 structBody ::= LBRACE structEntry* RBRACE
 
-private structEntry ::= IDENTIFIER COLON fieldType defaultValue? SEMICOLON?
+structEntry ::= IDENTIFIER COLON fieldType defaultValue? SEMICOLON?
 
 fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')? ;
 
