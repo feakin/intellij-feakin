@@ -17,12 +17,12 @@ class FkHighlightingAnnotator : Annotator {
         val parent = element.parent as? FkElement ?: return
         when (element.elementType) {
             FkElementTypes.IDENTIFIER -> {
-                highlightIdentifier(element, parent, holder)
+                highlightIdentifier(parent, holder)
             }
         }
     }
 
-    private fun highlightIdentifier(_element: PsiElement, parent: FkElement, holder: AnnotationHolder) {
+    private fun highlightIdentifier(parent: FkElement, holder: AnnotationHolder) {
         when (parent) {
             is FkCustomKeyword, is FkSourceSetName -> {
                 val color = FkColors.CUSTOM
