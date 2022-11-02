@@ -128,7 +128,7 @@ contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
-contextMapBody ::= LBRACE (contextNodeDecl | contextNodeRel)* RBRACE
+contextMapBody ::= LBRACE (contextDeclaration | contextNodeDecl | contextNodeRel)* RBRACE
 
 private contextNodeDecl ::= CONTEXT_KEYWORD contextName (COMMA contextName)*
 
@@ -162,7 +162,7 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
-contextBody ::= LBRACE useAggregate* RBRACE
+contextBody ::= LBRACE (aggregateDeclaration | useAggregate)* RBRACE
 
 aggregateDeclaration ::= AGGREGATE_KEYWORD IDENTIFIER aggregateBody {
 }
@@ -175,9 +175,9 @@ valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
 
 private useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
-aggregateBody ::= LBRACE (aggregateEntry*)? RBRACE
+aggregateBody ::= LBRACE (aggregateEntry)* RBRACE
 
-private aggregateEntry ::= domainEvent | useEntity
+private aggregateEntry ::= entityDeclaration | structDeclaration | domainEvent | useEntity
 
 domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
