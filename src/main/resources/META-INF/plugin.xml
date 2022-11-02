@@ -114,6 +114,7 @@
 
         <!-- Color Settings -->
         <additionalTextAttributes scheme="Darcula" file="colors/FeakinDefault.xml"/>
+        <colorSettingsPage implementation="com.feakin.intellij.highlight.FkColorSettingsPage"/>
 
         <!-- Smart Enter Processor -->
         <lang.smartEnterProcessor language="Feakin"
