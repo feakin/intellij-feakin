@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+## [0.4.0]
+
+- add mock server integration. use `--func mock-server` to use Feakin as mock server
+- add database test integration. for test database
+- refactor the code highlighter
+- add color to the output
+- add custom environment variable support. can use `--env` to set environment variable
+
 ## [0.3.0]
 
 - add layered guarding support
