@@ -24,7 +24,7 @@ class FkColorSettingsPage : ColorSettingsPage, RainbowColorSettingsPage {
 
 
     override fun getDemoText(): String {
-        return """˚ContextMap TicketBooking {
+        return """ContextMap TicketBooking {
   ReservationCtx <-> UserCtx;
 }
 
