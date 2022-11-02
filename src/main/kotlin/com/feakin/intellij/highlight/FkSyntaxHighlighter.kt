@@ -54,6 +54,8 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
             ATTRIBUTES[FkParserDefinition.INLINE_DOC] = FkColors.COMMENT.textAttributesKey;
 
             ATTRIBUTES[FkElementTypes.INCLUDE_KEYWORD] = FkColors.INCLUDE.textAttributesKey;
+
+            ATTRIBUTES[FkElementTypes.INTEGER_LITERAL] = DefaultLanguageHighlighterColors.NUMBER;
         }
     }
 }
