@@ -17,10 +17,6 @@ class FkSyntaxHighlighter : SyntaxHighlighterBase() {
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
-        if (tokenType == FkTokenType("inner_block_doc")) {
-            return pack(FkColors.CUSTOM.textAttributesKey)
-        }
-
         return pack(ATTRIBUTES[tokenType])
     }
 
