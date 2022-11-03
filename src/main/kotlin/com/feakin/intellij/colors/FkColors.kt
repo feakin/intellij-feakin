@@ -13,6 +13,7 @@ enum class FkColors(humanName: Supplier<@NlsContexts.AttributeDescriptor String>
     CUSTOM(FkBundle.messagePointer("settings.feakin.color.env.custom"), DefaultLanguageHighlighterColors.DOC_COMMENT),
     FIELD(FkBundle.messagePointer("settings.feakin.color.field"), DefaultLanguageHighlighterColors.INSTANCE_FIELD),
     METHOD_CALL(FkBundle.messagePointer("settings.feakin.color.field"), DefaultLanguageHighlighterColors.INSTANCE_FIELD),
+    VARIABLE(FkBundle.messagePointer("settings.feakin.color.variable"), DefaultLanguageHighlighterColors.LOCAL_VARIABLE),
     ;
 
     val textAttributesKey = TextAttributesKey.createTextAttributesKey("com.feakin.$name", default)

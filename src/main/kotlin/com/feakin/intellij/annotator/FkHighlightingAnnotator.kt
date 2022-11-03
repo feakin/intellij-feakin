@@ -7,6 +7,8 @@ import com.feakin.intellij.psi.FkCustomKeyword
 import com.feakin.intellij.psi.FkElement
 import com.feakin.intellij.psi.FkSourceSetName
 import com.feakin.intellij.psi.FkStructEntry
+import com.feakin.intellij.psi.FkVariableBody
+import com.feakin.intellij.psi.FkVariableDeclaration
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity
@@ -26,6 +28,12 @@ class FkHighlightingAnnotator : Annotator {
         when (parent) {
             is FkCustomKeyword, is FkSourceSetName -> {
                 val color = FkColors.CUSTOM
+                holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
+                    .textAttributes(color.textAttributesKey)
+                    .create()
+            }
+            is FkVariableDeclaration -> {
+                val color = FkColors.VARIABLE
                 holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
                     .textAttributes(color.textAttributesKey)
                     .create()
