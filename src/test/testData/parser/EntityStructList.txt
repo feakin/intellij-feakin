@@ -8,7 +8,7 @@ Feakin
       FkEntityBodyImpl(ENTITY_BODY)
         PsiElement(FeakinTokenType.{)('{')
         PsiWhiteSpace('\n  ')
-        FkStructDeclarationImpl(STRUCT_DECLARATION)
+        FkInnerStructDeclarationImpl(INNER_STRUCT_DECLARATION)
           PsiElement(FeakinTokenType.STRUCT_KEYWORD)('Struct')
           PsiWhiteSpace(' ')
           FkStructBodyImpl(STRUCT_BODY)

@@ -6,11 +6,8 @@ impl CinemaCreated {
   }
 
   flow {
-    //
     via UserRepository::getUserById receive user: User
-    //
     via UserRepository::save(user: User) receive user: User;
-    //
     via MessageQueue send CinemaCreated to "CinemaCreated"
 
     when(isUserValid) {

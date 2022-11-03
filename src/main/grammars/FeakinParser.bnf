@@ -177,16 +177,17 @@ private useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICO
 
 aggregateBody ::= LBRACE (aggregateEntry)* RBRACE
 
-private aggregateEntry ::= entityDeclaration | structDeclaration | domainEvent | useEntity
+private aggregateEntry ::= entityDeclaration | innerStructDeclaration | domainEvent | useEntity
 
 domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
 private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
 
-entityBody ::= LBRACE (structDeclaration | useValueObject | useStruct)* RBRACE
+entityBody ::= LBRACE (innerStructDeclaration | useValueObject | useStruct)* RBRACE
 
-structDeclaration ::= STRUCT_KEYWORD structBody {
-}
+innerStructDeclaration ::= STRUCT_KEYWORD structBody
+
+structDeclaration ::= STRUCT_KEYWORD IDENTIFIER structBody
 
 structBody ::= LBRACE structEntry* RBRACE
 
@@ -199,7 +200,7 @@ private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 private useValueObject ::= VALUE_OBJECT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
-valueObjectBody ::= LBRACE (structDeclaration | useStruct)? RBRACE
+valueObjectBody ::= LBRACE (innerStructDeclaration | useStruct)? RBRACE
 
 implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody
 
@@ -229,7 +230,7 @@ httpMethod ::= GET_KEYWORD
 
 uri ::= STRING_LITERAL
 
-requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | structDeclaration) SEMICOLON?;
+requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | innerStructDeclaration) SEMICOLON?;
 
 responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON?;
 
@@ -332,7 +333,7 @@ whenBody ::= LPAREN IDENTIFIER RPAREN LBRACE whenEntry* RBRACE
 
 whenEntry ::= IS_KEYWORD whenCondition "=>" whenEntryBody?
 
-whenCondition ::= IDENTIFIER
+whenCondition ::= IDENTIFIER | BOOL_LITERAL
 
 whenEntryBody ::= LBRACE stepDeclaration* RBRACE
 
