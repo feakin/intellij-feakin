@@ -27,6 +27,7 @@
                                 implementationClass="com.feakin.intellij.highlight.FkSyntaxHighlighter"/>
 
         <annotator language="Feakin" implementationClass="com.feakin.intellij.annotator.FkHighlightingAnnotator"/>
+        <annotator language="Feakin" implementationClass="com.feakin.intellij.annotator.FkHttpMethodHighlightingAnnotator"/>
 
         <lang.psiStructureViewFactory language="Feakin"
                                       implementationClass="com.feakin.intellij.structure.FkStructureViewFactory"/>

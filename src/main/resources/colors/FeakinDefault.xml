@@ -10,7 +10,7 @@
             <option name="FOREGROUND" value="74759b"/>
         </value>
     </option>
-    <option name="com.feakin.CUSTOM">
+    <option name="com.feakin.env.CUSTOM">
         <value>
             <option name="FOREGROUND" value="DD6718"/>
         </value>

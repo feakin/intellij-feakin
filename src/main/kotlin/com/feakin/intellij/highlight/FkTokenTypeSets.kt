@@ -20,15 +20,6 @@ object FkTokenTypeSets {
         FkElementTypes.RESPONSE_KEYWORD,
         FkElementTypes.AUTH_KEYWORD,
 
-        // http method
-        FkElementTypes.GET_KEYWORD,
-        FkElementTypes.POST_KEYWORD,
-        FkElementTypes.PUT_KEYWORD,
-        FkElementTypes.DELETE_KEYWORD,
-        FkElementTypes.PATCH_KEYWORD,
-        FkElementTypes.HEAD_KEYWORD,
-        FkElementTypes.OPTIONS_KEYWORD,
-
         // flow
         FkElementTypes.VIA_KEYWORD,
         FkElementTypes.SEND_KEYWORD,
