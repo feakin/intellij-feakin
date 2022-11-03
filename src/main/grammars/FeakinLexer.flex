@@ -80,6 +80,7 @@ BIN_LITERAL = "0b" [01_]*
   "Entity"              { return ENTITY_KEYWORD; }
   "ValueObject"         { return VALUE_OBJECT_KEYWORD; }
   "Struct"              { return STRUCT_KEYWORD; }
+  "struct"              { return STRUCT_KEYWORD; }
   "impl"                { return IMPL_KEYWORD; }
   "endpoint"            { return ENDPOINT_KEYWORD; }
   "request"             { return REQUEST_KEYWORD; }

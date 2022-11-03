@@ -46,7 +46,6 @@
       AGGREGATE_KEYWORD     = 'Aggregate'
       ENTITY_KEYWORD        = 'Entity'
       VALUE_OBJECT_KEYWORD  = 'ValueObject'
-      STRUCT_KEYWORD        = 'Struct'
       IMPL_KEYWORD          = 'impl'
       ENDPOINT_KEYWORD      = 'endpoint'
       REQUEST_KEYWORD       = 'request'
@@ -54,6 +53,7 @@
       AGGREGATE_S_KEYWORD   = 'aggregate'
       ENTITY_S_KEYWORD      = 'entity'
 
+      // todo: update highlight
       GET_KEYWORD           = 'GET'
       POST_KEYWORD          = 'POST'
       PUT_KEYWORD           = 'PUT'
