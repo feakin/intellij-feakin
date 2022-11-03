@@ -2,6 +2,7 @@ package com.feakin.intellij.highlight
 
 import com.feakin.intellij.FkIcons
 import com.feakin.intellij.FkLanguage
+import com.feakin.intellij.colors.FkColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.options.colors.AttributesDescriptor
@@ -13,15 +14,22 @@ class FkColorSettingsPage : ColorSettingsPage, RainbowColorSettingsPage {
     override fun getLanguage() = FkLanguage
     override fun getIcon() = FkIcons.FILE
     override fun getHighlighter(): SyntaxHighlighter = FkSyntaxHighlighter()
-
-    override fun getAttributeDescriptors(): Array<AttributesDescriptor>  = emptyArray()
+    override fun getAttributeDescriptors(): Array<AttributesDescriptor> =
+        FkColors.values().map { it.attributesDescriptor }.toTypedArray()
 
     override fun getColorDescriptors(): Array<ColorDescriptor> = ColorDescriptor.EMPTY_ARRAY
+
+    override fun getAdditionalHighlightingTagToDescriptorMap(): Map<String, TextAttributesKey> {
+        return FkColors.values().associateBy({ it.name }, { it.textAttributesKey })
+    }
+
+    override fun isRainbowType(type: TextAttributesKey?): Boolean {
+        return false
+    }
 
     override fun getDisplayName(): String {
         return FkLanguage.displayName
     }
-
 
     override fun getDemoText(): String {
         return """ContextMap TicketBooking {
@@ -115,13 +123,5 @@ env Staging {
   }
 }
 """
-    }
-
-    override fun getAdditionalHighlightingTagToDescriptorMap(): MutableMap<String, TextAttributesKey>? {
-        return mutableMapOf()
-    }
-
-    override fun isRainbowType(type: TextAttributesKey?): Boolean {
-        return false
     }
 }
