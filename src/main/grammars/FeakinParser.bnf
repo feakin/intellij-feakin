@@ -208,7 +208,7 @@ implBody ::= LBRACE (set_target_object? endpointDeclaration flowDeclaration?)? R
 
 endpointDeclaration ::= ENDPOINT_KEYWORD endpointBody
 
-endpointBody ::= LBRACE requestDeclaration requestBody? authorizationDecl? responseDeclaration? RBRACE
+endpointBody ::= LBRACE (requestDeclaration | requestBody | authorizationDecl | responseDeclaration)* RBRACE
 
 private authorizationDecl ::= AUTH_KEYWORD COLON authorizationType (authorizationValue | STRING_LITERAL)* SEMICOLON?
 
