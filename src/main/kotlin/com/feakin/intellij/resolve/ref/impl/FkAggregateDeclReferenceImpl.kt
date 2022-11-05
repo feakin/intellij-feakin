@@ -62,11 +62,12 @@ private fun inferContextName(
         }?.flatten()?.toTypedArray()
 
         usedAggregates?.forEach { aggregate ->
-            aggregate.children.forEach { child ->
-                if (child.node.elementType == IDENTIFIER && child.text == element.name) {
-                    collection.add(aggregate)
+            PsiTreeUtil.getChildrenOfType(aggregate, FkUseAggregateName::class.java)
+                ?.forEach { contextName ->
+                    if (contextName.text == element.name) {
+                        collection.add(contextName)
+                    }
                 }
-            }
         }
     }
 

@@ -181,7 +181,9 @@ entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
 valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
 }
 
-useAggregate ::= AGGREGATE_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
+useAggregate ::= AGGREGATE_KEYWORD useAggregateName (COMMA useAggregateName)* SEMICOLON
+
+useAggregateName ::= IDENTIFIER
 
 aggregateBody ::= LBRACE (aggregateEntry)* RBRACE
 
