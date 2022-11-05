@@ -11,11 +11,17 @@ import com.feakin.intellij.psi.FkElement
 import com.feakin.intellij.psi.FkPsiFactory
 import com.feakin.intellij.psi.ext.FkReferenceElementBase
 import com.intellij.codeInsight.lookup.LookupElement
+import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementResolveResult
 import com.intellij.psi.PsiPolyVariantReferenceBase
 import com.intellij.psi.ResolveResult
+import com.intellij.psi.util.CachedValue
+
+val CONTEXT_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("CONTEXT_NAME_INFERENCE_KEY")
+
+typealias InferenceResult = List<FkElement>;
 
 abstract class FkReferenceBase<T : FkReferenceElementBase>(
     element: T

@@ -2,27 +2,40 @@ package com.feakin.intellij.resolve.ref.impl
 
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType
+import com.feakin.intellij.lexer.FkElementTypes.IDENTIFIER
 import com.feakin.intellij.psi.*
+import com.feakin.intellij.resolve.ref.CONTEXT_NAME_INFERENCE_KEY
 import com.feakin.intellij.resolve.ref.FkReferenceBase
-import com.intellij.openapi.util.Key
+import com.feakin.intellij.resolve.ref.InferenceResult
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.psi.util.*
+import com.intellij.psi.util.CachedValueProvider
+import com.intellij.psi.util.CachedValuesManager
+import com.intellij.psi.util.PsiModificationTracker
+import com.intellij.psi.util.PsiTreeUtil
 
 class FkAggregateDeclReferenceImpl(
     element: FkAggregateDeclaration
 ) : FkReferenceBase<FkAggregateDeclaration>(element) {
     override fun multiResolve(): List<FkElement> {
-        return element.inference
+        return element.aggregateInference
     }
 
     override fun isReferenceTo(element: PsiElement): Boolean {
         return element is FkAggregateDeclaration && super.isReferenceTo(element)
     }
 }
+
+val FkElement.aggregateInference: InferenceResult
+    get() = CachedValuesManager.getCachedValue(this, CONTEXT_NAME_INFERENCE_KEY) {
+        CachedValueProvider.Result.create(
+            inferContextName(this as FkNamedElement),
+            PsiModificationTracker.MODIFICATION_COUNT
+        )
+    }
 
 private fun inferContextName(
     element: FkNamedElement
@@ -36,22 +49,26 @@ private fun inferContextName(
         val fkFile = PsiManager.getInstance(project).findFile(virtualFile) as FkFile
         val fkDeclarations = PsiTreeUtil.getChildrenOfType(fkFile, FkDeclaration::class.java)
 
-        val contextMaps: Array<out FkContextMapDeclaration>? = fkDeclarations?.mapNotNull {
-            PsiTreeUtil.getChildrenOfType(it, FkContextMapDeclaration::class.java)?.toList()
+        val contextDeclarations: Array<out FkContextDeclaration>? = fkDeclarations?.mapNotNull {
+            PsiTreeUtil.getChildrenOfType(it, FkContextDeclaration::class.java)?.toList()
         }?.flatten()?.toTypedArray()
 
-        val mapBodies: Array<out FkContextMapBody>? = contextMaps?.mapNotNull {
-            PsiTreeUtil.getChildrenOfType(it, FkContextMapBody::class.java)?.toList()
+        val mapBodies: Array<out FkContextBody>? = contextDeclarations?.mapNotNull {
+            PsiTreeUtil.getChildrenOfType(it, FkContextBody::class.java)?.toList()
         }?.flatten()?.toTypedArray()
 
-        mapBodies?.forEach { contextMapDeclaration ->
-            PsiTreeUtil.getChildrenOfType(contextMapDeclaration, FkContextName::class.java)
-                ?.forEach { contextName ->
-                    if (contextName.text == element.name) {
-                        collection.add(contextName)
-                    }
+        val usedAggregates: Array<out FkUseAggregate>? = mapBodies?.mapNotNull {
+            PsiTreeUtil.getChildrenOfType(it, FkUseAggregate::class.java)?.toList()
+        }?.flatten()?.toTypedArray()
+
+        usedAggregates?.forEach { aggregate ->
+            aggregate.children.forEach { child ->
+                if (child.node.elementType == IDENTIFIER && child.text == element.name) {
+                    collection.add(aggregate)
                 }
+            }
         }
     }
+
     return collection
 }

@@ -3,20 +3,24 @@ package com.feakin.intellij.resolve.ref.impl
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType
 import com.feakin.intellij.psi.*
+import com.feakin.intellij.resolve.ref.CONTEXT_NAME_INFERENCE_KEY
 import com.feakin.intellij.resolve.ref.FkReferenceBase
-import com.intellij.openapi.util.Key
+import com.feakin.intellij.resolve.ref.InferenceResult
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.psi.util.*
+import com.intellij.psi.util.CachedValueProvider
+import com.intellij.psi.util.CachedValuesManager
+import com.intellij.psi.util.PsiModificationTracker
+import com.intellij.psi.util.PsiTreeUtil
 
 class FkContextDeclReferenceImpl(
     element: FkContextDeclaration
 ) : FkReferenceBase<FkContextDeclaration>(element) {
     override fun multiResolve(): List<FkElement> {
-        return element.inference
+        return element.contextInference
     }
 
     override fun isReferenceTo(element: PsiElement): Boolean {
@@ -24,11 +28,7 @@ class FkContextDeclReferenceImpl(
     }
 }
 
-private val CONTEXT_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("CONTEXT_NAME_INFERENCE_KEY")
-
-typealias InferenceResult = List<FkElement>;
-
-val FkElement.inference: InferenceResult
+val FkElement.contextInference: InferenceResult
     get() = CachedValuesManager.getCachedValue(this, CONTEXT_NAME_INFERENCE_KEY) {
         CachedValueProvider.Result.create(
             inferContextName(this as FkNamedElement),
