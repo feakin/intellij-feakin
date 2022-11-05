@@ -1,23 +1,23 @@
 package com.feakin.intellij.resolve.ref.use
 
-import com.feakin.intellij.psi.FkContextDeclaration
-import com.feakin.intellij.psi.FkContextName
 import com.feakin.intellij.psi.FkElement
+import com.feakin.intellij.psi.FkEntityDeclaration
+import com.feakin.intellij.psi.FkUseEntityName
 import com.feakin.intellij.resolve.indexes.FkNamedElementIndex
 import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.intellij.psi.PsiElement
 
-class FkContextNameReferenceImpl(element: FkContextName) : FkReferenceBase<FkContextName>(element) {
+class FkUseEntityNameReferenceImpl(element: FkUseEntityName) : FkReferenceBase<FkUseEntityName>(element) {
     override fun multiResolve(): List<FkElement> {
         val collection =
             FkNamedElementIndex.findElementsByName(element.identifier.text, element.project)
-                .filterIsInstance<FkContextDeclaration>()
+                .filterIsInstance<FkEntityDeclaration>()
                 .toCollection(mutableListOf())
 
         return collection
     }
 
     override fun isReferenceTo(element: PsiElement): Boolean {
-        return element is FkContextName && super.isReferenceTo(element)
+        return element is FkUseEntityName && super.isReferenceTo(element)
     }
 }

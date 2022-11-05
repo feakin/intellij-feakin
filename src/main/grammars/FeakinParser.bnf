@@ -130,18 +130,18 @@ contextMapDeclaration ::= CONTEXT_MAP_KEYWORD IDENTIFIER contextMapBody
 
 contextMapBody ::= LBRACE (contextDeclaration | contextNodeDecl | contextNodeRel)* RBRACE
 
-private contextNodeDecl ::= CONTEXT_KEYWORD contextName (COMMA contextName)*
+private contextNodeDecl ::= CONTEXT_KEYWORD useContextName (COMMA useContextName)*
 
 private contextNodeRel ::= leftContextNode relSymbol rightContextNode SEMICOLON
 
-private leftContextNode ::= contextName;
+private leftContextNode ::= useContextName;
 
-private rightContextNode ::= contextName;
+private rightContextNode ::= useContextName;
 
-contextName ::= IDENTIFIER
+useContextName ::= IDENTIFIER
 {
   implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
-  mixin = "com.feakin.intellij.stubs.ext.FkContextNameImplMixin"
+  mixin = "com.feakin.intellij.stubs.ext.FkUseContextNameImplMixin"
 }
 
 relSymbol ::= RARROW
@@ -204,10 +204,10 @@ domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 useEntity ::= ENTITY_KEYWORD useEntityName (COMMA useEntityName)* SEMICOLON
 
 useEntityName ::= IDENTIFIER
-//{
-//  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
-//  mixin = "com.feakin.intellij.stubs.ext.FkUseEntityNameImplMixin"
-//}
+{
+  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  mixin = "com.feakin.intellij.stubs.ext.FkUseEntityNameImplMixin"
+}
 
 entityBody ::= LBRACE (innerStructDeclaration | useValueObject | useStruct)* RBRACE
 

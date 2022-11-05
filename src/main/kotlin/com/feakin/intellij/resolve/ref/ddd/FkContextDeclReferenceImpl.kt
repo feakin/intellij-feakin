@@ -57,7 +57,7 @@ private fun inferContextName(
         }?.flatten()?.toTypedArray()
 
         mapBodies?.forEach { contextMapDeclaration ->
-            PsiTreeUtil.getChildrenOfType(contextMapDeclaration, FkContextName::class.java)
+            PsiTreeUtil.getChildrenOfType(contextMapDeclaration, FkUseContextName::class.java)
                 ?.forEach { contextName ->
                     if (contextName.text == element.name) {
                         collection.add(contextName)
