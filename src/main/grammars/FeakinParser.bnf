@@ -184,6 +184,10 @@ valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
 useAggregate ::= AGGREGATE_KEYWORD useAggregateName (COMMA useAggregateName)* SEMICOLON
 
 useAggregateName ::= IDENTIFIER
+{
+  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  mixin = "com.feakin.intellij.stubs.ext.FkUseAggregateNameImplMixin"
+}
 
 aggregateBody ::= LBRACE (aggregateEntry)* RBRACE
 
