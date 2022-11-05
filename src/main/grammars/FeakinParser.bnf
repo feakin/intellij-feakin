@@ -165,6 +165,14 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
 contextBody ::= LBRACE (aggregateDeclaration | useAggregate)* RBRACE
 
 aggregateDeclaration ::= AGGREGATE_KEYWORD IDENTIFIER aggregateBody {
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
+  mixin = "com.feakin.intellij.stubs.ext.FkAggregateDeclarationImplMixin"
+  stubClass = "com.feakin.intellij.stubs.FkAggregateDeclStub"
+  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
 entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {

@@ -6,6 +6,7 @@ fun factory(name: String): FkStubElementType<*, *> = when (name) {
     "DEP_NODE" -> FkDepNodeStub.Type
     "CONTEXT_MAP_DECLARATION" -> FkContextMapDeclStub.Type
     "CONTEXT_DECLARATION" -> FkContextDeclStub.Type
+    "AGGREGATE_DECLARATION" -> FkAggregateDeclStub.Type
     else -> {
         throw IllegalArgumentException("Unknown element type: $name")
     }
