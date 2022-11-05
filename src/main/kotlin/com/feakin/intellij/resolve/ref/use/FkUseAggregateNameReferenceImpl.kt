@@ -1,4 +1,4 @@
-package com.feakin.intellij.resolve.ref.impl
+package com.feakin.intellij.resolve.ref.use
 
 import com.feakin.intellij.psi.FkAggregateDeclaration
 import com.feakin.intellij.psi.FkElement

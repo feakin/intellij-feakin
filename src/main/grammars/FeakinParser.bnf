@@ -176,6 +176,14 @@ aggregateDeclaration ::= AGGREGATE_KEYWORD IDENTIFIER aggregateBody {
 }
 
 entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
+  mixin = "com.feakin.intellij.stubs.ext.FkEntityDeclarationImplMixin"
+  stubClass = "com.feakin.intellij.stubs.FkEntityDeclStub"
+  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
 valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
@@ -189,13 +197,17 @@ useAggregateName ::= IDENTIFIER
   mixin = "com.feakin.intellij.stubs.ext.FkUseAggregateNameImplMixin"
 }
 
-aggregateBody ::= LBRACE (aggregateEntry)* RBRACE
-
-private aggregateEntry ::= entityDeclaration | innerStructDeclaration | domainEvent | useEntity
+aggregateBody ::= LBRACE (entityDeclaration | innerStructDeclaration | domainEvent | useEntity)* RBRACE
 
 domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
 
-private useEntity ::= ENTITY_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON
+useEntity ::= ENTITY_KEYWORD useEntityName (COMMA useEntityName)* SEMICOLON
+
+useEntityName ::= IDENTIFIER
+//{
+//  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+//  mixin = "com.feakin.intellij.stubs.ext.FkUseEntityNameImplMixin"
+//}
 
 entityBody ::= LBRACE (innerStructDeclaration | useValueObject | useStruct)* RBRACE
 

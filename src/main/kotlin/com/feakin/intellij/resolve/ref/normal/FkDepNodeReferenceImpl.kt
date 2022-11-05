@@ -1,4 +1,4 @@
-package com.feakin.intellij.resolve.ref.impl
+package com.feakin.intellij.resolve.ref.normal
 
 import com.feakin.intellij.psi.FkDepNode
 import com.feakin.intellij.psi.FkElement

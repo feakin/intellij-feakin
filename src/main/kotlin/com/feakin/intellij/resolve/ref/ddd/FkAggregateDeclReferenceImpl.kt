@@ -1,4 +1,4 @@
-package com.feakin.intellij.resolve.ref.impl
+package com.feakin.intellij.resolve.ref.ddd
 
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType

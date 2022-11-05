@@ -3,7 +3,7 @@ package com.feakin.intellij.stubs.ext
 import com.feakin.intellij.psi.FkAggregateDeclaration
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl
 import com.feakin.intellij.resolve.ref.FkReference
-import com.feakin.intellij.resolve.ref.impl.FkAggregateDeclReferenceImpl
+import com.feakin.intellij.resolve.ref.ddd.FkAggregateDeclReferenceImpl
 import com.feakin.intellij.stubs.FkAggregateDeclStub
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement

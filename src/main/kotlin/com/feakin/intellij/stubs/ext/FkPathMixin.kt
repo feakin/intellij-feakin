@@ -4,7 +4,7 @@ import com.feakin.intellij.lexer.FkElementTypes.STRING_LITERAL
 import com.feakin.intellij.psi.FkPath
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl
 import com.feakin.intellij.resolve.ref.FkReference
-import com.feakin.intellij.resolve.ref.impl.FkPathReferenceImpl
+import com.feakin.intellij.resolve.ref.normal.FkPathReferenceImpl
 import com.feakin.intellij.stubs.FkPathStub
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
