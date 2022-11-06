@@ -234,16 +234,16 @@ private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 useValueObject ::= VALUE_OBJECT_KEYWORD useValueObjectName (COMMA useValueObjectName)* SEMICOLON?
 
 useValueObjectName ::= IDENTIFIER
+{
+  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  mixin = "com.feakin.intellij.stubs.ext.FkUseValueObjectNameImplMixin"
+}
 
 valueObjectBody ::= LBRACE (innerStructDeclaration | useStruct)? RBRACE
 
 useStruct ::= STRUCT_KEYWORD useStructName (COMMA useStructName)* SEMICOLON?
 
 useStructName ::= IDENTIFIER
-//{
-//  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
-//  mixin = "com.feakin.intellij.stubs.ext.FkUseStructNameImplMixin"
-//}
 
 implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody
 
