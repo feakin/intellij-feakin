@@ -1,4 +1,4 @@
-package com.feakin.intellij.resolve.ref.normal
+package com.feakin.intellij.resolve.ref.misc
 
 import com.feakin.intellij.psi.FkElement
 import com.feakin.intellij.psi.FkLayerDeclaration

@@ -3,7 +3,7 @@ package com.feakin.intellij.stubs.ext
 import com.feakin.intellij.psi.FkUseContextName
 import com.feakin.intellij.psi.impl.FkElementImpl
 import com.feakin.intellij.resolve.ref.FkReference
-import com.feakin.intellij.resolve.ref.use.FkUseContextNameReferenceImpl
+import com.feakin.intellij.resolve.ref.ddd.FkUseContextNameReferenceImpl
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 

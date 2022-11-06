@@ -1,9 +1,9 @@
-package com.feakin.intellij.stubs.ext
+package com.feakin.intellij.stubs.ext.misc
 
 import com.feakin.intellij.psi.FkLayerDeclaration
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl
 import com.feakin.intellij.resolve.ref.FkReference
-import com.feakin.intellij.resolve.ref.normal.FkLayerDeclarationReferenceImpl
+import com.feakin.intellij.resolve.ref.misc.FkLayerDeclarationReferenceImpl
 import com.feakin.intellij.stubs.FkLayerDeclarationStub
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement

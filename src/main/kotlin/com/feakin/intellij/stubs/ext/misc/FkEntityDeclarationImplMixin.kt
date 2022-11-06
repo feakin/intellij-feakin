@@ -1,4 +1,4 @@
-package com.feakin.intellij.stubs.ext
+package com.feakin.intellij.stubs.ext.misc
 
 import com.feakin.intellij.psi.FkEntityDeclaration
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl

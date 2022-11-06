@@ -113,7 +113,7 @@ path ::= STRING_LITERAL
     name = ""
     stubClass = "com.feakin.intellij.stubs.FkPathStub"
     implements = "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
-    mixin = "com.feakin.intellij.stubs.ext.FkPathMixin"
+    mixin = "com.feakin.intellij.stubs.ext.misc.FkPathMixin"
     elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
@@ -181,7 +181,7 @@ entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
-  mixin = "com.feakin.intellij.stubs.ext.FkEntityDeclarationImplMixin"
+  mixin = "com.feakin.intellij.stubs.ext.misc.FkEntityDeclarationImplMixin"
   stubClass = "com.feakin.intellij.stubs.FkEntityDeclStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
@@ -304,7 +304,7 @@ dep_node ::= STRING_LITERAL | IDENTIFIER
   implements = [
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
-  mixin = "com.feakin.intellij.stubs.ext.FkDepNodeMixin"
+  mixin = "com.feakin.intellij.stubs.ext.misc.FkDepNodeMixin"
   stubClass = "com.feakin.intellij.stubs.FkDepNodeStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
@@ -316,7 +316,7 @@ layerDeclaration ::= LAYER_KEYWORD IDENTIFIER layerBody
     "com.feakin.intellij.psi.FkNameIdentifierOwner"
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
-  mixin = "com.feakin.intellij.stubs.ext.FkLayerDeclarationImplMixin"
+  mixin = "com.feakin.intellij.stubs.ext.misc.FkLayerDeclarationImplMixin"
   stubClass = "com.feakin.intellij.stubs.FkLayerDeclarationStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
