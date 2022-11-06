@@ -200,6 +200,23 @@ useAggregateName ::= IDENTIFIER
   mixin = "com.feakin.intellij.stubs.ext.FkUseAggregateNameImplMixin"
 }
 
+// todo: enabled indexed by used
+//useName ::= useAggregateName
+//              | useContextName
+//              | useEntityName
+//              | useValueObjectName
+//              | useStructName
+//              ;
+//{
+//  implements = [
+//    "com.feakin.intellij.psi.FkUseElement"
+//    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+// ]
+//
+//  mixin = "com.feakin.intellij.stubs.ext.FkUseElementImplMixin"
+//  stubClass = "com.feakin.intellij.stubs.FkUseElementStub"
+//}
+
 aggregateBody ::= LBRACE (entityDeclaration | innerStructDeclaration | domainEvent | useEntity)* RBRACE
 
 domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
