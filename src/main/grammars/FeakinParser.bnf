@@ -222,16 +222,16 @@ entityBody ::= LBRACE (innerStructDeclaration | useValueObject | useStruct)* RBR
 innerStructDeclaration ::= STRUCT_KEYWORD structBody
 
 structDeclaration ::= STRUCT_KEYWORD IDENTIFIER structBody
-//{
-//  implements = [
-//    "com.feakin.intellij.psi.FkNamedElement"
-//    "com.feakin.intellij.psi.FkNameIdentifierOwner"
-//    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
-//  ]
-//  mixin = "com.feakin.intellij.stubs.ext.FkStructDeclarationImplMixin"
-//  stubClass = "com.feakin.intellij.stubs.FkStructDeclStub"
-//  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
-//}
+{
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
+  mixin = "com.feakin.intellij.stubs.ext.FkStructDeclarationImplMixin"
+  stubClass = "com.feakin.intellij.stubs.FkStructDeclarationStub"
+  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
+}
 
 structBody ::= LBRACE structEntry* RBRACE
 

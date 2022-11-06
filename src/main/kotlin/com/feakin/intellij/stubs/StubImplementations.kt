@@ -9,6 +9,7 @@ fun factory(name: String): FkStubElementType<*, *> = when (name) {
     "AGGREGATE_DECLARATION" -> FkAggregateDeclarationStub.Type
     "ENTITY_DECLARATION" -> FkEntityDeclarationStub.Type
     "VALUE_OBJECT_DECLARATION" -> FkValueObjectDeclStub.Type
+    "STRUCT_DECLARATION" -> FkStructDeclarationStub.Type
     else -> {
         throw IllegalArgumentException("Unknown element type: $name")
     }
