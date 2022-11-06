@@ -3,9 +3,9 @@ package com.feakin.intellij.resolve.ref.ddd
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType
 import com.feakin.intellij.psi.*
-import com.feakin.intellij.resolve.ref.CONTEXT_NAME_INFERENCE_KEY
 import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.feakin.intellij.resolve.ref.InferenceResult
+import com.feakin.intellij.resolve.ref.VALUE_OBJECT_NAME_INFERENCE_KEY
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
@@ -29,7 +29,7 @@ class FkValueObjectDeclReferenceImpl(
 }
 
 val FkElement.voInference: InferenceResult
-    get() = CachedValuesManager.getCachedValue(this, CONTEXT_NAME_INFERENCE_KEY) {
+    get() = CachedValuesManager.getCachedValue(this, VALUE_OBJECT_NAME_INFERENCE_KEY) {
         CachedValueProvider.Result.create(
             inferVoName(this as FkNamedElement),
             PsiModificationTracker.MODIFICATION_COUNT

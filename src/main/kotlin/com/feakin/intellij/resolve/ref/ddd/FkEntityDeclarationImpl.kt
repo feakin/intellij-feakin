@@ -4,17 +4,16 @@ import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType
 import com.feakin.intellij.psi.*
 import com.feakin.intellij.resolve.ref.CONTEXT_NAME_INFERENCE_KEY
+import com.feakin.intellij.resolve.ref.ENTITY_NAME_INFERENCE_KEY
 import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.feakin.intellij.resolve.ref.InferenceResult
+import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.psi.util.CachedValueProvider
-import com.intellij.psi.util.CachedValuesManager
-import com.intellij.psi.util.PsiModificationTracker
-import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.util.*
 
 class FkEntityDeclReferenceImpl(
     element: FkEntityDeclaration
@@ -29,7 +28,7 @@ class FkEntityDeclReferenceImpl(
 }
 
 val FkElement.entityInference: InferenceResult
-    get() = CachedValuesManager.getCachedValue(this, CONTEXT_NAME_INFERENCE_KEY) {
+    get() = CachedValuesManager.getCachedValue(this, ENTITY_NAME_INFERENCE_KEY) {
         CachedValueProvider.Result.create(
             inferContextName(this as FkNamedElement),
             PsiModificationTracker.MODIFICATION_COUNT

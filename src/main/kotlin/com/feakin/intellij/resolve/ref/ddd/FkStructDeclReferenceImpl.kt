@@ -3,10 +3,9 @@ package com.feakin.intellij.resolve.ref.ddd
 import com.feakin.intellij.psi.FkElement
 import com.feakin.intellij.psi.FkNamedElement
 import com.feakin.intellij.psi.FkStructDeclaration
-import com.feakin.intellij.psi.FkValueObjectDeclaration
-import com.feakin.intellij.resolve.ref.CONTEXT_NAME_INFERENCE_KEY
 import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.feakin.intellij.resolve.ref.InferenceResult
+import com.feakin.intellij.resolve.ref.STRUCT_NAME_INFERENCE_KEY
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
@@ -25,7 +24,7 @@ class FkStructDeclReferenceImpl(
 }
 
 val FkElement.structInference: InferenceResult
-    get() = CachedValuesManager.getCachedValue(this, CONTEXT_NAME_INFERENCE_KEY) {
+    get() = CachedValuesManager.getCachedValue(this, STRUCT_NAME_INFERENCE_KEY) {
         CachedValueProvider.Result.create(
             inferVoName(this as FkNamedElement),
             PsiModificationTracker.MODIFICATION_COUNT

@@ -2,9 +2,8 @@ package com.feakin.intellij.resolve.ref.ddd
 
 import com.feakin.intellij.FkFile
 import com.feakin.intellij.FkFileType
-import com.feakin.intellij.lexer.FkElementTypes.IDENTIFIER
 import com.feakin.intellij.psi.*
-import com.feakin.intellij.resolve.ref.CONTEXT_NAME_INFERENCE_KEY
+import com.feakin.intellij.resolve.ref.AGGREGATE_NAME_INFERENCE_KEY
 import com.feakin.intellij.resolve.ref.FkReferenceBase
 import com.feakin.intellij.resolve.ref.InferenceResult
 import com.intellij.openapi.vfs.VirtualFile
@@ -30,7 +29,7 @@ class FkAggregateDeclReferenceImpl(
 }
 
 val FkElement.aggregateInference: InferenceResult
-    get() = CachedValuesManager.getCachedValue(this, CONTEXT_NAME_INFERENCE_KEY) {
+    get() = CachedValuesManager.getCachedValue(this, AGGREGATE_NAME_INFERENCE_KEY) {
         CachedValueProvider.Result.create(
             inferContextName(this as FkNamedElement),
             PsiModificationTracker.MODIFICATION_COUNT

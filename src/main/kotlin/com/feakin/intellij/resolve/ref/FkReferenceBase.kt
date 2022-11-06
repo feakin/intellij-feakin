@@ -20,6 +20,10 @@ import com.intellij.psi.ResolveResult
 import com.intellij.psi.util.CachedValue
 
 val CONTEXT_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("CONTEXT_NAME_INFERENCE_KEY")
+val AGGREGATE_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("AGGREGATE_NAME_INFERENCE_KEY")
+val ENTITY_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("ENTITY_NAME_INFERENCE_KEY")
+val STRUCT_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("STRUCT_NAME_INFERENCE_KEY")
+val VALUE_OBJECT_NAME_INFERENCE_KEY: Key<CachedValue<List<FkElement>>> = Key.create("VALUE_OBJECT_NAME_INFERENCE_KEY")
 
 typealias InferenceResult = List<FkElement>;
 
