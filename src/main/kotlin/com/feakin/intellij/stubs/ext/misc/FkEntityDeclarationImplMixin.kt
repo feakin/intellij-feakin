@@ -4,15 +4,15 @@ import com.feakin.intellij.psi.FkEntityDeclaration
 import com.feakin.intellij.psi.FkStubbedNamedElementImpl
 import com.feakin.intellij.resolve.ref.FkReference
 import com.feakin.intellij.resolve.ref.ddd.FkEntityDeclReferenceImpl
-import com.feakin.intellij.stubs.FkEntityDeclStub
+import com.feakin.intellij.stubs.FkEntityDeclarationStub
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.IStubElementType
 
-abstract class FkEntityDeclarationImplMixin : FkStubbedNamedElementImpl<FkEntityDeclStub>, FkEntityDeclaration {
+abstract class FkEntityDeclarationImplMixin : FkStubbedNamedElementImpl<FkEntityDeclarationStub>, FkEntityDeclaration {
     constructor(node: ASTNode) : super(node)
 
-    constructor(stub: FkEntityDeclStub, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
+    constructor(stub: FkEntityDeclarationStub, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 
     override fun getReference(): FkReference = FkEntityDeclReferenceImpl(this)
 

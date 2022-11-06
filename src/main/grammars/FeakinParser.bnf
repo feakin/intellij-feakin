@@ -158,7 +158,7 @@ contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkContextDeclarationImplMixin"
-  stubClass = "com.feakin.intellij.stubs.FkContextDeclStub"
+  stubClass = "com.feakin.intellij.stubs.FkContextDeclarationStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
@@ -171,7 +171,7 @@ aggregateDeclaration ::= AGGREGATE_KEYWORD IDENTIFIER aggregateBody {
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
   mixin = "com.feakin.intellij.stubs.ext.FkAggregateDeclarationImplMixin"
-  stubClass = "com.feakin.intellij.stubs.FkAggregateDeclStub"
+  stubClass = "com.feakin.intellij.stubs.FkAggregateDeclarationStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
@@ -182,7 +182,7 @@ entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
     "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
   ]
   mixin = "com.feakin.intellij.stubs.ext.misc.FkEntityDeclarationImplMixin"
-  stubClass = "com.feakin.intellij.stubs.FkEntityDeclStub"
+  stubClass = "com.feakin.intellij.stubs.FkEntityDeclarationStub"
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
@@ -222,6 +222,16 @@ entityBody ::= LBRACE (innerStructDeclaration | useValueObject | useStruct)* RBR
 innerStructDeclaration ::= STRUCT_KEYWORD structBody
 
 structDeclaration ::= STRUCT_KEYWORD IDENTIFIER structBody
+//{
+//  implements = [
+//    "com.feakin.intellij.psi.FkNamedElement"
+//    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+//    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+//  ]
+//  mixin = "com.feakin.intellij.stubs.ext.FkStructDeclarationImplMixin"
+//  stubClass = "com.feakin.intellij.stubs.FkStructDeclStub"
+//  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
+//}
 
 structBody ::= LBRACE structEntry* RBRACE
 
@@ -244,6 +254,10 @@ valueObjectBody ::= LBRACE (innerStructDeclaration | useStruct)? RBRACE
 useStruct ::= STRUCT_KEYWORD useStructName (COMMA useStructName)* SEMICOLON?
 
 useStructName ::= IDENTIFIER
+{
+  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  mixin = "com.feakin.intellij.stubs.ext.FkUseStructNameImplMixin"
+}
 
 implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody
 
@@ -273,9 +287,9 @@ httpMethod ::= GET_KEYWORD
 
 uri ::= STRING_LITERAL
 
-requestBody ::= REQUEST_KEYWORD COLON (requestEntityName | innerStructDeclaration) SEMICOLON?;
+requestBody ::= REQUEST_KEYWORD COLON (useStructName | innerStructDeclaration) SEMICOLON?;
 
-responseDeclaration ::= RESPONSE_KEYWORD COLON responseEntityName SEMICOLON?;
+responseDeclaration ::= RESPONSE_KEYWORD COLON useStructName SEMICOLON?;
 
 flowDeclaration ::= FLOW_KEYWORD flowBody
 
@@ -347,8 +361,6 @@ topic ::= STRING_LITERAL
 objectName ::= IDENTIFIER
 
 viaMethodName ::= IDENTIFIER
-
-requestEntityName ::= IDENTIFIER
 
 responseEntityName ::= IDENTIFIER
 

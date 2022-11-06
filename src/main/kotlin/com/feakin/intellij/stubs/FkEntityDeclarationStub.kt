@@ -7,7 +7,7 @@ import com.feakin.intellij.resolve.indexes.FkNamedElementIndex
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 
-class FkEntityDeclStub(
+class FkEntityDeclarationStub(
     parent: StubElement<*>?,
     elementType: IStubElementType<*, *>,
     override val name: String?
@@ -15,29 +15,29 @@ class FkEntityDeclStub(
     parent,
     elementType
 ), FkNamedStub {
-    object Type : FkStubElementType<FkEntityDeclStub, FkEntityDeclaration>("ENTITY_DECLARATION") {
-        override fun indexStub(stub: FkEntityDeclStub, sink: IndexSink) {
+    object Type : FkStubElementType<FkEntityDeclarationStub, FkEntityDeclaration>("ENTITY_DECLARATION") {
+        override fun indexStub(stub: FkEntityDeclarationStub, sink: IndexSink) {
             stub.name?.let { sink.occurrence(FkNamedElementIndex.KEY, it) }
         }
 
-        override fun serialize(stub: FkEntityDeclStub, dataStream: StubOutputStream) {
+        override fun serialize(stub: FkEntityDeclarationStub, dataStream: StubOutputStream) {
             return with(dataStream) {
                 writeName(stub.name)
             }
         }
 
-        override fun deserialize(dataStream: StubInputStream, parentStub: StubElement<*>?): FkEntityDeclStub {
-            return FkEntityDeclStub(parentStub, this, dataStream.readName()?.string)
+        override fun deserialize(dataStream: StubInputStream, parentStub: StubElement<*>?): FkEntityDeclarationStub {
+            return FkEntityDeclarationStub(parentStub, this, dataStream.readName()?.string)
         }
 
         override fun createStub(
             psi: FkEntityDeclaration,
             parentStub: StubElement<out PsiElement>?
-        ): FkEntityDeclStub {
-            return FkEntityDeclStub(parentStub, this, psi.name)
+        ): FkEntityDeclarationStub {
+            return FkEntityDeclarationStub(parentStub, this, psi.name)
         }
 
-        override fun createPsi(stub: FkEntityDeclStub): FkEntityDeclarationImpl {
+        override fun createPsi(stub: FkEntityDeclarationStub): FkEntityDeclarationImpl {
             return FkEntityDeclarationImpl(stub, this)
         }
 
