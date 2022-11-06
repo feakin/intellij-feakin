@@ -186,9 +186,6 @@ entityDeclaration ::= ENTITY_KEYWORD IDENTIFIER entityBody {
   elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
 }
 
-valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
-}
-
 useAggregate ::= AGGREGATE_KEYWORD useAggregateName (COMMA useAggregateName)* SEMICOLON
 
 useAggregateName ::= IDENTIFIER
@@ -200,6 +197,17 @@ useAggregateName ::= IDENTIFIER
 aggregateBody ::= LBRACE (entityDeclaration | innerStructDeclaration | domainEvent | useEntity)* RBRACE
 
 domainEvent ::= DOMAIN_EVENT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
+
+valueObjectDeclaration ::= VALUE_OBJECT_KEYWORD IDENTIFIER valueObjectBody {
+  implements = [
+    "com.feakin.intellij.psi.FkNamedElement"
+    "com.feakin.intellij.psi.FkNameIdentifierOwner"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
+  mixin = "com.feakin.intellij.stubs.ext.FkValueObjectDeclarationImplMixin"
+  stubClass = "com.feakin.intellij.stubs.FkValueObjectDeclStub"
+  elementTypeFactory = "com.feakin.intellij.stubs.StubImplementationsKt.factory"
+}
 
 useEntity ::= ENTITY_KEYWORD useEntityName (COMMA useEntityName)* SEMICOLON
 
@@ -223,10 +231,19 @@ fieldType ::= IDENTIFIER ('<' IDENTIFIER '>')? ;
 
 private defaultValue ::= EQUAL IDENTIFIER ('.' IDENTIFIER )?
 
-private useValueObject ::= VALUE_OBJECT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
-private useStruct      ::= STRUCT_KEYWORD IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON?
+useValueObject ::= VALUE_OBJECT_KEYWORD useValueObjectName (COMMA useValueObjectName)* SEMICOLON?
+
+useValueObjectName ::= IDENTIFIER
 
 valueObjectBody ::= LBRACE (innerStructDeclaration | useStruct)? RBRACE
+
+useStruct ::= STRUCT_KEYWORD useStructName (COMMA useStructName)* SEMICOLON?
+
+useStructName ::= IDENTIFIER
+//{
+//  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+//  mixin = "com.feakin.intellij.stubs.ext.FkUseStructNameImplMixin"
+//}
 
 implDeclaration ::= IMPL_KEYWORD IDENTIFIER implBody
 
