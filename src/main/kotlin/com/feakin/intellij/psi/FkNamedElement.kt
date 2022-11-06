@@ -23,6 +23,10 @@ interface FkNamedElement : FkElement, PsiNamedElement, NavigatablePsiElement
 
 interface FkNameIdentifierOwner : FkNamedElement, PsiNameIdentifierOwner
 
+interface FkUseElement: FkElement {
+
+}
+
 interface FkNamedStub {
     val name: String?
 }

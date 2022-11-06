@@ -140,7 +140,10 @@ private rightContextNode ::= useContextName;
 
 useContextName ::= IDENTIFIER
 {
-  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  implements = [
+    "com.feakin.intellij.psi.FkUseElement"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
   mixin = "com.feakin.intellij.stubs.ext.FkUseContextNameImplMixin"
 }
 
@@ -190,7 +193,10 @@ useAggregate ::= AGGREGATE_KEYWORD useAggregateName (COMMA useAggregateName)* SE
 
 useAggregateName ::= IDENTIFIER
 {
-  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  implements = [
+    "com.feakin.intellij.psi.FkUseElement"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
   mixin = "com.feakin.intellij.stubs.ext.FkUseAggregateNameImplMixin"
 }
 
@@ -213,7 +219,10 @@ useEntity ::= ENTITY_KEYWORD useEntityName (COMMA useEntityName)* SEMICOLON
 
 useEntityName ::= IDENTIFIER
 {
-  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  implements = [
+    "com.feakin.intellij.psi.FkUseElement"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
   mixin = "com.feakin.intellij.stubs.ext.FkUseEntityNameImplMixin"
 }
 
@@ -245,7 +254,10 @@ useValueObject ::= VALUE_OBJECT_KEYWORD useValueObjectName (COMMA useValueObject
 
 useValueObjectName ::= IDENTIFIER
 {
-  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  implements = [
+   "com.feakin.intellij.psi.FkUseElement"
+   "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+ ]
   mixin = "com.feakin.intellij.stubs.ext.FkUseValueObjectNameImplMixin"
 }
 
@@ -255,7 +267,10 @@ useStruct ::= STRUCT_KEYWORD useStructName (COMMA useStructName)* SEMICOLON?
 
 useStructName ::= IDENTIFIER
 {
-  implements = [ "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement" ]
+  implements = [
+    "com.feakin.intellij.psi.FkUseElement"
+    "com.feakin.intellij.psi.ext.FkMandatoryReferenceElement"
+  ]
   mixin = "com.feakin.intellij.stubs.ext.FkUseStructNameImplMixin"
 }
 

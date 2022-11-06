@@ -37,6 +37,5 @@ private fun inferVoName(
 //    val project = element.project
 //    val scope = GlobalSearchScope.allScope(project)
     val collection = mutableListOf<FkElement>()
-
     return collection
 }
