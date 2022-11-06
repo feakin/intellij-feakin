@@ -36,7 +36,7 @@ Feakin
               PsiElement(FeakinTokenType.response)('response')
               PsiElement(FeakinTokenType.:)(':')
               PsiWhiteSpace(' ')
-              FkResponseEntityNameImpl(RESPONSE_ENTITY_NAME)
+              FkUseStructNameImpl(USE_STRUCT_NAME)
                 PsiElement(FeakinTokenType.IDENTIFIER)('String')
               PsiElement(FeakinTokenType.;)(';')
             PsiWhiteSpace('\n  ')
