@@ -16,8 +16,6 @@ import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 
 
-/// T = BaseConfig
-/// D = Declaration
 abstract class BaseLazyRunConfigurationProducer<T: BaseConfig<D>, D: FkElement> : LazyRunConfigurationProducer<FkCommandConfiguration>() {
     open val commandName: String = "run"
     val runConfigProviders: MutableList<(List<PsiElement>) -> T?> = mutableListOf()
