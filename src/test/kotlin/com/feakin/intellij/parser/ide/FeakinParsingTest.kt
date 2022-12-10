@@ -59,4 +59,8 @@ class FeakinParsingTest : ParsingTestCase("parser", "fkl", FkParserDefinition())
     fun testCustomEnv() {
         doTest(true)
     }
+
+    fun testNestedAggregate() {
+        doTest(true)
+    }
 }

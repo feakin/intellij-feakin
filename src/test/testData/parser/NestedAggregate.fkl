@@ -1,0 +1,5 @@
+Context Movie {
+  Aggregate Movie {
+    Entity Movie, Actor, Publisher;
+  }
+}
