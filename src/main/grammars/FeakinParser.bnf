@@ -147,11 +147,8 @@ useContextName ::= IDENTIFIER
   mixin = "com.feakin.intellij.stubs.ext.FkUseContextNameImplMixin"
 }
 
-relSymbol ::= RARROW
-             | LARROW
-             | DARROW
-             | CONNECTION
-             ;
+//            ->     | <-     | <->    | --
+relSymbol ::= RARROW | LARROW | DARROW | CONNECTION;
 
 contextDeclaration ::= CONTEXT_KEYWORD IDENTIFIER contextBody
 {
