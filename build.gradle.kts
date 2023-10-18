@@ -1,6 +1,7 @@
 import org.jetbrains.changelog.markdownToHTML
-import org.jetbrains.grammarkit.tasks.GenerateLexerTask
-import org.jetbrains.grammarkit.tasks.GenerateParserTask
+import org.gradle.api.JavaVersion.VERSION_17
+import org.jetbrains.changelog.Changelog
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
 
@@ -9,7 +10,7 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    id("org.jetbrains.kotlin.jvm") version "1.8.22"
     // Gradle IntelliJ Plugin
     id("org.jetbrains.intellij") version "1.15.0"
     // Gradle Changelog Plugin
@@ -17,7 +18,7 @@ plugins {
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
 
-    id("org.jetbrains.grammarkit") version "2021.2.2"
+    id("org.jetbrains.grammarkit") version "2022.3.1"
 }
 
 group = properties("pluginGroup")
@@ -26,13 +27,6 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
-}
-
-// Set the JVM language level used to compile sources and generate files - Java 11 is required since 2020.3
-kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
@@ -45,14 +39,17 @@ intellij {
     plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
 }
 
+configure<JavaPluginExtension> {
+    sourceCompatibility = VERSION_17
+    targetCompatibility = VERSION_17
+}
+
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
     groups.set(emptyList())
-//    path.set("${project.projectDir}/CHANGELOG.md")
-//    itemPrefix.set("-")
-//    keepUnreleasedSection.set(true)
-//    unreleasedTerm.set("[Unreleased]")
+    path.set(rootProject.file("CHANGELOG.md").toString())
+    repositoryUrl.set(properties("pluginRepositoryUrl"))
 }
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
@@ -90,40 +87,33 @@ kotlin {
 }
 
 tasks {
-    withType<JavaCompile> {
-        sourceCompatibility = properties("javaVersion")
-        targetCompatibility = properties("javaVersion")
+    withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = VERSION_17.toString()
+            languageVersion = "1.8"
+            // see https://plugins.jetbrains.com/docs/intellij/using-kotlin.html#kotlin-standard-library
+            apiVersion = "1.7"
+            freeCompilerArgs = listOf("-Xjvm-default=all")
+        }
     }
 
-    val generateFeakinLexer = task<GenerateLexerTask>("generateFeakinLexer") {
-        source.set("src/main/grammars/FeakinLexer.flex")
+    generateLexer {
+        sourceFile.set(file("src/main/grammars/FeakinLexer.flex"))
         targetDir.set("src/gen/com/feakin/intellij/lexer")
         targetClass.set("_FeakinLexer")
         purgeOldFiles.set(true)
     }
 
-    val generateFeakinParser = task<GenerateParserTask>("generateFeakinParser") {
-        source.set("src/main/grammars/FeakinParser.bnf")
+    generateParser {
+        sourceFile.set(file("src/main/grammars/FeakinParser.bnf"))
         targetRoot.set("src/gen")
         pathToParser.set("com/feakin/intellij/parser/FeakinParser.java")
         pathToPsiRoot.set("com/feakin/intellij/psi")
         purgeOldFiles.set(true)
     }
 
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = properties("javaVersion")
-            apiVersion = properties("kotlinApiVersion")
-        }
-
-        dependsOn(
-            generateFeakinLexer,
-            generateFeakinParser
-        )
-    }
-
-    wrapper {
-        gradleVersion = properties("gradleVersion")
+    withType<KotlinCompile> {
+        dependsOn(generateLexer, generateParser)
     }
 
     patchPluginXml {
@@ -146,9 +136,9 @@ tasks {
 
         // Get the latest available change notes from the changelog file
         changeNotes.set(provider {
-            changelog.run {
+            changelog.renderItem(changelog.run {
                 getOrNull(properties("pluginVersion")) ?: getLatest()
-            }.toHTML()
+            }, Changelog.OutputType.HTML)
         })
     }
 
