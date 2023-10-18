@@ -3,8 +3,8 @@ package com.feakin.intellij.runconfig.ui
 import com.feakin.intellij.runconfig.FkCommandConfiguration
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
+import com.intellij.ui.dsl.builder.AlignX
 import com.intellij.ui.dsl.builder.panel
-import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import javax.swing.JComponent
 
 open class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCommandConfiguration>() {
@@ -22,7 +22,7 @@ open class FkCommandConfigurationEditor(project: Project) : SettingsEditor<FkCom
     override fun createEditor(): JComponent = panel {
         row("Command:") {
             cell(command)
-                .horizontalAlign(HorizontalAlign.FILL)
+                .align(AlignX.FILL)
                 .resizableColumn()
         }
     }
