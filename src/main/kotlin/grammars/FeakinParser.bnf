@@ -14,8 +14,6 @@
   elementTypeClass="com.feakin.intellij.psi.FkElementType"
 
   tokenTypeClass="com.feakin.intellij.lexer.FkTokenType"
-
-  tokenTypeClass="com.feakin.intellij.lexer.FkTokenType"
   tokens = [
       COMMENT               = 'regexp://[^\r\n]*'
       BLOCK_COMMENT         = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
