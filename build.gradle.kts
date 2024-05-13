@@ -18,7 +18,7 @@ plugins {
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
 
-    id("org.jetbrains.grammarkit") version "2022.3.1"
+    id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
 
 group = properties("pluginGroup")
@@ -99,14 +99,13 @@ tasks {
 
     generateLexer {
         sourceFile.set(file("src/main/grammars/FeakinLexer.flex"))
-        targetDir.set("src/gen/com/feakin/intellij/lexer")
-        targetClass.set("_FeakinLexer")
+        targetOutputDir.set(file("src/gen/com/feakin/intellij/lexer"))
         purgeOldFiles.set(true)
     }
 
     generateParser {
         sourceFile.set(file("src/main/grammars/FeakinParser.bnf"))
-        targetRoot.set("src/gen")
+        targetRootOutputDir.set(file("src/gen"))
         pathToParser.set("com/feakin/intellij/parser/FeakinParser.java")
         pathToPsiRoot.set("com/feakin/intellij/psi")
         purgeOldFiles.set(true)
