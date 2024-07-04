@@ -105,7 +105,6 @@
         <lang.findUsagesProvider language="Feakin"
                                  implementationClass="com.feakin.intellij.ide.search.FkFindUsagesProvider"/>
         <findUsagesHandlerFactory implementation="com.feakin.intellij.ide.search.FkFindUsagesHandlerFactory"/>
-        <usageTypeProvider implementation="com.feakin.intellij.ide.search.FkUsageTypeProvider"/>
 
         <!-- spellchecker -->
         <spellchecker.bundledDictionaryProvider
