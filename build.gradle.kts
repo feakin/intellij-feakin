@@ -1,6 +1,7 @@
 import org.gradle.api.JavaVersion.VERSION_17
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformDependenciesExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -24,9 +25,6 @@ plugins {
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
-
 // Configure project's dependencies
 repositories {
     mavenCentral()
@@ -42,15 +40,23 @@ intellijPlatform {
     buildSearchableOptions = false
 
     pluginConfiguration {
-        id = properties("pluginName")
-        name = properties("platformVersion")
-        version = properties("pluginVersion")
+        id = prop("pluginName")
+        name = prop("platformVersion")
+        version = prop("pluginVersion")
+
+        vendor {
+            name = "Phodal Huang"
+        }
     }
 }
 
 dependencies {
     intellijPlatform {
         intellijIde(prop("ideaVersion"))
+
+        instrumentationTools()
+        pluginVerifier()
+        testFramework(TestFrameworkType.Platform)
     }
 }
 
@@ -133,10 +139,10 @@ tasks {
         pluginDescription.set(provider { file("src/description.html").readText() })
 
         changelog {
-            version.set(properties("pluginVersion"))
+            version.set(prop("pluginVersion"))
             groups.empty()
             path.set(rootProject.file("CHANGELOG.md").toString())
-            repositoryUrl.set(properties("pluginRepositoryUrl"))
+            repositoryUrl.set(prop("pluginRepositoryUrl"))
         }
 
         val changelog = project.changelog
@@ -158,6 +164,11 @@ tasks {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
         privateKey.set(System.getenv("PRIVATE_KEY"))
         password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    }
+
+    val newName = "intellij-feakin-" + prop("ideaVersion") + "-" + prop("pluginVersion")
+    buildPlugin {
+        archiveBaseName.convention(newName)
     }
 
     publishPlugin {
