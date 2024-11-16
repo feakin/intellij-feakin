@@ -20,9 +20,13 @@ plugins {
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "2.2.1"
     // Gradle Qodana Plugin
-    id("org.jetbrains.qodana") version "0.1.13"
+    id("org.jetbrains.qodana") version "2024.2.3"
 
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 // Configure project's dependencies
@@ -41,7 +45,7 @@ intellijPlatform {
 
     pluginConfiguration {
         id = prop("pluginGroup")
-        name = prop("platformVersion")
+        name = prop("pluginName")
         version = prop("pluginVersion")
 
         vendor {
@@ -56,12 +60,16 @@ intellijPlatform {
 }
 
 dependencies {
+    testImplementation("junit:junit:4.13.2")
+
     intellijPlatform {
         intellijIde(prop("ideaVersion"))
 
         instrumentationTools()
         pluginVerifier()
+
         testFramework(TestFrameworkType.Platform)
+        testFramework(TestFrameworkType.Bundled)
     }
 }
 
@@ -74,11 +82,6 @@ changelog {
     itemPrefix.set("*")
 }
 
-configure<JavaPluginExtension> {
-    sourceCompatibility = VERSION_17
-    targetCompatibility = VERSION_17
-}
-
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
@@ -87,17 +90,11 @@ changelog {
     repositoryUrl.set(properties("pluginRepositoryUrl"))
 }
 
-// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
-qodana {
-    cachePath.set(projectDir.resolve(".qodana").canonicalPath)
-    reportPath.set(projectDir.resolve("build/reports/inspections").canonicalPath)
-    saveReport.set(true)
-    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
-}
-
 idea {
     module {
         generatedSourceDirs.add(file("src/gen"))
+        isDownloadJavadoc = true
+        isDownloadSources = true
     }
 }
 
@@ -117,6 +114,27 @@ kotlin {
         }
         test {
             kotlin.srcDirs("src/test/kotlin")
+        }
+    }
+}
+
+intellijPlatformTesting {
+    runIde {
+        register("runIdeForUiTests") {
+            task {
+                jvmArgumentProviders += CommandLineArgumentProvider {
+                    listOf(
+                        "-Drobot-server.port=8082",
+                        "-Dide.mac.message.dialogs.as.sheets=false",
+                        "-Djb.privacy.policy.text=<!--999.999-->",
+                        "-Djb.consents.confirmation.enabled=false",
+                    )
+                }
+            }
+
+            plugins {
+                robotServerPlugin()
+            }
         }
     }
 }
