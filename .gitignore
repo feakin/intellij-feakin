@@ -5,3 +5,4 @@ build
 src/gen/**
 .idea/**
 !.idea/icon.png
+.intellijPlatform
