@@ -1,8 +1,12 @@
 import org.gradle.api.JavaVersion.VERSION_17
 import org.jetbrains.changelog.Changelog
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformDependenciesExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = providers.gradleProperty(key)
+fun prop(name: String): String =
+    extra.properties[name] as? String ?: error("Property `$name` is not defined in gradle.properties")
 
 plugins {
     idea
@@ -34,10 +38,19 @@ repositories {
 }
 
 intellijPlatform {
+    instrumentCode = true
+    buildSearchableOptions = false
+
     pluginConfiguration {
         id = properties("pluginName")
         name = properties("platformVersion")
         version = properties("pluginVersion")
+    }
+}
+
+dependencies {
+    intellijPlatform {
+        intellijIde(prop("ideaVersion"))
     }
 }
 
@@ -98,16 +111,6 @@ kotlin {
 }
 
 tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = VERSION_17.toString()
-            languageVersion = "1.8"
-            // see https://plugins.jetbrains.com/docs/intellij/using-kotlin.html#kotlin-standard-library
-            apiVersion = "1.7"
-            freeCompilerArgs = listOf("-Xjvm-default=all")
-        }
-    }
-
     generateLexer {
         sourceFile.set(file("src/main/grammars/FeakinLexer.flex"))
         targetOutputDir.set(file("src/gen/com/feakin/intellij/lexer"))
@@ -161,4 +164,16 @@ tasks {
         dependsOn("patchChangelog")
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
+}
+
+fun IntelliJPlatformDependenciesExtension.intellijIde(versionWithCode: String) {
+    val (type, version) = versionWithCode.toTypeWithVersion()
+    create(type, version, useInstaller = false)
+}
+
+data class TypeWithVersion(val type: IntelliJPlatformType, val version: String)
+
+fun String.toTypeWithVersion(): TypeWithVersion {
+    val (code, version) = split("-", limit = 2)
+    return TypeWithVersion(IntelliJPlatformType.fromCode(code), version)
 }
