@@ -40,7 +40,7 @@ intellijPlatform {
     buildSearchableOptions = false
 
     pluginConfiguration {
-        id = prop("pluginName")
+        id = prop("pluginGroup")
         name = prop("platformVersion")
         version = prop("pluginVersion")
 
