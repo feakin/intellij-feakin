@@ -47,6 +47,11 @@ intellijPlatform {
         vendor {
             name = "Phodal Huang"
         }
+
+        ideaVersion {
+            sinceBuild = prop("pluginSinceBuild")
+            untilBuild = prop("pluginUntilBuild")
+        }
     }
 }
 
