@@ -1,11 +1,13 @@
 package com.feakin.intellij
 
-import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 
-@TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class FeakinPluginTest : BasePlatformTestCase() {
+    override fun getTestDataPath(): String {
+        return "src/test/testData/folding"
+    }
+
     fun testBasicPsi() {
         val psiFile = myFixture.configureByText(FkFileType, "ContextMap Demo { Reservation -> Cinema; }")
         myFixture.checkHighlighting();
